@@ -1,44 +1,35 @@
 // eslint-disable-next-line no-unused-vars
 import { Navbar as BootstrapNavbar } from 'bootstrap';
-/**
- * Render the Navbar which is styled by using Bootstrap
- * Each item in the Navbar is tightly coupled with the Router configuration :
- * - the URI associated to a page shall be given in the attribute "data-uri" of the Navbar
- * - the router will show the Page associated to this URI when the user clicks on a nav-link
- */
+import image from '../../img/logoNav.png';
 
 const Navbar = () => {
   const navbarWrapper = document.querySelector('#navbarWrapper');
   const navbar = `
-  <nav class="navbar navbar-expand-lg navbar-light" style = "background-color: #74F071">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Add your brand here</a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="#" data-uri="/">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#" data-uri="/game">Game</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#" data-uri="/new">New Page</a>
-              </li>                        
-            </ul>
-          </div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/" style="cursor: pointer;">
+          <img src="${image}" alt="Logo" width="40" height="40" class="d-inline-block align-text-top logo-img">
+          <span style="color: #fff; font-size: 24px; font-weight: bold; margin-left: 10px; cursor: pointer;">CovidClicker</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-uri="/game">Game</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-uri="/new">New Page</a>
+            </li>
+          </ul>
         </div>
-      </nav>
+        <div class="ms-auto">
+          <button class="btn btn-apocalyptic btn-custom me-2">Se connecter</button>
+          <button class="btn btn-success">S'inscrire</button>
+        </div>
+      </div>
+    </nav>
   `;
   navbarWrapper.innerHTML = navbar;
 };
