@@ -1,0 +1,14 @@
+/* Dans votre fichier CSS ou balise <style> */
+.btn-apocalyptic {
+    background-color: #8b0000; /* Rouge sombre */
+    color: #fff; /* Couleur du texte */
+    border-color: #8b0000; /* Couleur de la bordure */
+    transition: all 0.3s ease; /* Transition pour l'animation */
+  }
+  
+  .btn-apocalyptic:hover {
+    background-color: #660000; /* Rouge plus sombre au survol */
+    border-color: #660000; /* Couleur de la bordure au survol */
+    transform: scale(1.1); /* Effet de zoom */
+  }
+  
