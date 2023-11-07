@@ -24,8 +24,8 @@ POST {{baseUrl}}/auths/register
 Content-Type: application/json
 
 {
-    "username":"manager",
-    "password":"manager"
+    "username":"manager5",
+    "password":"Ay.2"
 }
 
 ### Login the manager user

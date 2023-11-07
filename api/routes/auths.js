@@ -8,6 +8,12 @@ router.post('/register', async (req, res) => {
   const username = req?.body?.username?.length !== 0 ? req.body.username : undefined;
   const password = req?.body?.password?.length !== 0 ? req.body.password : undefined;
 
+  if (!username.match(/[0-9]/g)
+      || !password.match(/[A-Z]/g)
+      || !password.match(/[a-z]/g)
+      || !password.match(/[^a-zA-Z\d]/g)
+      || !password.length >= 8) { return res.sendStatus(400); }
+
   if (!username || !password) return res.sendStatus(400); // 400 Bad Request
 
   const authenticatedUser = await register(username, password);
