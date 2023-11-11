@@ -1,19 +1,20 @@
-import covidImage from '../../img/covid-19-5551910_1280.png'
+import covidImage from '../../img/play_button.png'
 
 const HomePage = () => {
   const main = document.querySelector('main');
-  const text = `
-  
-  <div class="d-flex justify-content-center my-3">
-    <a href="/game" class="card text-bg-dark">
-        <img src="${covidImage}" class="card-img" alt="PLAY" width="400" height="400">
-        <div class="card-img-overlay"><p class="card-text">PLAY</p></div>
+  const body = document.querySelector('body');
+  body.style.overflow = 'hidden';
+  main.className = 'homepage_body';
+
+  const text = ` 
+  <div class="play">
+    <a href="/game">
+        <img src="${covidImage}" class="card-img" alt="PLAY"> 
     </a>
   </div>
-
   `;
   main.innerHTML = text;
-
+  
 };
 
 export default HomePage;

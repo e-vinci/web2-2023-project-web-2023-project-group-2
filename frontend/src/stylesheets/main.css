@@ -11,4 +11,28 @@
     border-color: #660000; /* Couleur de la bordure au survol */
     transform: scale(1.1); /* Effet de zoom */
   }
+
+
+
+  html, body {
+    height: 100%;
+  }
+
+  .play {
+    position: relative;
+    top: 27%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
+    
+  }
+
+  .homepage_body {
+    background-color: #ff6a59;
+    background-image: url("../img/background_image.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+  }
   
