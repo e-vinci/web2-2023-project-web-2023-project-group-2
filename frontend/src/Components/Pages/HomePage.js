@@ -1,3 +1,5 @@
+/* eslint-disable import/no-extraneous-dependencies */
+import anime from 'animejs'
 import covidImage from '../../img/play_button.png'
 
 const HomePage = () => {
@@ -15,10 +17,11 @@ const HomePage = () => {
   </div>
   `;
 
-  let annimation = anime({
+    anime({
     targets: 'card-img',
     translateX: 250
   });
+
   
   main.innerHTML = text;
   

@@ -37,7 +37,36 @@
   .custom-link {
     font-size: 20px; /* Ajustez la taille de la police des sous titres */
   }
-  
-  
+
+  /* Ajoutez ceci à votre fichier CSS ou balise <style> */
+
+.login-logo-container {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.login-logo {
+  width: 30px;
+  height: 30px;
+  background-color: #4CAF50; /* Couleur verte */
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+}
+
+.login-logo::before {
+  content: '\1F6AA'; /* Symbole de porte ouverte */
+  font-size: 16px;
+  color: #fff; /* Couleur du texte */
+}
+
+.custom-link {
+  font-size: 20px; /* Ajustez la taille de la police des sous-titres */
+}
+
 
   
