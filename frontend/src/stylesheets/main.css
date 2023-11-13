@@ -12,8 +12,6 @@
     transform: scale(1.1); /* Effet de zoom */
   }
 
-
-
   html, body {
     height: 100%;
   }
@@ -35,4 +33,9 @@
     background-size: cover;
     height: 100%;
   }
+
+  .custom-link {
+    font-size: 20px; /* Ajustez la taille de la police des sous titres */
+  }
+  
   
