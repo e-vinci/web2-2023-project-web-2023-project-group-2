@@ -4,6 +4,7 @@ const HomePage = () => {
   const main = document.querySelector('main');
   const body = document.querySelector('body');
   body.style.overflow = 'hidden';
+
   main.className = 'homepage_body';
 
   const text = ` 
@@ -13,6 +14,12 @@ const HomePage = () => {
     </a>
   </div>
   `;
+
+  let annimation = anime({
+    targets: 'card-img',
+    translateX: 250
+  });
+  
   main.innerHTML = text;
   
 };
