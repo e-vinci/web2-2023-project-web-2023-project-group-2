@@ -24,9 +24,16 @@ const Navbar = () => {
         </li>
       </ul>
     </div>
+    // ...
+
     <div class="ms-auto">
-      <a class="btn btn-apocalyptic btn-custom me-2" href="#" data-uri="/login">Se connecter</a>
+      <a href="#" data-uri="/login" class="login-logo-container">
+        <div class="login-logo"></div>
+      </a>
     </div>
+    
+    // ...
+    
   </div>
 </nav>
 `;
