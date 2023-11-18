@@ -5,7 +5,7 @@ import image from '../../img/logoNav.png';
 const Navbar = () => {
   const navbarWrapper = document.querySelector('#navbarWrapper');
   const navbar = `
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
       <div class="container-fluid">
         <a class="navbar-brand d-flex align-items-center" style="cursor: pointer;">
           <img src="${image}" alt="Logo" width="70" height="70" class="d-inline-block align-text-top logo-img" data-uri="/">
