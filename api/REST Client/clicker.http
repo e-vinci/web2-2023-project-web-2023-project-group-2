@@ -1,1 +1,9 @@
 @baseUrl = http://localhost:3000
+
+POST {{baseUrl}}/clicker/registerScore
+Content-Type: application/json
+
+{
+    "username":"admin",
+    "nvxPoints": 323
+}
