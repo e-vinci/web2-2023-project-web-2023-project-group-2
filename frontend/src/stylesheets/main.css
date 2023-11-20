@@ -83,3 +83,8 @@
 .custom-link {
   font-size: 20px; /* Ajustez la taille de la police des sous-titres */
 }
+
+
+.custom-btn {
+    margin-right: 5px; /* Ajustez la valeur selon vos préférences */
+}

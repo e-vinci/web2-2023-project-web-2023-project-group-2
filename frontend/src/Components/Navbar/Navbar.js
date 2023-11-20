@@ -32,33 +32,25 @@ const Navbar = () => {
           </button>
         </div>
 
+        <!-- ... (votre code existant) ... -->
+
         <!-- Formulaire de Connexion à l'intérieur de la Navbar -->
-        <div class="position-absolute top-100 start-0 end-0 p-4 collapse" id="loginCollapse" style="background-color: #343a40; z-index: 1000;">
-          <div class="card card-body" style="background-color: #343a40; border: none;">
+        <div class="position-absolute top-100 start-0 end-0 p-4 collapse" id="loginCollapse" style="background-color: #212529; z-index: 1000;">
+          <div class="card card-body text-center" style="background-color: #212529; border: none;">
             <!-- Contenu du Collapse -->
             <form class="px-4 py-3">
-              <div class="mb-3">
-                <label for="exampleDropdownFormEmail1" class="form-label text-light">Email</label>
-                <input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="email@example.com">
+              <div class="mb-3 d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary me-5">Se connecter</button>
+                <button type="submit" class="btn btn-primary ms-5">S'inscrire</button>
               </div>
-              <div class="mb-3">
-                <label for="exampleDropdownFormPassword1" class="form-label text-light">Mot de passe</label>
-                <input type="password" class="form-control" id="exampleDropdownFormPassword1" placeholder="Mot de passe">
-              </div>
-              <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="dropdownCheck">
-                <label class="form-check-label text-light" for="dropdownCheck">
-                  Se souvenir de moi
-                </label>
-              </div>
-              <button type="submit" class="btn btn-primary">Se connecter</button>
             </form>
             <div class="dropdown-divider" style="background-color: #6c757d;"></div>
-            <a class="dropdown-item text-light" href="#">Mot de passe oublié ?</a>
           </div>
         </div>
-      </div>
-    </nav>
+        </div>
+        </nav>
+        
+
   `;
   navbarWrapper.innerHTML = navbar;
 };
