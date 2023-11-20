@@ -4,11 +4,11 @@ const logger = require('morgan');
 const cors = require('cors');
 
 const corsOptions = {
-  origin: ['http://localhost:8080', 'https://e-baron.github.io'],
+  origin: 'http://localhost:8080',
 };
 
 const usersRouter = require('./routes/users');
-const pizzaRouter = require('./routes/pizzas');
+const pizzaRouter = require('./routes/upgrades');
 const authsRouter = require('./routes/auths');
 
 const app = express();
@@ -23,5 +23,6 @@ app.use(cors(corsOptions));
 app.use('/users', usersRouter);
 app.use('/pizzas', pizzaRouter);
 app.use('/auths', authsRouter);
+app.use('/pizzas', cors(corsOptions), pizzaRouter);
 
 module.exports = app;
