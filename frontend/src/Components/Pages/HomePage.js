@@ -38,9 +38,10 @@ const HomePage = () => {
         const newImg = document.createElement("img");
         newImg.setAttribute('src', covidRed);
         newImg.setAttribute('style', 'width: 15px');
-        newImg.style.marginRight = '25px'
-        newImg.style.top = '50px'
-        newImg.classList.add("covidIcon")
+        newImg.style.marginRight = '25px';
+        newImg.style.top = '50px';
+        newImg.style.userSelect = 'none';
+        newImg.classList.add("covidIcon");
         covidContainer.appendChild(newImg);
 
       anime({

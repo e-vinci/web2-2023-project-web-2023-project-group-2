@@ -28,7 +28,7 @@
   /*Css for play button*/
 
   .play{
-    width: 325px;
+    width: 30vh;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -38,10 +38,11 @@
 
   .title {
     font-family: 'Agbalumo';
-    font-size: 100px;
+    font-size: 12vh;
     position: absolute;
     top: 25%;
     left: 50%;
+    user-select: none;
     transform: translate(-50%, -50%);
     z-index: 2;
   }
