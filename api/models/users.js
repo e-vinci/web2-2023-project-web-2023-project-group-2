@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 const path = require('node:path');
 const { parse, serialize } = require('../utils/json');
 
-const jwtSecret = 'ilovemypizza!';
+const jwtSecret = 'covidClicker';
 const lifetimeJwt = 24 * 60 * 60 * 1000; // in ms : 24 * 60 * 60 * 1000 = 24h
 
 const saltRounds = 10;
@@ -96,8 +96,21 @@ function getNextId() {
   return nextId;
 }
 
+function addPoint(username, nvxPoints) {
+  const users = parse(jsonDbPath, defaultUsers);
+  const indexOfUserFound = users.findIndex((user) => user.username === username);
+  if (indexOfUserFound < 0) return undefined;
+
+  users[indexOfUserFound].nbClick = nvxPoints;
+
+  serialize(jsonDbPath, users);
+
+  return users[indexOfUserFound].nbClick;
+}
+
 module.exports = {
   login,
   register,
   readOneUserFromUsername,
+  addPoint,
 };

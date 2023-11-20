@@ -10,7 +10,7 @@ router.post('/register', async (req, res) => {
 
   if (!username || !password) return res.sendStatus(400); // 400 Bad Request
 
-  if (!username.match(/[0-9]/g)
+  if (!password.match(/[0-9]/g)
   || !password.match(/[A-Z]/g)
   || !password.match(/[a-z]/g)
   || !password.match(/[^a-zA-Z\d]/g)

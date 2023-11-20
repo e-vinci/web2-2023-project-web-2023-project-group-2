@@ -24,8 +24,8 @@ POST {{baseUrl}}/auths/register
 Content-Type: application/json
 
 {
-    "username":"manager1",
-    "password":"Ay.233232"
+    "username":"manager",
+    "password":"Manager.2003"
 }
 
 ### Login the manager user
@@ -34,5 +34,5 @@ Content-Type: application/json
 
 {
     "username":"manager",
-    "password":"manager"
+    "password":"Manager.2003"
 }
