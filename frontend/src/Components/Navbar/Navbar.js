@@ -1,6 +1,9 @@
 // eslint-disable-next-line no-unused-vars
 import { Navbar as BootstrapNavbar } from 'bootstrap';
-import image from '../../img/logoNav.png';
+import logoNav from '../../img/logoNav.png';
+import iconeConnexion from '../../img/iconeConnexion.png';
+import iconeRegister from '../../img/iconRegister.png';
+
 
 const Navbar = () => {
   const navbarWrapper = document.querySelector('#navbarWrapper');
@@ -8,7 +11,7 @@ const Navbar = () => {
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
       <div class="container-fluid">
         <a class="navbar-brand d-flex align-items-center" style="cursor: pointer;">
-          <img src="${image}" alt="Logo" width="70" height="70" class="d-inline-block align-text-top logo-img" data-uri="/">
+          <img src="${logoNav}" alt="Logo" width="70" height="70" class="d-inline-block align-text-top logo-img" data-uri="/">
           <span style="color: #fff; font-size: 30px; font-weight: bold; margin-left: 10px; cursor: pointer;" data-uri="/">CovidClicker</span>
         </a>
 
@@ -40,8 +43,13 @@ const Navbar = () => {
             <!-- Contenu du Collapse -->
             <form class="px-4 py-3">
               <div class="mb-3 d-flex justify-content-center">
-                <button type="submit" class="btn btn-primary me-5">Se connecter</button>
-                <button type="submit" class="btn btn-primary ms-5">S'inscrire</button>
+              <a class="navbar-brand d-flex align-items-center" style="cursor: pointer;">
+                <img src="${iconeConnexion}" alt="Logo" width="45" height="45" class="d-inline-block align-text-top logo-img" data-uri="/" me-15>
+              </a>
+
+              <a class="navbar-brand d-flex align-items-center" style="cursor: pointer;">
+                <img src="${iconeRegister}" alt="Logo" width="40" height="40" class="d-inline-block align-text-top logo-img" data-uri="/" ms-15>
+              </a>
               </div>
             </form>
             <div class="dropdown-divider" style="background-color: #6c757d;"></div>
@@ -49,8 +57,6 @@ const Navbar = () => {
         </div>
         </div>
         </nav>
-        
-
   `;
   navbarWrapper.innerHTML = navbar;
 };
