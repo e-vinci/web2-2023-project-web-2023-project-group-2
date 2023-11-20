@@ -96,8 +96,21 @@ function getNextId() {
   return nextId;
 }
 
+function addPoint(username, nvxPoints) {
+  const users = parse(jsonDbPath, defaultUsers);
+  const indexOfUserFound = users.findIndex((user) => user.username === username);
+  if (indexOfUserFound < 0) return undefined;
+
+  users[indexOfUserFound].nbClick = nvxPoints;
+
+  serialize(jsonDbPath, users);
+
+  return users[indexOfUserFound].nbClick;
+}
+
 module.exports = {
   login,
   register,
   readOneUserFromUsername,
+  addPoint,
 };

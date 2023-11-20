@@ -5,7 +5,7 @@ const {
   createOnePizza,
   deleteOnePizza,
   updateOnePizza,
-} = require('../models/pizzas');
+} = require('../models/upgrades');
 const { authorize, isAdmin } = require('../utils/auths');
 
 const router = express.Router();
