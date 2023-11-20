@@ -8,35 +8,35 @@ const defaultUpgrades = [
   {
     id: 1,
     title: 'click: +1',
-    operation: 'additioner',
+    operation: 'add',
     cost: 15,
     upgradeClickerValue: 1,
   },
   {
     id: 2,
     title: 'click: +3',
-    operation: 'additioner',
+    operation: 'add',
     cost: 50,
     upgradeClickerValue: 3,
   },
   {
     id: 3,
     title: 'click: x2',
-    operation: 'multiplier',
+    operation: 'multiply',
     cost: 100,
     upgradeClickerValue: 2,
   },
   {
     id: 4,
     title: 'click: +10',
-    operation: 'additioner',
+    operation: 'add',
     cost: 200,
     upgradeClickerValue: 10,
   },
   {
     id: 5,
     title: 'click: x5',
-    operation: 'multiplier',
+    operation: 'multiply',
     cost: 1000,
     upgradeClickerValue: 5,
   },
@@ -44,7 +44,8 @@ const defaultUpgrades = [
 
 function readAllUpgrades(theOperation) {
   const upgrades = parse(jsonDbPath, defaultUpgrades);
-  if (theOperation === undefined || theOperation !== 'multiplier' || theOperation !== 'additioner') return upgrades;
+
+  if (theOperation === undefined || theOperation !== 'multiply' || theOperation !== 'add') return upgrades;
 
   const upgradesByOperation = upgrades.filter((upgrade) => upgrade.operation === theOperation);
   return upgradesByOperation;
@@ -98,24 +99,25 @@ function deleteOneUpgrade(id) {
   return deletedUpgrade;
 }
 
-/*function updateOnePizza(id, propertiesToUpdate) {
-  const idNumber = parseInt(id, 10);
-  const pizzas = parse(jsonDbPath, defaultPizzas);
-  const foundIndex = pizzas.findIndex((pizza) => pizza.id === idNumber);
+function updateOneUpgrade(id, propertiesToUpdate) {
+  const idNumber = Number(id);
+  const upgrades = parse(jsonDbPath, defaultUpgrades);
+  const foundIndex = upgrades.findIndex((upgrade) => upgrade.id === idNumber);
   if (foundIndex < 0) return undefined;
 
-  const updatedPizza = { ...pizzas[foundIndex], ...propertiesToUpdate };
+  const updatedUpgrade = { ...upgrades[foundIndex], ...propertiesToUpdate };
 
-  pizzas[foundIndex] = updatedPizza;
+  upgrades[foundIndex] = updatedUpgrade;
 
-  serialize(jsonDbPath, pizzas);
+  serialize(jsonDbPath, upgrades);
 
-  return updatedPizza;
-}*/
+  return updatedUpgrade;
+}
 
 module.exports = {
   readAllUpgrades,
   readOneUpgrade,
   createUpgrade,
   deleteOneUpgrade,
+  updateOneUpgrade,
 };
