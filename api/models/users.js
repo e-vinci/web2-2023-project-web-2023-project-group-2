@@ -115,13 +115,13 @@ function addPoint(username, nvxPoints) {
 }
 
 // fonction Teodor : upgrade valeurClick by the upgrade
-function addOrMultiplyClickerByUpgrade(username, upgrade_ID) {
+function addOrMultiplyClickerByUpgrade(username, upgradeID) {
   const users = parse(jsonDbPath, defaultUsers);
   const indexOfUserFound = users.findIndex((user) => user.username === username);
   if (indexOfUserFound < 0) return undefined;
 
-  const upgrade = readOneUpgrade(upgrade_ID);
-  if (upgrade.cost > users[indexOfUserFound].nbClick) return undefined;
+  const upgrade = readOneUpgrade(upgradeID);
+  if (upgrade.cost > users[indexOfUserFound].nbClick) return 'Not enough points to buy';
 
   if (upgrade.operation === 'add') {
     users[indexOfUserFound].valeurDuCLick += upgrade.upgradeClickerValue;

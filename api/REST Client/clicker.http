@@ -6,7 +6,7 @@ Content-Type: application/json
 
 {
     "username":"admin",
-    "nvxPoints": 33
+    "nvxPoints": 125
 }
 
 ###Register score for manager
@@ -16,4 +16,13 @@ Content-Type: application/json
 {
     "username":"manager",
     "nvxPoints": 323
+}
+
+####Upgrade clicker
+PATCH {{baseUrl}}/clicker/upgradeClicker
+Content-Type: application/json
+
+{
+    "username": "admin",
+    "upgradeID": 2
 }
