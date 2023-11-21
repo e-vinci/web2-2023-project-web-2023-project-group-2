@@ -12,8 +12,9 @@ const HomePage = () => {
  
   const text = ` 
   <div class="covidContainer"></div>
-  <div>
   <h1 class="title" >Covid Clicker</h1>
+  <div>
+  
     <a href="/game">
         <img src="${covidImage}" class="play" alt="PLAY"> 
     </a>
@@ -52,7 +53,7 @@ const HomePage = () => {
       easing: 'linear',
       loop: true,
       duration: anime.random(2000, 3500),
-      scale: 8,
+      scale: 7,
       opacity: 0
     });
   }
