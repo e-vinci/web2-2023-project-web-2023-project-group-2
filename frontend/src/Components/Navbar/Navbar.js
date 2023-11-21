@@ -3,16 +3,15 @@ import { Navbar as BootstrapNavbar } from 'bootstrap';
 import logoNav from '../../img/logoNav.png';
 import iconeConnexion from '../../img/iconeConnexion.png';
 import iconeRegister from '../../img/iconRegister.png';
-
+import iconeLogin from '../../img/iconLogin.png';
 
 const Navbar = () => {
   const navbarWrapper = document.querySelector('#navbarWrapper');
   const navbar = `
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+    <nav class="navbar navbar-expand-lg navbar-dark">
       <div class="container-fluid">
         <a class="navbar-brand d-flex align-items-center" style="cursor: pointer;">
           <img src="${logoNav}" alt="Logo" width="70" height="70" class="d-inline-block align-text-top logo-img" data-uri="/">
-          <span style="color: #fff; font-size: 30px; font-weight: bold; margin-left: 10px; cursor: pointer;" data-uri="/">CovidClicker</span>
         </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,33 +29,33 @@ const Navbar = () => {
           </ul>
 
           <!-- Bouton Login avec Collapse -->
-          <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#loginCollapse" aria-expanded="false" aria-controls="loginCollapse">
-            Login
+          <button class="btn btn-custom" type="button" data-bs-toggle="collapse" data-bs-target="#loginCollapse" aria-expanded="false" aria-controls="loginCollapse">
+            <img src="${iconeLogin}" width="35" height="35">
           </button>
         </div>
 
-        <!-- ... (votre code existant) ... -->
-
         <!-- Formulaire de Connexion à l'intérieur de la Navbar -->
-        <div class="position-absolute top-100 start-0 end-0 p-4 collapse" id="loginCollapse" style="background-color: #212529; z-index: 1000;">
-          <div class="card card-body text-center" style="background-color: #212529; border: none;">
-            <!-- Contenu du Collapse -->
-            <form class="px-4 py-3">
-              <div class="mb-3 d-flex justify-content-center">
-              <a class="navbar-brand d-flex align-items-center" style="cursor: pointer;">
-                <img src="${iconeConnexion}" alt="Logo" width="45" height="45" class="d-inline-block align-text-top logo-img" data-uri="/" me-15>
-              </a>
+        <div class="collapse position-absolute top-100 start-0 end-0 p-4" id="loginCollapse" style="z-index: 1000; transition: height 0.3s ease;">
+  <div class="card card-body text-center" style="border: none; background-color: transparent;">
+    <!-- Contenu du Collapse -->
+    <form class="px-4 py-3">
+      <div class="mb-3 d-flex justify-content-center">
+        <a class="navbar-brand d-flex align-items-center" style="cursor: pointer; margin-right: 100px;">
+          <img src="${iconeConnexion}" alt="Logo" width="45" height="45" class="d-inline-block align-text-top logo-img" data-uri="/login">
+        </a>
 
-              <a class="navbar-brand d-flex align-items-center" style="cursor: pointer;">
-                <img src="${iconeRegister}" alt="Logo" width="40" height="40" class="d-inline-block align-text-top logo-img" data-uri="/" ms-15>
-              </a>
-              </div>
-            </form>
-            <div class="dropdown-divider" style="background-color: #6c757d;"></div>
+        <a class="navbar-brand d-flex align-items-center" style="cursor: pointer;">
+          <img src="${iconeRegister}" alt="Logo" width="40" height="40" class="d-inline-block align-text-top logo-img" data-uri="/register">
+        </a>
+      </div>
+    </form>
+    <div class="dropdown-divider" style="border: none;"></div>
+  </div>
+</div>
           </div>
         </div>
-        </div>
-        </nav>
+      </div>
+    </nav>
   `;
   navbarWrapper.innerHTML = navbar;
 };

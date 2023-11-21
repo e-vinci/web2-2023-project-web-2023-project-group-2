@@ -88,3 +88,23 @@
 .custom-btn {
     margin-right: 5px; /* Ajustez la valeur selon vos préférences */
 }
+
+
+  /* Ajout d'une transition spécifique à la fermeture du collapse */
+#loginCollapse.collapse.closing {
+    height: 0;
+    transition: height 0.3s ease;
+    overflow: hidden;
+}
+
+  /* Ajoutez ce style pour supprimer l'encadrement bleu */
+.btn-custom {
+      border: none;
+      background-color: transparent;
+      padding: 0;
+}
+  
+    /* Style optionnel pour ajouter une ombre au survol du bouton */
+    .btn-custom:hover {
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
