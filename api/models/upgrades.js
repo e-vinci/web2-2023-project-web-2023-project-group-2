@@ -45,7 +45,7 @@ const defaultUpgrades = [
 function readAllUpgrades(theOperation) {
   const upgrades = parse(jsonDbPath, defaultUpgrades);
 
-  if (theOperation === undefined || theOperation !== 'multiply' || theOperation !== 'add') return upgrades;
+  if (theOperation === undefined && theOperation !== 'multiply' && theOperation !== 'add') return upgrades;
 
   const upgradesByOperation = upgrades.filter((upgrade) => upgrade.operation === theOperation);
   return upgradesByOperation;
