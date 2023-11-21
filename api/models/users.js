@@ -16,6 +16,7 @@ const defaultUsers = [
     username: 'admin',
     password: bcrypt.hashSync('admin', saltRounds),
     nbClick: 0,
+    valeurDuCLick: 1,
   },
 ];
 
@@ -78,6 +79,7 @@ async function createOneUser(username, password) {
     username,
     password: hashedPassword,
     nbClick: 0,
+    valeurDuCLick: 1,
   };
 
   users.push(createdUser);

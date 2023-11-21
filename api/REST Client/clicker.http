@@ -1,9 +1,19 @@
 @baseUrl = http://localhost:3000
 
+###Register score for admin
 POST {{baseUrl}}/clicker/registerScore
 Content-Type: application/json
 
 {
     "username":"admin",
     "nvxPoints": 33
+}
+
+###Register score for manager
+POST {{baseUrl}}/clicker/registerScore
+Content-Type: application/json
+
+{
+    "username":"manager",
+    "nvxPoints": 323
 }
