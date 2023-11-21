@@ -10,9 +10,6 @@ GET {{baseUrl}}/upgrades
 ### Read all upgrades sorted by operation (ascending)
 GET {{baseUrl}}/upgrades/?operation=add
 
-### Read all upgrades sorted by title (descending)
-GET {{baseUrl}}/upgrades/?order=-title
-
 ### Read upgrade identified by 2
 GET {{baseUrl}}/upgrades/2
 
@@ -34,8 +31,10 @@ Content-Type: application/json
 Authorization: {{admin.response.body.token}}
 
 {
-    "title":"Magic Green",
-    "content":"Epinards, Brocolis, Olives vertes, Basilic"
+    "title":"click: x10",
+    "operation":"multiply",
+    "cost": 2000,
+    "upgradeClickerValue": 10
 }
 
 ### Delete upgrade identified by 2 with the admin token
@@ -48,7 +47,7 @@ Content-Type: application/json
 Authorization: {{admin.response.body.token}}
 
 {
-    "title":"Magic Green 2"
+    "title":"test"
 }
 
 

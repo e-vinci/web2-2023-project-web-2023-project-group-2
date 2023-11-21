@@ -3,6 +3,10 @@ const bcrypt = require('bcrypt');
 const path = require('node:path');
 const { parse, serialize } = require('../utils/json');
 
+const {
+  readOneUpgrade,
+} = require('./upgrades');
+
 const jwtSecret = 'covidClicker';
 const lifetimeJwt = 24 * 60 * 60 * 1000; // in ms : 24 * 60 * 60 * 1000 = 24h
 
@@ -16,6 +20,7 @@ const defaultUsers = [
     username: 'admin',
     password: bcrypt.hashSync('admin', saltRounds),
     nbClick: 0,
+    valeurDuCLick: 1,
   },
 ];
 
@@ -78,6 +83,7 @@ async function createOneUser(username, password) {
     username,
     password: hashedPassword,
     nbClick: 0,
+    valeurDuCLick: 1,
   };
 
   users.push(createdUser);
@@ -108,9 +114,33 @@ function addPoint(username, nvxPoints) {
   return users[indexOfUserFound].nbClick;
 }
 
+// fonction Teodor : upgrade valeurClick by the upgrade
+function addOrMultiplyClickerByUpgrade(username, upgrade_ID) {
+  const users = parse(jsonDbPath, defaultUsers);
+  const indexOfUserFound = users.findIndex((user) => user.username === username);
+  if (indexOfUserFound < 0) return undefined;
+
+  const upgrade = readOneUpgrade(upgrade_ID);
+  if (upgrade.cost > users[indexOfUserFound].nbClick) return undefined;
+
+  if (upgrade.operation === 'add') {
+    users[indexOfUserFound].valeurDuCLick += upgrade.upgradeClickerValue;
+    users[indexOfUserFound].nbClick -= upgrade.cost;
+  }
+  if (upgrade.operation === 'multiply') {
+    users[indexOfUserFound].valeurDuCLick *= upgrade.upgradeClickerValue;
+    users[indexOfUserFound].nbClick -= upgrade.cost;
+  }
+
+  serialize(jsonDbPath, users);
+
+  return users[indexOfUserFound].valeurDuCLick;
+}
+
 module.exports = {
   login,
   register,
   readOneUserFromUsername,
   addPoint,
+  addOrMultiplyClickerByUpgrade,
 };
