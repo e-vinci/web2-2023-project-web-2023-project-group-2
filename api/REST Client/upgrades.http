@@ -1,22 +1,19 @@
 ######### NORMAL OPERATION  ###########
 
-### Read all pizzas
-GET http://localhost:3000/pizzas
+### Read all upgrades
+GET http://localhost:3000/upgrades
 
-### Read all pizzas with File variable
+### Read all upgrades with File variable
 @baseUrl = http://localhost:3000
-GET {{baseUrl}}/pizzas
+GET {{baseUrl}}/upgrades
 
-### Read all pizzas sorted by title (ascending)
-GET {{baseUrl}}/pizzas/?order=+title
+### Read all upgrades sorted by operation (ascending)
+GET {{baseUrl}}/upgrades/?operation=add
 
-### Read all pizzas sorted by title (descending)
-GET {{baseUrl}}/pizzas/?order=-title
+### Read upgrade identified by 2
+GET {{baseUrl}}/upgrades/2
 
-### Read pizza identified by 2
-GET {{baseUrl}}/pizzas/2
-
-### Create a pizza by using the admin account
+### Create an upgrade by using the admin account
 #### First login as the admin
 ##### Define a request variable nammed admin
 # @name admin
@@ -28,27 +25,29 @@ Content-Type: application/json
     "password":"admin"
 }
 
-#### Create a pizza with the admin token
-POST {{baseUrl}}/pizzas
+#### Create a upgrade with the admin token
+POST {{baseUrl}}/upgrades
 Content-Type: application/json
 Authorization: {{admin.response.body.token}}
 
 {
-    "title":"Magic Green",
-    "content":"Epinards, Brocolis, Olives vertes, Basilic"
+    "title":"click: x10",
+    "operation":"multiply",
+    "cost": 2000,
+    "upgradeClickerValue": 10
 }
 
-### Delete pizza identified by 2 with the admin token
-DELETE {{baseUrl}}/pizzas/2
+### Delete upgrade identified by 2 with the admin token
+DELETE {{baseUrl}}/upgrades/2
 Authorization: {{admin.response.body.token}}
 
-### Update the pizza identified by 6 with the admin token
-PATCH {{baseUrl}}/pizzas/6
+### Update the upgrade identified by 6 with the admin token
+PATCH {{baseUrl}}/upgrades/6
 Content-Type: application/json
 Authorization: {{admin.response.body.token}}
 
 {
-    "title":"Magic Green 2"
+    "title":"test"
 }
 
 
@@ -56,8 +55,8 @@ Authorization: {{admin.response.body.token}}
 
 ######### ERROR OPERATION  ###########
 
-### 1. Create a pizza without a token
-POST {{baseUrl}}/pizzas
+### 1. Create a upgrade without a token
+POST {{baseUrl}}/upgrades
 Content-Type: application/json
 
 {
@@ -65,7 +64,7 @@ Content-Type: application/json
     "content":"Epinards, Brocolis, Olives vertes, Basilic"
 }
 
-### 2. Create a pizza without being the admin, use manager account
+### 2. Create a upgrade without being the admin, use manager account
 #### 2.1 First login as the manager
 ##### 2.1.1 Define a request variable nammed manager
 # @name manager
@@ -80,8 +79,8 @@ Content-Type: application/json
 ##### 2.1.2 Define a file variable to simplify the access to the token of manager
 @managerToken = {{manager.response.body.token}}
 
-#### 2.2 Try to create a pizza with the manager token
-POST {{baseUrl}}/pizzas
+#### 2.2 Try to create a upgrade with the manager token
+POST {{baseUrl}}/upgrades
 Content-Type: application/json
 Authorization: {{managerToken}}
 
@@ -90,19 +89,19 @@ Authorization: {{managerToken}}
     "content":"Epinards, Brocolis, Olives vertes, Basilic"
 }
 
-### Read pizza which does not exists
-GET {{baseUrl}}/pizzas/100
+### Read upgrade which does not exists
+GET {{baseUrl}}/upgrades/100
 
-### Create a pizza which lacks a property
-POST {{baseUrl}}/pizzas
+### Create a upgrade which lacks a property
+POST {{baseUrl}}/upgrades
 Content-Type: application/json
 
 {
     "content":"Epinards, Brocolis, Olives vertes, Basilic"
 }
 
-### Create a pizza without info for a property
-POST {{baseUrl}}/pizzas
+### Create a upgrade without info for a property
+POST {{baseUrl}}/upgrades
 Content-Type: application/json
 
 {
@@ -110,8 +109,8 @@ Content-Type: application/json
     "content":"Epinards, Brocolis, Olives vertes, Basilic"
 }
 
-### Update for a pizza which does not exist
-PATCH {{baseUrl}}/pizzas/200
+### Update for a upgrade which does not exist
+PATCH {{baseUrl}}/upgrades/200
 Content-Type: application/json
 Authorization: {{admin.response.body.token}}
 
@@ -119,8 +118,8 @@ Authorization: {{admin.response.body.token}}
     "title":"Magic Green 2"
 }
 
-### Update for a pizza which does not provide any info for a property
-PATCH {{baseUrl}}/pizzas/1
+### Update for a upgrade which does not provide any info for a property
+PATCH {{baseUrl}}/upgrades/1
 Authorization: {{admin.response.body.token}}
 
 Content-Type: application/json

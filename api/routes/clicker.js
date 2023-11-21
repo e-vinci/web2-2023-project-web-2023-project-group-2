@@ -1,9 +1,19 @@
 const express = require('express');
+const { addPoint } = require('../models/users');
 // const { } = require('../models/clicker');
 const router = express.Router();
 
-router.get('/registerScore', async (req, res) => {
-  const iduser = req?.body?.idUser >= 1 ? req.body.idUser : undefined;
+router.post('/registerScore', async (req, res) => {
+  const username = req?.body?.username?.length !== 0 ? req.body.username : undefined;
+  const nbClick = req?.body?.nvxPoints >= 1 ? req.body.nvxPoints : undefined;
+  console.log(username);
+  console.log(nbClick);
 
-  if (!iduser) return res.sendStatus(400);
+  if (!username || !nbClick) return res.sendStatus(400);
+
+  const newNbClick = await addPoint(username, nbClick);
+
+  return res.json(newNbClick);
 });
+
+module.exports = router;
