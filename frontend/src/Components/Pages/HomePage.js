@@ -1,5 +1,5 @@
 import anime from 'animejs/lib/anime.es';
-import covidImage from '../../img/virus-4958150_1280.png';
+import covidImage from '../../img/covid-19-5551910_1280.png';
 import covidRed from '../../img/virus-rouge.png';
 
 const HomePage = () => {
@@ -26,7 +26,6 @@ const HomePage = () => {
   covidContainer.style.top = "96px";
 
   
-
   function createCovidIcons() {
     let totalImg = 40;
     do{ 
