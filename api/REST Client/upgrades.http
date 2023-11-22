@@ -25,6 +25,19 @@ Content-Type: application/json
     "password":"admin"
 }
 
+
+### Create an upgrade by using the manager account
+#### First login as the admin
+##### Define a request variable nammed admin
+# @name admin
+POST {{baseUrl}}/auths/login
+Content-Type: application/json
+
+{
+    "username":"manager",
+    "password":"Manager.2003"
+}
+
 #### Create a upgrade with the admin token
 POST {{baseUrl}}/upgrades
 Content-Type: application/json

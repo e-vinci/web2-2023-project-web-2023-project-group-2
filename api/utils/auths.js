@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const { readOneUserFromUsername } = require('../models/users');
 
-const jwtSecret = 'covidClicker!';
+const jwtSecret = 'covidClicker';
 
 const authorize = (req, res, next) => {
   const token = req.get('authorization');
