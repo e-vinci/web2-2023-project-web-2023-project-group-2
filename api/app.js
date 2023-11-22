@@ -11,6 +11,7 @@ const usersRouter = require('./routes/users');
 const upgradeRouter = require('./routes/upgrades');
 const authsRouter = require('./routes/auths');
 const clickerRouter = require('./routes/clicker');
+const usersUpgradesRouter = require('./routes/user_upgrades');
 
 const app = express();
 
@@ -26,5 +27,6 @@ app.use('/upgrades', upgradeRouter);
 app.use('/auths', authsRouter);
 app.use('/upgrades', cors(corsOptions), upgradeRouter);
 app.use('/clicker', clickerRouter);
+app.use('/users_upgrades', usersUpgradesRouter);
 
 module.exports = app;
