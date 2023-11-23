@@ -1,7 +1,7 @@
 const path = require('node:path');
 const { parse } = require('../utils/json');
 
-const jsonDbPath = path.join(__dirname, '/../data/users_upgrades.json');
+const jsonDbPath = path.join(__dirname, '/../data/usersUpgrades.json');
 
 const defaultUserUpgrades = [
   {

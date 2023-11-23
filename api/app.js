@@ -11,7 +11,7 @@ const usersRouter = require('./routes/users');
 const upgradeRouter = require('./routes/upgrades');
 const authsRouter = require('./routes/auths');
 const clickerRouter = require('./routes/clicker');
-const usersUpgradesRouter = require('./routes/user_upgrades');
+const usersUpgradesRouter = require('./routes/userUpgrades');
 
 const app = express();
 

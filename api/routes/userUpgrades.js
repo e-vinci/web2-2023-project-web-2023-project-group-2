@@ -2,9 +2,11 @@ const express = require('express');
 
 const router = express.Router();
 
-const { readAllUpgradesFromUser } = require('../models/user_upgrades');
+const { readAllUpgradesFromUser } = require('../models/userUpgrades');
 
 router.get('/:id', (req, res) => {
+  console.log('Je suis dans la route get');
+
   const foundUserUpgrade = readAllUpgradesFromUser(req.params.id);
 
   if (!foundUserUpgrade) return res.sendStatus(404);

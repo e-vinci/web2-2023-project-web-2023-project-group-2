@@ -1,0 +1,4 @@
+@baseUrl = http://localhost:3000
+
+###Read all user_upgrades from user
+GET {{baseUrl}}/userUpgrades/1
