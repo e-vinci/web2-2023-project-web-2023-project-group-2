@@ -1,5 +1,5 @@
 import anime from 'animejs/lib/anime.es';
-import covidImage from '../../img/covid-19-5551910_1280.png';
+import covidImage from '../../img/playButton.png';
 import covidRed from '../../img/virus-rouge.png';
 
 const HomePage = () => {
@@ -52,7 +52,7 @@ const HomePage = () => {
       translateY: '100vh',
       easing: 'linear',
       loop: true,
-      duration: anime.random(2000, 3500),
+      duration: anime.random(2500, 4000),
       scale: 7,
       opacity: 0
     });
