@@ -125,3 +125,10 @@
     .btn-custom:hover {
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
+
+/*CSS game page*/
+.alert-dark{
+  width: 300px;
+  height: auto;
+  text-align: center;
+}
