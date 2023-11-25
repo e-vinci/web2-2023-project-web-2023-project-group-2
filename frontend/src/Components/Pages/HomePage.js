@@ -12,11 +12,11 @@ const HomePage = () => {
  
   const text = ` 
   <div class="covidContainer"></div>
-  <h1 class="title" >Covid Clicker</h1>
+  <h1 class="title fontRubikBubbles " >Covid Clicker</h1>
   <div>
   
     <a href="/game">
-        <img src="${covidImage}" class="play" alt="PLAY"> 
+        <img src="${covidImage}" class="play position-absolute top-50 start-50 translate-middle" alt="PLAY"> 
     </a>
   </div>
   `;
