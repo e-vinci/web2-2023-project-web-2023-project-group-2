@@ -5,9 +5,8 @@ const Leaderboard = () => {
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
+      <th scope="col">Pseudo</th>
+      <th scope="col">score</th>
     </tr>
   </thead>
   <tbody>

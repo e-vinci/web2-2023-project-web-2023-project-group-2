@@ -15,7 +15,6 @@ const GamePage = () => {
   ${score}
   </div>
   <div class="covidContainer">
-    <div id="clickFeedback" class="click-feedback"></div>
     <div>
       <img src="${covidImage}" class="covidClick" alt="PLAY" id="covidImg" width="350" height="350"> 
       <div id="clickFeedback" class="click-feedback"></div>
@@ -28,7 +27,7 @@ const GamePage = () => {
   const covidClick = document.querySelector('#covidImg')
 
   covidClick.addEventListener('click', clickOnCovid)
-  covidClick.addEventListener('clcik', popValueAnimation)
+  covidClick.addEventListener('click', popValueAnimation)
 
   function clickOnCovid() {
     anime({
