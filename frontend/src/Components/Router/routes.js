@@ -8,8 +8,7 @@ import Leaderboard from '../Pages/Leaderboard'
 const routes = {
   '/': HomePage,
   '/game': GamePage,
-  // '/new': NewPage,
-  '/game/leaderboard': Leaderboard,
+  '/leaderboard': Leaderboard,
   '/login': Login,
   '/register': Register,
 };
