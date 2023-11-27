@@ -11,7 +11,6 @@ const Navbar = () => {
         <a class="navbar-brand d-flex align-items-center" style="cursor: pointer;">
           <img src="${logoNav}" alt="Logo" width="70" height="70" class="d-inline-block align-text-top logo-img" data-uri="/">
         </a>
-        <div class="collapse navbar-collapse transparent-collapse" id="navbarNav">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
               <a class="nav-link custom-link" href="#" data-uri="/game">Game</a>
