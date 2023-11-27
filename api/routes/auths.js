@@ -7,18 +7,37 @@ const router = express.Router();
 router.post('/register', async (req, res) => {
   const username = req?.body?.username?.length !== 0 ? req.body.username : undefined;
   const password = req?.body?.password?.length !== 0 ? req.body.password : undefined;
+  const confirmPassword = req?.body?.confirmPassword?.length
+  !== 0 ? req.body.confirmPassword : undefined;
 
-  if (!username || !password) return res.sendStatus(400); // 400 Bad Request
+  if (!username || !password || !confirmPassword) return res.sendStatus(400); // 400 Bad Request
+
+  const messageErreur = {
+    weakPassword: false,
+    passwordNoMatch: false,
+    userPresent: false,
+  };
 
   if (!password.match(/[0-9]/g)
   || !password.match(/[A-Z]/g)
   || !password.match(/[a-z]/g)
   || !password.match(/[^a-zA-Z\d]/g)
-  || (password.length < 8)) { return res.sendStatus(400); }
+  || (password.length < 8)) {
+    messageErreur.weakPassword = true;
+    return res.status(400).json(messageErreur);
+  }
+
+  if (password !== confirmPassword) {
+    messageErreur.passwordNoMatch = true;
+    return res.status(400).json(messageErreur);
+  }
 
   const authenticatedUser = await register(username, password);
 
-  if (!authenticatedUser) return res.sendStatus(409); // 409 Conflict
+  if (!authenticatedUser) {
+    messageErreur.userPresent = true;
+    return res.status(403).json(messageErreur);
+  }
 
   return res.json(authenticatedUser);
 });
