@@ -27,6 +27,6 @@ app.use('/upgrades', upgradeRouter);
 app.use('/auths', authsRouter);
 app.use('/upgrades', cors(corsOptions), upgradeRouter);
 app.use('/clicker', clickerRouter);
-app.use('/users_upgrades', usersUpgradesRouter);
+app.use('/userUpgrades', usersUpgradesRouter);
 
 module.exports = app;
