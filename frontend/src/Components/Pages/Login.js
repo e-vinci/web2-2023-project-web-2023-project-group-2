@@ -15,7 +15,7 @@ const Login = () => {
             <input type="text" class="form-control  border border-dark">
             <p></p>
 
-            <a href="/register" class="btn btn-sm">No account?</a><br>
+            <a class="btn btn-sm register">No account?</a><br>
 
             <input type="image" src="${button}" class="confirmButton">
             
@@ -24,6 +24,8 @@ const Login = () => {
       </div>
       `;
     main.innerHTML = text;
+
+  
   
   };
   
