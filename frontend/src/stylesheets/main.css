@@ -10,7 +10,7 @@
     background-size: 250% 250%;
     max-height: 100%;
     margin-top: -96px;
-    animation: color 10s ease-in-out infinite;
+    animation: color 12s ease-in-out infinite;
   }
   @keyframes color{
     0%{
@@ -28,7 +28,7 @@
 
   .play{
     width: 35vmin;
-    padding-top: 10vmin;   
+    padding-top: 20vmin;   
   }
 
   .fontRubikBubbles {
@@ -49,6 +49,12 @@
 
   .covidContainer {
     position: relative;
+    }
+
+  .confirmButton{
+    position: relative;
+    width: 60px;
+    left: 70%
   }
 
   .custom-link {

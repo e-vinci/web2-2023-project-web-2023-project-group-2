@@ -2,3 +2,13 @@
 
 ###Read all user_upgrades from user
 GET {{baseUrl}}/userUpgrades/1
+
+
+### Add one upgrade for user
+# @name admin
+POST {{baseUrl}}/userUpgrades/1
+Content-Type: application/json
+
+{
+    "idUpgrade":3
+}
