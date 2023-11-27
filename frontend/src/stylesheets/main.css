@@ -130,3 +130,12 @@
   height: auto;
   text-align: center;
 }
+
+/*CSS for the clickvalue animation*/
+.click-feedback{
+  position: fixed;
+  color: aliceblue;
+  font-family: 'Rubik Bubbles', 'cursive';
+  font-size: larger;
+  z-index: 999;
+}

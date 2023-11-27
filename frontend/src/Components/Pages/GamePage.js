@@ -16,8 +16,9 @@ const GamePage = () => {
   </div>
   <div class="covidContainer">
     <div>
-      <img src="${covidImage}" class="covidClick" alt="PLAY" id="covidImg" width="350" height="350"> 
       <div id="clickFeedback" class="click-feedback"></div>
+      <img src="${covidImage}" class="covidClick" alt="PLAY" id="covidImg" width="350" height="350"> 
+      
     </div>
   </div>
   </div>
@@ -63,7 +64,7 @@ const GamePage = () => {
       opacity: 1,
       translateY: '-50',
       duration: 500,
-      easing: 'easeOutQuad'
+      easing: 'easeOutQuad',
     }).add({
       opacity: 0,
       translateY: '-50',
