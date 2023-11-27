@@ -25,6 +25,16 @@ Content-Type: application/json
 
 {
     "username":"manager",
+    "password":"Manag",
+    "confirmPassword":"Manager.2003"
+}
+
+### Create the manager user
+POST {{baseUrl}}/auths/register
+Content-Type: application/json
+
+{
+    "username":"manager",
     "password":"Manager.2003"
 }
 
