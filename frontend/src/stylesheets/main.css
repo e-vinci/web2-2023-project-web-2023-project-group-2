@@ -88,6 +88,14 @@
   font-size: larger;
   z-index: 999;
 }
+/*CSS for the clickvalue animation*/
+.click-feedback{
+  position: fixed;
+  color: aliceblue;
+  font-family: 'Rubik Bubbles', 'cursive';
+  font-size: larger;
+  z-index: 999;
+}
 
 
 .logo-img {
