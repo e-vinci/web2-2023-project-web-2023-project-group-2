@@ -15,7 +15,10 @@ const Login = () => {
             <input type="text" class="form-control  border border-dark">
             <p></p>
 
-            <input type="image" src="${button}" style="width: 50px">
+            <a href="/register" class="btn btn-sm">No account?</a><br>
+
+            <input type="image" src="${button}" class="confirmButton">
+            
           </div>
         </form>
       </div>
