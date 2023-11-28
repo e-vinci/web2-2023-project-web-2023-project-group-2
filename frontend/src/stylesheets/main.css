@@ -180,8 +180,10 @@
 }
 
 .navbar a.large-link {
-  font-size: 30px;
+  font-size: 30;
 }
+
+
 
 .custom-table {
   border-radius: 15px;
@@ -191,4 +193,43 @@
   height: 500px;
   font-size: 35px;
   text-align: center;
+}
+
+/* Styles pour les écrans de taille moyenne (par exemple, tablettes et téléphones) */
+@media only screen and (max-width: 768px) {
+  .navbar {
+    flex-direction: row; /* Maintenir la direction horizontale */
+    justify-content: space-around; /* Espacement équitable entre les éléments */
+    text-align: center; /* Centrez le texte */
+  }
+
+  .navbar a {
+    width: auto; /* Ajustez la largeur automatiquement */
+  }
+
+  .navbar-right {
+    margin-top: 10px; /* Ajoutez un espace entre le dernier élément et le haut */
+  }
+  .navbar a.large-link {
+    font-size: 30px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .navbar {
+    flex-direction: row; 
+    justify-content: space-around; 
+    text-align: center; 
+  }
+
+  .navbar a {
+    width: auto; 
+  }
+
+  .navbar-right {
+    margin-top: 10px; 
+  }
+  .navbar a.large-link {
+    font-size: 20px;
+  }
 }
