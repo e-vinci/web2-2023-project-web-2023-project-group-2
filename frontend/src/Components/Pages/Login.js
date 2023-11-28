@@ -1,4 +1,5 @@
 import button from '../../img/arrowButton.png';
+import Navigate from '../Router/Navigate';
 
 const Login = () => {
     const main = document.querySelector('main');
@@ -25,8 +26,13 @@ const Login = () => {
       `;
     main.innerHTML = text;
 
-  
-  
+    const register = document.querySelector('.register');
+
+    register.addEventListener('click', registerPage);
+
+    function registerPage(){
+      Navigate('/register');
+    }
   };
   
   export default Login;

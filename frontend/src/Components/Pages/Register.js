@@ -13,11 +13,11 @@ const Register = () => {
         <p class="userNameError"></p>
 
         <label>password</label><br>
-        <input type="text" class="form-control  border border-dark password">
+        <input type="password" class="form-control  border border-dark password">
         <p class="weakPassword"></p>
 
         <label>confirm password</label><br>
-        <input type="text" class="form-control  border border-dark confirmPassword">
+        <input type="password" class="form-control  border border-dark confirmPassword">
         <p class="passwordNoMatch"></p>
 
         <input type="image" src="${button}" class="confirmButton">
@@ -27,15 +27,16 @@ const Register = () => {
     `;
     main.innerHTML = text;
 
-    const form = document.querySelector('#confirmButton');
+    const form = document.querySelector('form');
     form.addEventListener('submit', register);
   
     async function register(e){
+
       e.preventDefault();
 
-      const userName = document.querySelector('#userName').value;
-      const password = document.querySelector('#password').value;
-      const confirmPassword = document.querySelector('#confirmPassword').value;
+      const userName = document.querySelector('.userName').value;
+      const password = document.querySelector('.password').value;
+      const confirmPassword = document.querySelector('.confirmPassword').value;
 
       const options = {
         method: 'POST',
@@ -49,22 +50,21 @@ const Register = () => {
         },
       };
 
-      const response = await fetch('/api/auths', options);
+      const response = await fetch('/api/auths/register', options);
 
-      if (response.userPresent){
-        const userPresent = document.querySelector('#userName');
+      if (!response.userPresent){
+        const userPresent = document.querySelector('.userName');
         userPresent.innerHTML = "nom d'utilisateur déjà pris";
-      }
-      if (response.weakPassword){
-          const weakPassword = document.querySelector('#weakPassword');
-          weakPassword.innerHTML = "mot de passe trop faible";
-      }
-      if (response.passwordNoMatch){
-        const passwordNoMatch = document.querySelector('#passwordNoMatch');
+        console.log(response.userPresent);
+      }else if (response.weakPassword){
+        const weakPassword = document.querySelector('.weakPassword');
+        weakPassword.innerHTML = "mot de passe trop faible";
+      }else if (response.passwordNoMatch){
+        const passwordNoMatch = document.querySelector('.passwordNoMatch');
         passwordNoMatch.innerHTML = "les mots de passe ne correspondent pas";
-    }
-      
-    Navigate('/game');
+      }else{
+        Navigate('/game');
+      }
     }
   };
   

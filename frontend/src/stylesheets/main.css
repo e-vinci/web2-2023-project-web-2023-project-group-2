@@ -142,3 +142,53 @@
 }
 
 
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: transparent;
+  white-space: nowrap;
+
+}
+
+.navbar a {
+  display: block;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.navbar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.navbar-logo {
+  cursor: pointer;
+}
+
+.navbar-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar-right {
+  cursor: pointer;
+  
+}
+
+.navbar a.large-link {
+  font-size: 30px;
+}
+
+.custom-table {
+  border-radius: 15px;
+  border: 4px solid black;
+  background-color: #ffc0cb; /* Rose */
+  width: 200px;
+  height: 500px;
+  font-size: 35px;
+  text-align: center;
+}

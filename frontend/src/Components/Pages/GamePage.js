@@ -3,9 +3,15 @@ import covidImage from '../../img/playButton.png'
 import { getAuthenticatedUser } from '../../utils/auths'
 import Navigate from '../Router/Navigate';
 
-if(!getAuthenticatedUser()) Navigate('/login')
 
 const GamePage = () => {
+
+  if(!getAuthenticatedUser()) {
+    Navigate('/login')
+    return;
+  };
+
+
   const score = 0;
   const clickValue = 1;
 
@@ -26,8 +32,15 @@ const GamePage = () => {
     </div>
   </div>
   </div>
+  
+  <div class="upgradesDiv">
+  </div>
   `;
+
+
   main.innerHTML = text;
+
+ 
 
   const covidClick = document.querySelector('#covidImg')
 
@@ -81,7 +94,59 @@ const GamePage = () => {
       }
     });
 
-  } 
+  }
+  
+  
+// Partie upgrades Teodor
+const upgradesTable = document.querySelector('.upgradesDiv')
+
+fetch('api/upgrades')
+.then((response) => {
+  if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
+  return response.json();
+})
+.then((upgrades) => {
+  renderUpgradesMenu(upgrades)
+})
+.catch((err) => {
+  console.error('GamePage::error: ', err);  
+})
+
+    function renderUpgradesMenu(menu){
+      const tableAsString = getMenuTableAsString(menu);
+      upgradesTable.innerHTML += tableAsString;
+    }
+
+    function getMenuTableAsString(menu){
+      const menuTableLines = getAllTableLines(menu)
+      const menuTable = addLinesToTable(menuTableLines);
+      return menuTable;
+    }
+
+    function addLinesToTable(tableLines){
+      const menuTable = `
+      <div class="position-absolute top-50 end-0 translate-middle">
+      <div class="table-responsive pt-5">
+      <table class="table custom-table">
+        ${tableLines}
+      </table>
+      </div>
+      </div>`;
+      return menuTable;  
+    }
+
+    function getAllTableLines(menu){
+      let upgradesLines='';
+
+      menu?.forEach((upgrade) => {
+        upgradesLines += `
+        <tr>
+          <td>${upgrade.title}</td>
+        </tr>`;
+      });
+
+      return upgradesLines;
+    }
 
   
 };
