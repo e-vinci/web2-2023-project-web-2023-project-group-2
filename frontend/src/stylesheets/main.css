@@ -4,13 +4,14 @@
     padding: 0;
   }
   
-  main{
+  body{
     height: 100vh;
     background: linear-gradient(#e34e24, #e3ae24);
     background-size: 250% 250%;
     max-height: 100%;
-    margin-top: -96px;
     animation: color 12s ease-in-out infinite;
+    font-family: 'Rubik Bubbles', 'cursive';
+
   }
   @keyframes color{
     0%{
@@ -91,10 +92,53 @@
 
 
 
-.logo-img {
-  border-radius: 16px;
-}
+
+
+/* navBar */
 
 .logo-img {
+  border-radius: 16px;
   object-fit: cover;
 }
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: transparent;
+  white-space: nowrap;
+
+}
+
+.navbar a {
+  display: block;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.navbar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.navbar-logo {
+  cursor: pointer;
+}
+
+.navbar-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar-right {
+  cursor: pointer;
+  
+}
+
+.navbar a.large-link {
+  font-size: 30px;
+}
+
+
