@@ -27,10 +27,11 @@ const Register = () => {
     `;
     main.innerHTML = text;
 
-    const form = document.querySelector('.confirmButton');
+    const form = document.querySelector('form');
     form.addEventListener('submit', register);
   
     async function register(e){
+
       e.preventDefault();
 
       const userName = document.querySelector('.userName').value;
@@ -49,11 +50,12 @@ const Register = () => {
         },
       };
 
-      const response = await fetch('/api/auths', options);
+      const response = await fetch('/api/auths/register', options);
 
-      if (response.userPresent){
+      if (!response.userPresent){
         const userPresent = document.querySelector('.userName');
         userPresent.innerHTML = "nom d'utilisateur déjà pris";
+        console.log(response.userPresent);
       }else if (response.weakPassword){
         const weakPassword = document.querySelector('.weakPassword');
         weakPassword.innerHTML = "mot de passe trop faible";

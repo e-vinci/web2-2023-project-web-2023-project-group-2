@@ -3,9 +3,15 @@ import covidImage from '../../img/playButton.png'
 import { getAuthenticatedUser } from '../../utils/auths'
 import Navigate from '../Router/Navigate';
 
-if(!getAuthenticatedUser()) Navigate('/login');
 
 const GamePage = () => {
+
+  if(!getAuthenticatedUser()) {
+    Navigate('/login')
+    return;
+  };
+
+
   const score = 0;
   const clickValue = 1;
 
