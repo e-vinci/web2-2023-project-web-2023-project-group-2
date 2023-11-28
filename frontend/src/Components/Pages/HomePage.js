@@ -1,6 +1,7 @@
 import anime from 'animejs/lib/anime.es';
 import covidImage from '../../img/playButton.png';
 import covidRed from '../../img/virus-rouge.png';
+import Navigate from '../Router/Navigate';
 
 const HomePage = () => {
   const main = document.querySelector('main');
@@ -14,17 +15,20 @@ const HomePage = () => {
   <div class="covidContainer"></div>
   <h1 class="title fontRubikBubbles " >Covid Clicker</h1>
   <div>
-    <a href="/game">
-        <img src="${covidImage}" class="play position-absolute top-50 start-50 translate-middle" alt="PLAY"> 
-    </a>
+    <img src="${covidImage}" class="play position-absolute top-50 start-50 translate-middle" alt="PLAY"> 
   </div>
   `;
   main.innerHTML = text;
 
   const covidContainer = document.querySelector('.covidContainer');
-  createCovidIcons();
   covidContainer.style.top = "96px";
+  createCovidIcons();
+  const playButton = document.querySelector('.play');
+  playButton.addEventListener('click', gamePage);
 
+  function gamePage(){
+    Navigate('/game');
+  }
   
   function createCovidIcons() {
     let totalImg = 40;
