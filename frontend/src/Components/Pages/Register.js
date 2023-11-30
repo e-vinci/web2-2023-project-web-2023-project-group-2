@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import button from '../../img/arrowButton.png';
 import Navigate from '../Router/Navigate';
 
@@ -34,14 +35,14 @@ const Register = () => {
 
       e.preventDefault();
 
-      const userName = document.querySelector('.userName').value;
+      const username = document.querySelector('.userName').value;
       const password = document.querySelector('.password').value;
       const confirmPassword = document.querySelector('.confirmPassword').value;
 
       const options = {
         method: 'POST',
         body: JSON.stringify({
-          userName,
+          username,
           password,
           confirmPassword,
         }),
@@ -51,19 +52,20 @@ const Register = () => {
       };
 
       const response = await fetch('/api/auths/register', options);
-
-      if (!response.userPresent){
-        const userPresent = document.querySelector('.userName');
-        userPresent.innerHTML = "nom d'utilisateur déjà pris";
-        console.log(response.userPresent);
-      }else if (response.weakPassword){
-        const weakPassword = document.querySelector('.weakPassword');
-        weakPassword.innerHTML = "mot de passe trop faible";
-      }else if (response.passwordNoMatch){
-        const passwordNoMatch = document.querySelector('.passwordNoMatch');
-        passwordNoMatch.innerHTML = "les mots de passe ne correspondent pas";
+      if(!response.ok){
+        const messageError = await response.json();
+        if (messageError.userPresent){
+          const userPresent = document.querySelector('.userNameError');
+          userPresent.innerText = "nom d'utilisateur déjà pris";
+        }else if (messageError.weakPassword){
+          const weakPassword = document.querySelector('.weakPassword');
+          weakPassword.innerText = "mot de passe trop faible";
+        }else if (messageError.passwordNoMatch){
+          const passwordNoMatch = document.querySelector('.passwordNoMatch');
+          passwordNoMatch.innerText = "les mots de passe ne correspondent pas";
+        }
       }else{
-        Navigate('/game');
+        return Navigate('/login')
       }
     }
   };

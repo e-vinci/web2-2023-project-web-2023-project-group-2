@@ -10,6 +10,9 @@ router.post('/register', async (req, res) => {
   const confirmPassword = req?.body?.confirmPassword?.length
   !== 0 ? req.body.confirmPassword : undefined;
 
+  console.log(username);
+  console.log(password);
+  console.log(confirmPassword);
   if (!username || !password || !confirmPassword) return res.sendStatus(400); // 400 Bad Request
 
   const messageErreur = {
@@ -24,21 +27,20 @@ router.post('/register', async (req, res) => {
   || !password.match(/[^a-zA-Z\d]/g)
   || (password.length < 8)) {
     messageErreur.weakPassword = true;
-    return res.status(400).json(messageErreur);
+    return res.status(401).json(messageErreur);
   }
 
   if (password !== confirmPassword) {
     messageErreur.passwordNoMatch = true;
-    return res.status(400).json(messageErreur);
+    return res.status(401).json(messageErreur);
   }
 
   const authenticatedUser = await register(username, password);
 
   if (!authenticatedUser) {
     messageErreur.userPresent = true;
-    return res.status(403).json(messageErreur);
+    return res.status(409).json(messageErreur);
   }
-
   return res.json(authenticatedUser);
 });
 
