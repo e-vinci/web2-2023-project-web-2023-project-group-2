@@ -4,13 +4,14 @@
     padding: 0;
   }
   
-  main{
+  body{
     height: 100vh;
     background: linear-gradient(#e34e24, #e3ae24);
     background-size: 250% 250%;
     max-height: 100%;
-    margin-top: -96px;
     animation: color 12s ease-in-out infinite;
+    font-family: 'Rubik Bubbles', 'cursive';
+
   }
   @keyframes color{
     0%{
@@ -91,15 +92,96 @@
 
 
 
-.logo-img {
-  border-radius: 16px;
-}
+
+
+/* navBar */
 
 .logo-img {
+  border-radius: 16px;
   object-fit: cover;
 }
 
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: transparent;
+  white-space: nowrap;
 
+}
+
+.navbar a {
+  display: block;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.navbar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.navbar-logo {
+  cursor: pointer;
+}
+
+.navbar-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar-right {
+  cursor: pointer;
+  
+}
+
+.navbar a.large-link {
+  font-size: 30px;
+}
+
+
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: transparent;
+  white-space: nowrap;
+
+}
+
+.navbar a {
+  display: block;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.navbar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.navbar-logo {
+  cursor: pointer;
+}
+
+.navbar-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar-right {
+  cursor: pointer;
+  
+}
+
+.navbar a.large-link {
+  font-size: 30;
+}
 
 
 
@@ -111,4 +193,43 @@
   height: 500px;
   font-size: 35px;
   text-align: center;
+}
+
+/* Styles pour les écrans de taille moyenne (par exemple, tablettes et téléphones) */
+@media only screen and (max-width: 768px) {
+  .navbar {
+    flex-direction: row; /* Maintenir la direction horizontale */
+    justify-content: space-around; /* Espacement équitable entre les éléments */
+    text-align: center; /* Centrez le texte */
+  }
+
+  .navbar a {
+    width: auto; /* Ajustez la largeur automatiquement */
+  }
+
+  .navbar-right {
+    margin-top: 10px; /* Ajoutez un espace entre le dernier élément et le haut */
+  }
+  .navbar a.large-link {
+    font-size: 30px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .navbar {
+    flex-direction: row; 
+    justify-content: space-around; 
+    text-align: center; 
+  }
+
+  .navbar a {
+    width: auto; 
+  }
+
+  .navbar-right {
+    margin-top: 10px; 
+  }
+  .navbar a.large-link {
+    font-size: 20px;
+  }
 }
