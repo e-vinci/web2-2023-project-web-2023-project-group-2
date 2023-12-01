@@ -10,9 +10,6 @@ router.post('/register', async (req, res) => {
   const confirmPassword = req?.body?.confirmPassword?.length
   !== 0 ? req.body.confirmPassword : undefined;
 
-  console.log(username);
-  console.log(password);
-  console.log(confirmPassword);
   if (!username || !password || !confirmPassword) return res.sendStatus(400); // 400 Bad Request
 
   const messageErreur = {
