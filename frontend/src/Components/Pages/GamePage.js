@@ -4,7 +4,7 @@ import { getAuthenticatedUser } from '../../utils/auths'
 import Navigate from '../Router/Navigate';
 
 
-const GamePage = () => {
+const GamePage = async () => {
 
   if(!getAuthenticatedUser()) {
     Navigate('/login')
@@ -13,7 +13,7 @@ const GamePage = () => {
 
 
   const score = 0;
-  const clickValue = 1;
+  const clickValue = await takeCLickValue();
 
   const main = document.querySelector('main');
 
@@ -146,6 +146,31 @@ fetch('api/upgrades')
       });
 
       return upgradesLines;
+    }
+
+
+    async function takeCLickValue () {
+      
+
+      // eslint-disable-next-line prefer-destructuring
+      const username = getAuthenticatedUser().username;
+
+      const options = {
+        method: 'POST',
+        body: JSON.stringify({
+          username,
+        }),
+        headers : {
+          'Content-Type': 'application/json',
+        },
+      };
+      const response = await fetch('/api/clicker/valueClickUser', options);
+
+      if(!response.ok){throw Error `fetch error`};
+      const click = await response.json();
+      console.log(click);
+
+      return click;
     }
 
   

@@ -138,10 +138,22 @@ function addOrMultiplyClickerByUpgrade(username, upgradeID) {
   return users[indexOfUserFound].valeurDuCLick;
 }
 
+async function takeClickValue(username) {
+  const users = parse(jsonDbPath, defaultUsers);
+  const indexOfUserFound = users.findIndex((user) => user.username === username);
+  if (indexOfUserFound < 0) return undefined;
+
+  const click = users[indexOfUserFound].valeurDuCLick;
+  if (!click) return undefined;
+
+  return click;
+}
+
 module.exports = {
   login,
   register,
   readOneUserFromUsername,
   addPoint,
   addOrMultiplyClickerByUpgrade,
+  takeClickValue,
 };

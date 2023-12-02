@@ -1,5 +1,5 @@
 const express = require('express');
-const { addPoint, addOrMultiplyClickerByUpgrade } = require('../models/users');
+const { addPoint, addOrMultiplyClickerByUpgrade, takeClickValue } = require('../models/users');
 // const { } = require('../models/clicker');
 const router = express.Router();
 
@@ -23,6 +23,17 @@ router.patch('/upgradeClicker', async (req, res) => {
   const valeurDuCLick = await addOrMultiplyClickerByUpgrade(username, upgradeID);
 
   return res.json(valeurDuCLick);
+});
+
+router.post('/valueClickUser', async (req, res) => {
+  const username = req?.body?.username?.length !== 0 ? req.body.username : undefined;
+
+  if (!username) return res.sendStatus(400);
+
+  const clickValue = await takeClickValue(username);
+
+  console.log(`valeur du clicl = ${clickValue}`);
+  return res.json(clickValue);
 });
 
 module.exports = router;
