@@ -27,7 +27,6 @@ const GamePage = async () => {
   </div>
   <div class="covidContainer">
     <div>
-      <div id="clickFeedback" class="click-feedback"></div>
       <img src="${covidImage}" class="covidClick" alt="PLAY" id="covidImg" width="350" height="350"> 
       
     </div>
@@ -43,7 +42,7 @@ const GamePage = async () => {
 
  
 
-  const covidClick = document.querySelector('#covidImg')
+  const covidClick = document.querySelector('#covidImg');
 
   covidClick.addEventListener('click', clickOnCovid)
   covidClick.addEventListener('click', popValueAnimation)
@@ -53,10 +52,9 @@ const GamePage = async () => {
       targets : '.covidClick',
       scale : 1.2,
       duration : 200,
-      easing : 'easeInOutQuad',
+      easing : 'easeOutQuart',
       complete : animeEnd
     })
-    
   }
 
   function animeEnd() {
@@ -70,31 +68,27 @@ const GamePage = async () => {
 
    function popValueAnimation(e) {
     const x = e.clientX;
-    const y = e.clientY;
+    const y = e.clientY-28;
 
-    const clickFeedback = document.getElementById('clickFeedback');
+    const clickFeedback = document.createElement('div');
+    clickFeedback.classList.add('click-feedback');
     clickFeedback.innerHTML = `+${ clickValue}`;
     clickFeedback.style.left = `${x  }px`;
     clickFeedback.style.top = `${y  }px`;
+    clickFeedback.style.userSelect = 'none';
+    document.body.appendChild(clickFeedback)
 
     anime.timeline({
       targets: clickFeedback,
-      opacity: 1,
-      translateY: '-50',
-      duration: 500,
-      easing: 'easeOutQuad',
-    }).add({
       opacity: 0,
-      translateY: '-50',
-      duration: 500,
-      easing: 'easeInQuad',
+      duration: 700,
+      translateY: '-100',
+      easing: 'easeOutSine'
+    }).add({
       complete() {
-        clickFeedback.innerHTML = '';
-        clickFeedback.style.opacity = 0;
-        clickFeedback.style.transform = 'translateY(0)';
+        clickFeedback.remove();
       }
-    });
-
+    })
   }
   
   
