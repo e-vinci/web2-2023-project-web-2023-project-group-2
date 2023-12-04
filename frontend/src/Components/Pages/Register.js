@@ -11,15 +11,15 @@ const Register = () => {
       <div class="card-body">
         <label>user</label>
         <input type="text" class="form-control border border-dark userName">
-        <p class="userNameError"></p>
+        <p class="userNameError" style="color: red"></p>
 
         <label>password</label><br>
         <input type="password" class="form-control  border border-dark password">
-        <p class="weakPassword"></p>
+        <p class="weakPassword" style="color: red"></p>
 
         <label>confirm password</label><br>
         <input type="password" class="form-control  border border-dark confirmPassword">
-        <p class="passwordNoMatch"></p>
+        <p class="passwordNoMatch" style="color: red"></p>
 
         <input type="image" src="${button}" class="confirmButton">
       </div>

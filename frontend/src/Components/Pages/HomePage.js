@@ -1,4 +1,5 @@
 import anime from 'animejs/lib/anime.es';
+// eslint-disable-next-line no-unused-vars
 import covidImage from '../../img/playButton.png';
 import covidRed from '../../img/virus-rouge.png';
 import Navigate from '../Router/Navigate';
@@ -15,7 +16,7 @@ const HomePage = () => {
   <div class="covidContainer"></div>
   <h1 class="title fontRubikBubbles " >Covid Clicker</h1>
   <div>
-    <img src="${covidImage}" class="play position-absolute top-50 start-50 translate-middle" alt="PLAY"> 
+    <button class="play"></button> 
   </div>
   `;
   main.innerHTML = text;

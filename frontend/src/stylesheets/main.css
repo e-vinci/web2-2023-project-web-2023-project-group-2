@@ -28,8 +28,17 @@
   /*Css for play button*/
 
   .play{
-    width: 35vmin;
-    padding-top: 20vmin;   
+    width: 42vmin;
+    height: 42vmin;  
+    background-image: url(../img/playButton.png);
+    background-color: transparent;
+    border: transparent;
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 
   .fontRubikBubbles {
