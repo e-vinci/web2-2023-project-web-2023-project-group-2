@@ -1,3 +1,4 @@
+/* eslint-disable prefer-destructuring */
 import anime from 'animejs/lib/anime.es'
 import covidImage from '../../img/playButton.png'
 import { getAuthenticatedUser } from '../../utils/auths'
@@ -13,7 +14,7 @@ const GamePage = async () => {
 
 
   const score = 0;
-  const clickValue = await takeCLickValue();
+  let clickValue = await takeCLickValue();
 
   const main = document.querySelector('main');
 
@@ -100,17 +101,26 @@ const GamePage = async () => {
 // Partie upgrades Teodor
 const upgradesTable = document.querySelector('.upgradesDiv')
 
-fetch('api/upgrades')
-.then((response) => {
+
+try{
+  const response = await fetch('/api/upgrades');
+
   if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
-  return response.json();
-})
-.then((upgrades) => {
+
+  const upgrades = await response.json();
+
   renderUpgradesMenu(upgrades)
-})
-.catch((err) => {
-  console.error('GamePage::error: ', err);  
-})
+  const upgradeButtons = document.querySelectorAll('.upgradeButton')
+
+  upgradeButtons.forEach((upgrade) => {
+    upgrade.addEventListener('click', (event) => {
+       onClickEvent(event.target.dataset.id)
+    });
+  });
+}catch (err){
+  console.error('GamePage::error: ', err); 
+}
+
 
     function renderUpgradesMenu(menu){
       const tableAsString = getMenuTableAsString(menu);
@@ -140,18 +150,43 @@ fetch('api/upgrades')
 
       menu?.forEach((upgrade) => {
         upgradesLines += `
-        <tr>
-          <td>${upgrade.title}</td>
+        <tr class='upgradeButton' data-id=${upgrade.id}>
+          <td data-id=${upgrade.id}>${upgrade.title}</td>
         </tr>`;
       });
 
       return upgradesLines;
     }
 
+    async function onClickEvent(upgradeID){
+    const username = getAuthenticatedUser().username;
+      
+      const options = {
+        method: 'PATCH',
+        body: JSON.stringify({
+          username,
+          upgradeID
+        }),
+         headers : {
+          'Content-Type': 'application/json',
+         },
+      };
+      const response = await fetch('/api/clicker/upgradeClicker',options);
+
+      if(!response.ok){
+        console.log(response.status);
+        throw Error `fetch error`
+      };
+      const upgradeClick = await response.json();
+      console.log(upgradeClick);
+      
+    clickValue = await takeCLickValue();
+
+    }
+    
+
 
     async function takeCLickValue () {
-      
-
       // eslint-disable-next-line prefer-destructuring
       const username = getAuthenticatedUser().username;
 
