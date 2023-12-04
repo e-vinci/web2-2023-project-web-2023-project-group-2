@@ -114,10 +114,20 @@ function updateOneUpgrade(id, propertiesToUpdate) {
   return updatedUpgrade;
 }
 
+function upgradeCost(idUpgrade) {
+  const upgrades = parse(jsonDbPath, defaultUpgrades);
+  const foundIndex = upgrades.findIndex((upgrade) => upgrade.id === parseInt(idUpgrade, 10));
+
+  const upgrade = upgrades[foundIndex];
+
+  return upgrade.cost;
+}
+
 module.exports = {
   readAllUpgrades,
   readOneUpgrade,
   createUpgrade,
   deleteOneUpgrade,
   updateOneUpgrade,
+  upgradeCost,
 };
