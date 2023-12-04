@@ -27,7 +27,7 @@
   
   /*Css for play button*/
 
-  .play{
+  .play, .covidClick{
     width: 42vmin;
     height: 42vmin;  
     background-image: url(../img/playButton.png);
@@ -35,6 +35,8 @@
     border: transparent;
     background-repeat: no-repeat;
     background-size: contain;
+  }
+  .play{
     position: absolute;
     top: 60%;
     left: 50%;
