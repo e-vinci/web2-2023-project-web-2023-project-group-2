@@ -176,6 +176,7 @@
 }
 
 .navbar-logo {
+  margin-left: 15px;
   cursor: pointer;
 }
 
@@ -187,7 +188,7 @@
 
 .navbar-right {
   cursor: pointer;
-  
+  margin-right: 10px;
 }
 
 .navbar a.large-link {
