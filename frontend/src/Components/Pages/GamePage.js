@@ -20,7 +20,7 @@ const GamePage = async () => {
   const main = document.querySelector('main');
   
   const text = ` 
-  <div class="container d-flex justify-content-evenly align-items-center vh-100 flex-column">
+  <div class="container d-flex justify-content-evenly align-items-center flex-column" style="">
     <div class="alert alert-dark" role="alert">
       <div class="score">
         ${score}
@@ -28,9 +28,8 @@ const GamePage = async () => {
     </div>
   <div><button class="covidClick"></button></div>
   </div>
-  
   <div class="upgradesDiv">
-  </div>
+  </div>  
   `;
 
 
