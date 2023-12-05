@@ -15,7 +15,7 @@ const defaultUsers = [
     id: 1,
     username: 'admin',
     password: bcrypt.hashSync('admin', saltRounds),
-    nbClick: 0,
+    nbClick: 4646,
     valeurDuCLick: 1,
   },
   {
@@ -120,7 +120,7 @@ function addPoint(username, nvxPoints) {
 
 function changeNbCLick(id, nvxPoints) {
   const users = parse(jsonDbPath, defaultUsers);
-  const indexOfUserFound = users.findIndex((user) => user.id === id);
+  const indexOfUserFound = users.findIndex((user) => user.id === parseInt(id, 10));
   if (indexOfUserFound < 0) return undefined;
 
   users[indexOfUserFound].nbClick = nvxPoints;
@@ -143,7 +143,7 @@ async function takeClickValue(username) {
 
 async function takeClickUser(id) {
   const users = parse(jsonDbPath, defaultUsers);
-  const indexOfUserFound = users.findIndex((user) => user.id === id);
+  const indexOfUserFound = users.findIndex((user) => user.id === parseInt(id, 10));
   if (indexOfUserFound < 0) return undefined;
 
   return users[indexOfUserFound].nbClick;

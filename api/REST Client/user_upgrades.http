@@ -18,5 +18,5 @@ PATCH {{baseUrl}}/userUpgrades/1
 Content-Type: application/json
 
 {
-    "idUpgrade":1
+    "idUpgrade":3
 }

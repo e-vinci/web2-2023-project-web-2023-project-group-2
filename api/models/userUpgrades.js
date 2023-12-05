@@ -55,24 +55,25 @@ async function addUpgradeForUser(idUser, idUpgrade) {
   return newUpgradeUser;
 }
 
-async function updateCostUpgrade(id, idUpgrade) {
+async function updateCostUpgrade(id, idU) {
   const upgradeUser = parse(jsonDbPath, defaultUserUpgrades);
   const userUpdate = upgradeUser.filter((user) => user.idUser === parseInt(id, 10));
   console.log(upgradeUser);
   console.log(userUpdate);
-  console.log(parseInt(id, 10));
 
   const foundIndexUpgrade = userUpdate.findIndex((upgrade) => upgrade.idUpgrade
-  === parseInt(idUpgrade, 10));
-
-  const clickUser = takeClickUser(id);
-  if (clickUser >= foundIndexUpgrade.cost) {
-    userUpdate[foundIndexUpgrade].cost = upgradeCost(idUpgrade) * 2;
-    serialize(jsonDbPath, userUpdate);
+  === parseInt(idU, 10));
+  if (foundIndexUpgrade < 0) return 'Nexiste pas';
+  const clickUser = await takeClickUser(id);
+  if (clickUser >= userUpdate[foundIndexUpgrade].cost) {
+    userUpdate[foundIndexUpgrade].cost *= 2;
+    serialize(jsonDbPath, upgradeUser);
 
     const newClickUser = clickUser - userUpdate[foundIndexUpgrade].cost;
 
     changeNbCLick(id, newClickUser);
+
+    return newClickUser;
   }
   return null;
 }
