@@ -26,3 +26,10 @@ Content-Type: application/json
     "username": "admin",
     "upgradeID": 2
 }
+####Get score
+post {{baseUrl}}/clicker/scoreUser
+Content-Type: application/json
+
+{
+    "username": "admin"
+}

@@ -1,5 +1,7 @@
 const express = require('express');
-const { addPoint, addOrMultiplyClickerByUpgrade, takeClickValue } = require('../models/users');
+const {
+  addPoint, addOrMultiplyClickerByUpgrade, takeClickValue, readOneUserFromUsername,
+} = require('../models/users');
 // const { } = require('../models/clicker');
 const router = express.Router();
 
@@ -34,6 +36,16 @@ router.post('/valueClickUser', async (req, res) => {
 
   console.log(`valeur du clicl = ${clickValue}`);
   return res.json(clickValue);
+});
+
+router.post('/scoreUser', async (req, res) => {
+  const username = req?.body?.username?.length !== 0 ? req.body.username : undefined;
+  if (!username) return res.sendStatus(400);
+
+  const score = await readOneUserFromUsername(username).nbClick;
+
+  console.log(`score = ${score}`);
+  return res.json(score);
 });
 
 module.exports = router;

@@ -149,6 +149,13 @@ async function takeClickValue(username) {
   return click;
 }
 
+async function getAllUsersByScore() {
+  const users = parse(jsonDbPath, defaultUsers);
+
+  const usersByScore = users.sort((a, b) => a.nbClick - b.nbClick);
+  return usersByScore;
+}
+
 module.exports = {
   login,
   register,
@@ -156,4 +163,5 @@ module.exports = {
   addPoint,
   addOrMultiplyClickerByUpgrade,
   takeClickValue,
+  getAllUsersByScore,
 };
