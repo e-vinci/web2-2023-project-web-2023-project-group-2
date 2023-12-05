@@ -1,6 +1,5 @@
 /* eslint-disable prefer-destructuring */
 import anime from 'animejs/lib/anime.es'
-import covidImage from '../../img/playButton.png'
 import { getAuthenticatedUser } from '../../utils/auths'
 import Navigate from '../Router/Navigate';
 
@@ -17,20 +16,13 @@ const GamePage = async () => {
   let clickValue = await takeCLickValue();
 
   const main = document.querySelector('main');
-
-  main.className = 'homepage_body'
   
   const text = ` 
   <div class="container d-flex justify-content-evenly align-items-center vh-100 flex-column">
-  <div class="alert alert-dark" role="alert">
-  ${score}
-  </div>
-  <div class="covidContainer">
-    <div>
-      <img src="${covidImage}" class="covidClick" alt="PLAY" id="covidImg" width="350" height="350"> 
-      
+    <div class="alert alert-dark" role="alert">
+    ${score}
     </div>
-  </div>
+  <div><button class="covidClick"></button></div>
   </div>
   
   <div class="upgradesDiv">
@@ -40,16 +32,15 @@ const GamePage = async () => {
 
   main.innerHTML = text;
 
- 
 
-  const covidClick = document.querySelector('#covidImg');
+  const covidClick = document.querySelector('.covidClick');
 
   covidClick.addEventListener('click', clickOnCovid)
   covidClick.addEventListener('click', popValueAnimation)
 
   function clickOnCovid() {
     anime({
-      targets : '.covidClick',
+      targets : covidClick,
       scale : 1.2,
       duration : 200,
       easing : 'easeOutQuart',
@@ -81,7 +72,7 @@ const GamePage = async () => {
     anime.timeline({
       targets: clickFeedback,
       opacity: 0,
-      duration: 700,
+      duration: 800,
       translateY: '-100',
       easing: 'easeOutSine'
     }).add({
