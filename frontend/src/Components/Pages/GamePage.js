@@ -12,7 +12,7 @@ const GamePage = async () => {
   };
 
 
-  const score = 0;
+  let score = 0;
   let clickValue = await takeCLickValue();
 
   const main = document.querySelector('main');
@@ -85,7 +85,6 @@ const GamePage = async () => {
 // Partie upgrades Teodor
 const upgradesTable = document.querySelector('.upgradesDiv')
 
-
 try{
   const response = await fetch('/api/upgrades');
 
@@ -99,6 +98,7 @@ try{
   upgradeButtons.forEach((upgrade) => {
     upgrade.addEventListener('click', (event) => {
        onClickEvent(event.target.dataset.id)
+       addUserScore(clickValue)
     });
   });
 }catch (err){
@@ -135,7 +135,8 @@ try{
       menu?.forEach((upgrade) => {
         upgradesLines += `
         <tr class='upgradeButton' data-id=${upgrade.id}>
-          <td data-id=${upgrade.id}>${upgrade.title}</td>
+          <td data-id=${upgrade.id}>${upgrade.title}
+          cost: ${upgrade.cost}</td>
         </tr>`;
       });
 
@@ -165,6 +166,7 @@ try{
       console.log(upgradeClick);
       
     clickValue = await takeCLickValue();
+    
 
     }
     
@@ -190,6 +192,29 @@ try{
       console.log(click);
 
       return click;
+    }
+
+    async function addUserScore (addValue) {
+      const username = getAuthenticatedUser().username;
+      const nbClick = addValue
+
+      const options = {
+        method: 'POST',
+        body: JSON.stringify({
+          username,
+          nbClick
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      };
+      const response = await fetch('/api/clicker/registerScore', options);
+
+      if(!response.ok){throw Error `fetch error`};
+      const scoreUpdate = await response.json();
+      console.log(scoreUpdate);
+
+      return scoreUpdate;
     }
 
   

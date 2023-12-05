@@ -12,6 +12,7 @@ const upgradeRouter = require('./routes/upgrades');
 const authsRouter = require('./routes/auths');
 const clickerRouter = require('./routes/clicker');
 const usersUpgradesRouter = require('./routes/userUpgrades');
+const LeaderboardRouter = require('./routes/leaderBoard');
 
 const app = express();
 
@@ -28,5 +29,6 @@ app.use('/auths', authsRouter);
 app.use('/upgrades', cors(corsOptions), upgradeRouter);
 app.use('/clicker', clickerRouter);
 app.use('/userUpgrades', usersUpgradesRouter);
+app.use('/leaderBoard', LeaderboardRouter);
 
 module.exports = app;
