@@ -42,7 +42,9 @@
     left: 50%;
     transform: translate(-50%, -50%);
   }
-
+  .covidClick{
+    margin-top: 15vh;
+  }
   .fontRubikBubbles {
     font-family: 'Rubik Bubbles', 'cursive';
   }
@@ -176,6 +178,7 @@
 }
 
 .navbar-logo {
+  margin-left: 15px;
   cursor: pointer;
 }
 
@@ -187,7 +190,7 @@
 
 .navbar-right {
   cursor: pointer;
-  
+  margin-right: 10px;
 }
 
 .navbar a.large-link {

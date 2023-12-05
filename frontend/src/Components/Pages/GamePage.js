@@ -12,21 +12,24 @@ const GamePage = async () => {
   };
 
 
-  const score = 0;
+  let score = 0;
+  const nbClicks = await takeScore();
+  if(nbClicks!==0) score = nbClicks;
   let clickValue = await takeCLickValue();
 
   const main = document.querySelector('main');
   
   const text = ` 
-  <div class="container d-flex justify-content-evenly align-items-center vh-100 flex-column">
+  <div class="container d-flex justify-content-evenly align-items-center flex-column" style="">
     <div class="alert alert-dark" role="alert">
-    ${score}
+      <div class="score">
+        ${score}
+      </div>  
     </div>
   <div><button class="covidClick"></button></div>
   </div>
-  
   <div class="upgradesDiv">
-  </div>
+  </div>  
   `;
 
 
@@ -34,9 +37,15 @@ const GamePage = async () => {
 
 
   const covidClick = document.querySelector('.covidClick');
+  const scoreCompteur = document.querySelector('.score')
 
   covidClick.addEventListener('click', clickOnCovid)
   covidClick.addEventListener('click', popValueAnimation)
+  covidClick.addEventListener('click', ()=>{
+    score +=clickValue;
+    scoreCompteur.innerText=score;
+    addUserScore(score); 
+  })
 
   function clickOnCovid() {
     anime({
@@ -85,7 +94,6 @@ const GamePage = async () => {
   
 // Partie upgrades Teodor
 const upgradesTable = document.querySelector('.upgradesDiv')
-
 
 try{
   const response = await fetch('/api/upgrades');
@@ -136,7 +144,8 @@ try{
       menu?.forEach((upgrade) => {
         upgradesLines += `
         <tr class='upgradeButton' data-id=${upgrade.id}>
-          <td data-id=${upgrade.id}>${upgrade.title}</td>
+          <td data-id=${upgrade.id}>${upgrade.title}
+          cost: ${upgrade.cost}</td>
         </tr>`;
       });
 
@@ -166,6 +175,8 @@ try{
       console.log(upgradeClick);
       
     clickValue = await takeCLickValue();
+    score = await takeScore();
+    scoreCompteur.innerText=score;
 
     }
     
@@ -191,6 +202,48 @@ try{
       console.log(click);
 
       return click;
+    }
+
+    async function addUserScore (addValue) {
+      const username = getAuthenticatedUser().username;
+      const nvxPoints = addValue
+
+      const options = {
+        method: 'POST',
+        body: JSON.stringify({
+          username,
+          nvxPoints
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      };
+      const response = await fetch('/api/clicker/registerScore', options);
+
+      if(!response.ok){throw Error `fetch error`};
+      const scoreUpdate = await response.json();
+      console.log(scoreUpdate);
+
+      return scoreUpdate;
+    }
+
+    async function takeScore() {
+      const username = getAuthenticatedUser().username;
+      const options = {
+        method: 'POST',
+        body: JSON.stringify({
+          username
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      };
+      const response = await fetch('/api/clicker/scoreUser', options);
+      if(!response.ok){throw Error `fetch error`};
+      const scoreUser = await response.json();
+      console.log(scoreUser);
+
+      return scoreUser;
     }
 
   

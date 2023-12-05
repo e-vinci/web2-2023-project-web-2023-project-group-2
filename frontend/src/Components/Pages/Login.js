@@ -1,6 +1,7 @@
 import button from '../../img/arrowButton.png';
 import Navigate from '../Router/Navigate';
 import { setAuthenticatedUser } from '../../utils/auths';
+import Navbar from '../Navbar/Navbar';
 
 const Login = () => {
     const main = document.querySelector('main');
@@ -63,6 +64,7 @@ const Login = () => {
     }else{
       const authenticatedUser = await response.json();
       setAuthenticatedUser(authenticatedUser);
+      Navbar();
       Navigate('/game');
     };
 

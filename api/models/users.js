@@ -141,12 +141,20 @@ async function takeClickValue(username) {
   return click;
 }
 
+<<<<<<< HEAD
 async function takeClickUser(id) {
   const users = parse(jsonDbPath, defaultUsers);
   const indexOfUserFound = users.findIndex((user) => user.id === id);
   if (indexOfUserFound < 0) return undefined;
 
   return users[indexOfUserFound].nbClick;
+=======
+async function getAllUsersByScore() {
+  const users = parse(jsonDbPath, defaultUsers);
+
+  const usersByScore = users.sort((a, b) => a.nbClick - b.nbClick);
+  return usersByScore;
+>>>>>>> 4f21effbb816950980c41fa6709dab205e86bf71
 }
 
 module.exports = {
@@ -155,6 +163,10 @@ module.exports = {
   readOneUserFromUsername,
   addPoint,
   takeClickValue,
+<<<<<<< HEAD
   takeClickUser,
   changeNbCLick,
+=======
+  getAllUsersByScore,
+>>>>>>> 4f21effbb816950980c41fa6709dab205e86bf71
 };
