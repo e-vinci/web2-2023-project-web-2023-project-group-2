@@ -1,11 +1,5 @@
 const express = require('express');
-<<<<<<< HEAD
-const { addPoint, takeClickValue } = require('../models/users');
-=======
-const {
-  addPoint, addOrMultiplyClickerByUpgrade, takeClickValue, readOneUserFromUsername,
-} = require('../models/users');
->>>>>>> 4f21effbb816950980c41fa6709dab205e86bf71
+const { addPoint, takeClickValue, readOneUserFromUsername } = require('../models/users');
 // const { } = require('../models/clicker');
 const router = express.Router();
 
