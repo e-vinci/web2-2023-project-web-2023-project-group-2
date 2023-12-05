@@ -12,3 +12,11 @@ Content-Type: application/json
 {
     "idUpgrade":3
 }
+
+### Buy upgrade for user 1
+PATCH {{baseUrl}}/userUpgrades/1
+Content-Type: application/json
+
+{
+    "idUpgrade":1
+}

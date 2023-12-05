@@ -22,6 +22,7 @@ router.post('/:id', async (req, res) => {
 });
 
 router.patch('/:id', async (req, res) => {
+  console.log('TEST');
   const idUpgradeUpdate = req?.body?.idUpgrade > 0 ? req.body.idUpgrade : undefined;
   if (!idUpgradeUpdate) return res.sendStatus(404);
 

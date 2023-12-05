@@ -3,10 +3,6 @@ const bcrypt = require('bcrypt');
 const path = require('node:path');
 const { parse, serialize } = require('../utils/json');
 
-const {
-  readOneUpgrade,
-} = require('./upgrades');
-
 const jwtSecret = 'covidClicker';
 const lifetimeJwt = 24 * 60 * 60 * 1000; // in ms : 24 * 60 * 60 * 1000 = 24h
 
@@ -19,6 +15,13 @@ const defaultUsers = [
     id: 1,
     username: 'admin',
     password: bcrypt.hashSync('admin', saltRounds),
+    nbClick: 0,
+    valeurDuCLick: 1,
+  },
+  {
+    id: 2,
+    username: 'manager',
+    password: bcrypt.hashSync('manager', saltRounds),
     nbClick: 0,
     valeurDuCLick: 1,
   },
@@ -115,27 +118,16 @@ function addPoint(username, nvxPoints) {
   return users[indexOfUserFound].nbClick;
 }
 
-// fonction Teodor : upgrade valeurClick by the upgrade
-function addOrMultiplyClickerByUpgrade(username, upgradeID) {
+function changeNbCLick(id, nvxPoints) {
   const users = parse(jsonDbPath, defaultUsers);
-  const indexOfUserFound = users.findIndex((user) => user.username === username);
+  const indexOfUserFound = users.findIndex((user) => user.id === id);
   if (indexOfUserFound < 0) return undefined;
 
-  const upgrade = readOneUpgrade(upgradeID);
-  if (upgrade.cost > users[indexOfUserFound].nbClick) return 'Not enough points to buy';
-
-  if (upgrade.operation === 'add') {
-    users[indexOfUserFound].valeurDuCLick += upgrade.upgradeClickerValue;
-    users[indexOfUserFound].nbClick -= upgrade.cost;
-  }
-  if (upgrade.operation === 'multiply') {
-    users[indexOfUserFound].valeurDuCLick *= upgrade.upgradeClickerValue;
-    users[indexOfUserFound].nbClick -= upgrade.cost;
-  }
+  users[indexOfUserFound].nbClick = nvxPoints;
 
   serialize(jsonDbPath, users);
 
-  return users[indexOfUserFound].valeurDuCLick;
+  return users[indexOfUserFound].nbClick;
 }
 
 async function takeClickValue(username) {
@@ -149,11 +141,20 @@ async function takeClickValue(username) {
   return click;
 }
 
+async function takeClickUser(id) {
+  const users = parse(jsonDbPath, defaultUsers);
+  const indexOfUserFound = users.findIndex((user) => user.id === id);
+  if (indexOfUserFound < 0) return undefined;
+
+  return users[indexOfUserFound].nbClick;
+}
+
 module.exports = {
   login,
   register,
   readOneUserFromUsername,
   addPoint,
-  addOrMultiplyClickerByUpgrade,
   takeClickValue,
+  takeClickUser,
+  changeNbCLick,
 };
