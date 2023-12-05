@@ -1,4 +1,4 @@
-const getUsers = async () => {
+/* const getUsers = async () => {
   try{
     const response = await fetch('/api/leaderBoard');
     if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
@@ -33,4 +33,4 @@ const Leaderboard = async () => {
 main.innerHTML = text;
 }
 
-export default Leaderboard;
+export default Leaderboard; */
