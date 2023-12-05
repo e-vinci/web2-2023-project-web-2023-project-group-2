@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const path = require('node:path');
 const { parse, serialize } = require('../utils/json');
+const { readOneUpgrade } = require('./upgrades');
 
 const jwtSecret = 'covidClicker';
 const lifetimeJwt = 24 * 60 * 60 * 1000; // in ms : 24 * 60 * 60 * 1000 = 24h
@@ -156,6 +157,23 @@ async function getAllUsersByScore() {
   return usersByScore;
 }
 
+async function upgradeClickValue(id, idU) {
+  const users = parse(jsonDbPath, defaultUsers);
+
+  const indexOfUserFound = users.findIndex((user) => user.id === parseInt(id, 10));
+  if (indexOfUserFound) return 'Not found User';
+
+  const upgrade = readOneUpgrade(idU);
+
+  if (upgrade.operation === 'add') {
+    users[indexOfUserFound].valeurDuCLick += upgrade.upgradeClickerValue;
+  } else {
+    users[indexOfUserFound].valeurDuCLick *= upgrade.upgradeClickerValue;
+  }
+  serialize(jsonDbPath, users);
+  return true;
+}
+
 module.exports = {
   login,
   register,
@@ -165,4 +183,5 @@ module.exports = {
   takeClickUser,
   changeNbCLick,
   getAllUsersByScore,
+  upgradeClickValue,
 };

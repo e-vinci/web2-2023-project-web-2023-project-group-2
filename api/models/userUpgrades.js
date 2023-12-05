@@ -1,7 +1,7 @@
 const path = require('node:path');
 const { parse, serialize } = require('../utils/json');
 const { upgradeCost } = require('./upgrades');
-const { takeClickUser, changeNbCLick } = require('./users');
+const { takeClickUser, changeNbCLick, upgradeClickValue } = require('./users');
 
 const jsonDbPath = path.join(__dirname, '/../data/userUpgrades.json');
 
@@ -72,7 +72,7 @@ async function updateCostUpgrade(id, idU) {
     const newClickUser = clickUser - userUpdate[foundIndexUpgrade].cost;
 
     changeNbCLick(id, newClickUser);
-
+    upgradeClickValue(id, idU);
     return newClickUser;
   }
   return null;
