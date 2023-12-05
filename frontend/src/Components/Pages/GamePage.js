@@ -13,7 +13,7 @@ const GamePage = async () => {
 
 
   let score = 0;
-  let nbClicks = await takeScore();
+  const nbClicks = await takeScore();
   if(nbClicks!==0) score = nbClicks;
   let clickValue = await takeCLickValue();
 
@@ -175,8 +175,8 @@ try{
       console.log(upgradeClick);
       
     clickValue = await takeCLickValue();
-    nbClicks = await takeScore();
     score = await takeScore();
+    scoreCompteur.innerText=score;
 
     }
     
