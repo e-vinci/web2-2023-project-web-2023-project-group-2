@@ -1,3 +1,5 @@
+/* eslint-disable consistent-return */
+/* eslint-disable no-unused-vars */
 const getUsers = async () => {
   try{
     const response = await fetch('/api/leaderBoard');

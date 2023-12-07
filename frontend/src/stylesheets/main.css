@@ -25,7 +25,7 @@
     }
   }
   
-  /*Css for play button*/
+  /*Css for covid play button*/
 
   .play, .covidClick{
     width: 42vmin;
@@ -45,10 +45,14 @@
   .covidClick{
     margin-top: 15vh;
   }
+
+  /* Css for font */
+
   .fontRubikBubbles {
     font-family: 'Rubik Bubbles', 'cursive';
   }
 
+  /* homepage title */
   .title {
     font-size: 15vmin;
     position: absolute;
@@ -102,10 +106,6 @@
   font-size: larger;
   z-index: 999;
 }
-
-
-
-
 
 /* navBar */
 

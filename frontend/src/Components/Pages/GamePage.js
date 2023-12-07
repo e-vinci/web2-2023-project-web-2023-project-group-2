@@ -21,15 +21,17 @@ const GamePage = async () => {
   
   const text = ` 
   <div class="container d-flex justify-content-evenly align-items-center flex-column" style="">
-    <div class="alert alert-dark" role="alert">
+    <div class="alert alert-dark" role="alert ">
       <div class="score">
         ${score}
       </div>  
     </div>
-  <div><button class="covidClick"></button></div>
+    <div><button class="covidClick"></button></div>
+    <div class="progress" style="width: 50%; margin-top: 10vh">
+      <div class="progress-bar-animated progress-bar-striped bg-success" role="progressbar" style="width: ${(score*100)/8000000000}%" aria-valuenow="${(score*100)/8000000000}" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
   </div>
-  <div class="upgradesDiv">
-  </div>  
+  <div class="upgradesDiv"></div>  
   `;
 
 
@@ -37,15 +39,20 @@ const GamePage = async () => {
 
 
   const covidClick = document.querySelector('.covidClick');
-  const scoreCompteur = document.querySelector('.score')
+  const scoreCompteur = document.querySelector('.score');
+  const progressBar = document.querySelector('.progress-bar-animated');
 
-  covidClick.addEventListener('click', clickOnCovid)
-  covidClick.addEventListener('click', popValueAnimation)
+  covidClick.addEventListener('click', clickOnCovid);
+  covidClick.addEventListener('click', popValueAnimation);
+
   covidClick.addEventListener('click', ()=>{
     score +=clickValue;
     scoreCompteur.innerText=score;
     addUserScore(score); 
-  })
+    const proggress = (score*100)/8000000000;
+    progressBar.style.width = `${proggress}%`;
+    progressBar.ariaValueNow = proggress;
+  });
 
   function clickOnCovid() {
     anime({

@@ -18,6 +18,7 @@ const HomePage = () => {
   <div>
     <button class="play"></button> 
   </div>
+  
   `;
   main.innerHTML = text;
 
