@@ -9,16 +9,16 @@ const HomePage = () => {
   const body = document.querySelector('body');
  
   body.style.overflow = 'hidden';
-  main.className = 'homepage_body';
 
  
   const text = ` 
   <div class="covidContainer"></div>
-  <h1 class="title fontRubikBubbles " >Covid Clicker</h1>
-  <div>
-    <button class="play"></button> 
+  <div class="homePageContainer">
+    <h1 class="title fontRubikBubbles " >Covid Clicker</h1>
+    <div>
+      <button class="play"></button> 
+    </div>
   </div>
-  
   `;
   main.innerHTML = text;
 
@@ -33,10 +33,10 @@ const HomePage = () => {
   }
   
   function createCovidIcons() {
-    let totalImg = 40;
+    let totalImg = 30;
     do{ 
       createOneCovid();
-      totalImg += 40;
+      totalImg += 30;
     }while(totalImg < main.offsetWidth)
   }
 
@@ -44,8 +44,6 @@ const HomePage = () => {
     const newImg = document.createElement("img");
     newImg.setAttribute('src', covidRed);
     newImg.setAttribute('style', 'width: 15px');
-    newImg.style.marginRight = '25px';
-    newImg.style.top = '50px';
     newImg.style.userSelect = 'none';
     const hue = Math.floor(Math.random() * 360);
     newImg.style.filter = `hue-rotate(${hue}deg)`;

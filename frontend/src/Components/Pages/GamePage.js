@@ -16,6 +16,7 @@ const GamePage = async () => {
   const nbClicks = await takeScore();
   if(nbClicks!==0) score = nbClicks;
   let clickValue = await takeCLickValue();
+  let proggress = (score*100)/8000000000;
 
   const main = document.querySelector('main');
   
@@ -28,7 +29,7 @@ const GamePage = async () => {
     </div>
     <div><button class="covidClick"></button></div>
     <div class="progress" style="width: 50%; margin-top: 10vh">
-      <div class="progress-bar-animated progress-bar-striped bg-success" role="progressbar" style="width: ${(score*100)/8000000000}%" aria-valuenow="${(score*100)/8000000000}" aria-valuemin="0" aria-valuemax="100"></div>
+      <div class="progress-bar-animated progress-bar-striped bg-success" role="progressbar" style="width: ${proggress}%" aria-valuenow="${proggress}" aria-valuemin="0" aria-valuemax="100"></div>
     </div>
   </div>
   <div class="upgradesDiv"></div>  
@@ -49,7 +50,7 @@ const GamePage = async () => {
     score +=clickValue;
     scoreCompteur.innerText=score;
     addUserScore(score); 
-    const proggress = (score*100)/8000000000;
+    proggress = (score*100)/8000000000;
     progressBar.style.width = `${proggress}%`;
     progressBar.ariaValueNow = proggress;
   });
