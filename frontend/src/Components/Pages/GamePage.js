@@ -21,7 +21,7 @@ const GamePage = async () => {
   const main = document.querySelector('main');
   
   const text = ` 
-  <div class="container d-flex justify-content-evenly align-items-center flex-column" style="">
+  <div class="container d-flex justify-content-evenly align-items-center flex-column">
     <div class="alert alert-dark" role="alert ">
       <div class="score">
         ${score}
@@ -29,7 +29,7 @@ const GamePage = async () => {
     </div>
     <div><button class="covidClick"></button></div>
     <div class="progress" style="width: 50%; margin-top: 10vh">
-      <div class="progress-bar-animated progress-bar-striped bg-success" role="progressbar" style="width: ${proggress}%" aria-valuenow="${proggress}" aria-valuemin="0" aria-valuemax="100"></div>
+      <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: ${proggress}%" aria-valuenow="${proggress}" aria-valuemin="0" aria-valuemax="100"></div>
     </div>
   </div>
   <div class="upgradesDiv"></div>  
@@ -41,7 +41,7 @@ const GamePage = async () => {
 
   const covidClick = document.querySelector('.covidClick');
   const scoreCompteur = document.querySelector('.score');
-  const progressBar = document.querySelector('.progress-bar-animated');
+  const progressBar = document.querySelector('.progress-bar');
 
   covidClick.addEventListener('click', clickOnCovid);
   covidClick.addEventListener('click', popValueAnimation);

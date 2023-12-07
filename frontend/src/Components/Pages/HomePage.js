@@ -1,6 +1,4 @@
 import anime from 'animejs/lib/anime.es';
-// eslint-disable-next-line no-unused-vars
-import covidImage from '../../img/playButton.png';
 import covidRed from '../../img/virus-rouge.png';
 import Navigate from '../Router/Navigate';
 
@@ -23,20 +21,32 @@ const HomePage = () => {
   main.innerHTML = text;
 
   const covidContainer = document.querySelector('.covidContainer');
-  covidContainer.style.top = "96px";
-  createCovidIcons();
   const playButton = document.querySelector('.play');
+  createCovidIcons();
   playButton.addEventListener('click', gamePage);
+  playButton.addEventListener('mouseenter', () => {
+    anime({
+      targets: playButton,
+      scale: 1.2,
+      easing: 'easeOutQuart'
+    })
+  });
+  playButton.addEventListener('mouseleave', () => {
+    anime({
+      targets: playButton,
+      scale: 1,
+    })
+  });
 
   function gamePage(){
     Navigate('/game');
   }
   
   function createCovidIcons() {
-    let totalImg = 30;
+    let totalImg = 35;
     do{ 
       createOneCovid();
-      totalImg += 30;
+      totalImg += 35;
     }while(totalImg < main.offsetWidth)
   }
 
@@ -52,13 +62,15 @@ const HomePage = () => {
 
     anime({
       targets: newImg,
-      translateY: '100vh',
+      translateY: '90vh',
       easing: 'linear',
       loop: true,
-      duration: anime.random(2500, 4000),
-      scale: 7,
+      duration: anime.random(2000, 6000),
+      scale: 8,
       opacity: 0
     });
+
+
   }
 }
 export default HomePage;
