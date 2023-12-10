@@ -6,9 +6,30 @@ const {
   deleteOneUpgrade,
   updateOneUpgrade,
 } = require('../models/upgrades');
+const { readOneUserFromUsername } = require('../models/users');
+const { readAllUpgradesFromUser } = require('../models/userUpgrades');
 const { authorize, isAdmin } = require('../utils/auths');
 
 const router = express.Router();
+
+/* Read all upgrade for a user */
+router.post('/readAll', async (req, res) => {
+  const username = req?.body?.username?.length !== 0 ? req.body.username : undefined;
+
+  if (!username) return res.sendStatus(400);
+
+  const indexOfUserFound = readOneUserFromUsername(username);
+  if (indexOfUserFound === undefined) return res.sendStatus(400);
+
+  const allUserUpgrades = await readAllUpgradesFromUser(indexOfUserFound.id);
+  const allUpgrade = readAllUpgrades();
+
+  console.log(allUserUpgrades, allUpgrade);
+
+  const mergeUpgrade = mergeUpgrades(allUserUpgrades, allUpgrade);
+
+  return res.json(mergeUpgrade);
+});
 
 /* Read all the upgrades */
 router.get('/', async (req, res) => {
@@ -67,5 +88,23 @@ router.patch('/:id', authorize, isAdmin, async (req, res) => {
 
   return res.json(updatedUpgrade);
 });
+
+function mergeUpgrades(userUpgrades, upgrades) {
+  const mergedUpgrades = [];
+
+  // eslint-disable-next-line no-restricted-syntax
+  for (const upgrade of upgrades) {
+    const userUpgrade = userUpgrades.find((u) => u.idUpgrade === upgrade.id);
+
+    const mergedUpgrade = { ...upgrade };
+    if (userUpgrade) {
+      mergedUpgrade.cost = userUpgrade.cost;
+    }
+
+    mergedUpgrades.push(mergedUpgrade);
+  }
+
+  return mergedUpgrades;
+}
 
 module.exports = router;

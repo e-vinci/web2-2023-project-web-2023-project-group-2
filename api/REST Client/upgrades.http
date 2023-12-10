@@ -62,3 +62,11 @@ Authorization: {{admin.response.body.token}}
 {
     "title":"test"
 }
+
+### Read all upgrades from user by username
+POST {{baseUrl}}/upgrades/readAll
+Content-Type: application/json
+
+{
+    "username":"admin"
+}

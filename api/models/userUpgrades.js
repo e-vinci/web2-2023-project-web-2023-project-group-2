@@ -39,18 +39,22 @@ async function readAllUpgradesFromUser(idUser) {
 }
 
 async function addUpgradeForUser(idUser, idUpgrade) {
-  const userUpgrades = parse(jsonDbPath, defaultUserUpgrades);
-  const idUserNombre = parseInt(idUser, 10);
+  const upgradeUser = parse(jsonDbPath, defaultUserUpgrades);
+  const userUpdate = upgradeUser.filter((user) => user.idUser === parseInt(idUser, 10));
+
+  const foundIndexUpgrade = userUpdate.findIndex((upgrade) => upgrade.idUpgrade
+  === parseInt(idUpgrade, 10));
+  console.log(foundIndexUpgrade);
+  if (foundIndexUpgrade >= 0) return null;
   const newUpgradeUser = {
-    idUser: idUserNombre,
+    idUser: parseInt(idUser, 10),
     idUpgrade,
     cost: upgradeCost(idUpgrade),
   };
-  console.log(upgradeCost(idUpgrade));
 
-  userUpgrades.push(newUpgradeUser);
+  upgradeUser.push(newUpgradeUser);
 
-  serialize(jsonDbPath, userUpgrades);
+  serialize(jsonDbPath, upgradeUser);
 
   return newUpgradeUser;
 }
@@ -58,12 +62,10 @@ async function addUpgradeForUser(idUser, idUpgrade) {
 async function updateCostUpgrade(id, idU) {
   const upgradeUser = parse(jsonDbPath, defaultUserUpgrades);
   const userUpdate = upgradeUser.filter((user) => user.idUser === parseInt(id, 10));
-  console.log(upgradeUser);
-  console.log(userUpdate);
 
   const foundIndexUpgrade = userUpdate.findIndex((upgrade) => upgrade.idUpgrade
   === parseInt(idU, 10));
-  if (foundIndexUpgrade < 0) return 'Nexiste pas';
+  if (foundIndexUpgrade < 0) return addUpgradeForUser(id, idU);
   const clickUser = await takeClickUser(id);
   if (clickUser >= userUpdate[foundIndexUpgrade].cost) {
     userUpdate[foundIndexUpgrade].cost *= 2;
