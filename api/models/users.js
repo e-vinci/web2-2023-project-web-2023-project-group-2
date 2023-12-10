@@ -158,13 +158,16 @@ async function getAllUsersByScore() {
 }
 
 async function upgradeClickValue(id, idU) {
+  console.log(`Je rentre dans upgradeClickValue avec id = ${id} et idU = ${idU}`);
   const users = parse(jsonDbPath, defaultUsers);
 
   const indexOfUserFound = users.findIndex((user) => user.id === parseInt(id, 10));
-  if (indexOfUserFound) return 'Not found User';
+  console.log(indexOfUserFound);
+  if (indexOfUserFound < 0) return 'Not found User';
 
   const upgrade = readOneUpgrade(idU);
-
+  console.log(idU);
+  console.log(upgrade.operation);
   if (upgrade.operation === 'add') {
     users[indexOfUserFound].valeurDuCLick += upgrade.upgradeClickerValue;
   } else {

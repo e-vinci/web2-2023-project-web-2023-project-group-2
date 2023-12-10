@@ -6,7 +6,7 @@ GET {{baseUrl}}/userUpgrades/1
 
 ### Add one upgrade for user
 # @name admin
-POST {{baseUrl}}/userUpgrades/1
+POST {{baseUrl}}/userUpgrades/2
 Content-Type: application/json
 
 {
@@ -14,9 +14,9 @@ Content-Type: application/json
 }
 
 ### Buy upgrade for user 1
-PATCH {{baseUrl}}/userUpgrades/1
+PATCH {{baseUrl}}/userUpgrades/2
 Content-Type: application/json
 
 {
-    "idUpgrade":4
+    "idUpgrade":5
 }

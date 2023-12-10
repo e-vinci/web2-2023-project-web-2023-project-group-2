@@ -104,7 +104,19 @@ const GamePage = async () => {
 const upgradesTable = document.querySelector('.upgradesDiv')
 
 try{
-  const response = await fetch('/api/upgrades');
+
+  const username = getAuthenticatedUser().username;
+  const options = {
+    method: 'POST',
+    body: JSON.stringify({
+      username,
+    }),
+    headers : {
+      'Content-Type': 'application/json',
+    },
+  };
+
+  const response = await fetch('/api/upgrades/readAll', options);
 
   if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
 

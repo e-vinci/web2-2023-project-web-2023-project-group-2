@@ -56,6 +56,8 @@ async function addUpgradeForUser(idUser, idUpgrade) {
 
   serialize(jsonDbPath, upgradeUser);
 
+  await updateCostUpgrade(parseInt(idUser, 10), parseInt(idUpgrade, 10));
+
   return newUpgradeUser;
 }
 
@@ -66,15 +68,15 @@ async function updateCostUpgrade(id, idU) {
   const foundIndexUpgrade = userUpdate.findIndex((upgrade) => upgrade.idUpgrade
   === parseInt(idU, 10));
   if (foundIndexUpgrade < 0) return addUpgradeForUser(id, idU);
-  const clickUser = await takeClickUser(id);
+  const clickUser = await takeClickUser(parseInt(id, 10));
   if (clickUser >= userUpdate[foundIndexUpgrade].cost) {
-    userUpdate[foundIndexUpgrade].cost *= 2;
-    serialize(jsonDbPath, upgradeUser);
-
     const newClickUser = clickUser - userUpdate[foundIndexUpgrade].cost;
 
     changeNbCLick(id, newClickUser);
-    upgradeClickValue(id, idU);
+    await upgradeClickValue(parseInt(id, 10), parseInt(idU, 10));
+    userUpdate[foundIndexUpgrade].cost *= 2;
+    serialize(jsonDbPath, upgradeUser);
+
     return newClickUser;
   }
   return null;
