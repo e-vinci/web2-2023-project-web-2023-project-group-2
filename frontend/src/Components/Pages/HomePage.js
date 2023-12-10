@@ -65,7 +65,7 @@ const HomePage = () => {
       translateY: '90vh',
       easing: 'linear',
       loop: true,
-      duration: anime.random(2000, 6000),
+      duration: anime.random(1500, 7000),
       scale: 8,
       opacity: 0
     });
