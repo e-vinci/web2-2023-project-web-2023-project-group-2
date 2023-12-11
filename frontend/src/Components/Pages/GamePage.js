@@ -107,7 +107,6 @@ renderUpgrades()
 
 async function renderUpgrades(){
 try{
-
   const username = getAuthenticatedUser().username;
   const options = {
     method: 'POST',
