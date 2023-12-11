@@ -4,6 +4,8 @@ const router = express.Router();
 
 const { readAllUpgradesFromUser, addUpgradeForUser, updateCostUpgrade } = require('../models/userUpgrades');
 
+const { readOneUserFromUsername } = require('../models/users');
+
 router.get('/:id', async (req, res) => {
   const foundUserUpgrade = await readAllUpgradesFromUser(req.params.id);
 
@@ -21,12 +23,16 @@ router.post('/:id', async (req, res) => {
   return res.json(addUpgrade);
 });
 
-router.patch('/:id', async (req, res) => {
+router.patch('/', async (req, res) => {
   console.log('TEST');
   const idUpgradeUpdate = req?.body?.idUpgrade > 0 ? req.body.idUpgrade : undefined;
+  const username = req?.body?.username?.length !== 0 ? req.body.username : undefined;
   if (!idUpgradeUpdate) return res.sendStatus(404);
+  if (!username) return res.sendStatus(404);
 
-  const updateUpgrade = await updateCostUpgrade(req.params.id, idUpgradeUpdate);
+  const idUser = readOneUserFromUsername(username);
+
+  const updateUpgrade = await updateCostUpgrade(idUser.id, idUpgradeUpdate);
 
   return res.json(updateUpgrade);
 });

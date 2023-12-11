@@ -14,9 +14,10 @@ Content-Type: application/json
 }
 
 ### Buy upgrade for user 1
-PATCH {{baseUrl}}/userUpgrades/2
+PATCH {{baseUrl}}/userUpgrades
 Content-Type: application/json
 
 {
-    "idUpgrade":5
+    "idUpgrade":5,
+    "username":"admin"
 }
