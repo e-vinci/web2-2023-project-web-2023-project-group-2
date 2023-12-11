@@ -132,7 +132,21 @@ try{
     upgrade.addEventListener('click', (event) => {
        onClickEvent(event.target.dataset.id)
     });
-  });
+    upgrade.addEventListener('mouseenter', () => {
+      anime({
+        targets: upgrade,
+        scale: 1.1,
+        duration: 300,
+      });
+    });
+    upgrade.addEventListener('mouseleave', () => {
+      anime({
+        targets: upgrade,
+        scale: 1,
+        duration: 300,
+      });
+    });
+  })
  }catch (err){
  console.error('GamePage::error: ', err); 
 }
@@ -168,8 +182,8 @@ try{
       menu?.forEach((upgrade) => {
         upgradesLines += `
         <tr>
-          <td>
-          <button class='upgradeButton' data-id=${upgrade.id}>
+          <td class="animate-upgrade">
+          <button class="upgradeButton" data-id=${upgrade.id}>
           ${upgrade.title}
           cost: ${upgrade.cost}
           </button>
