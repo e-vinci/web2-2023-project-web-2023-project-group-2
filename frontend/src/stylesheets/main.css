@@ -272,7 +272,7 @@
 
 /*LeaderBoard CSS*/
 .table-container {
-  max-width: 800px; /* Changer la valeur selon vos besoins */
+  max-width: 800px; 
   margin: 20px auto;
   padding: 20px;
 }
@@ -280,6 +280,6 @@
 .table {
   width: 100%;
   border-collapse: collapse;
-  border-radius: 10px; /* Ajoutez cette ligne pour arrondir les angles */
-  overflow: hidden; /* Assure que le border-radius est appliqué correctement */
+  border-radius: 10px; 
+  overflow: hidden; 
 }
