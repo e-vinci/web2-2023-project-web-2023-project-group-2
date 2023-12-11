@@ -103,6 +103,10 @@
   text-align: center;
 }
 
+.upgradeButton{
+  width: 300px;
+}
+
 /*CSS for the clickvalue animation*/
 .click-feedback{
   position: fixed;

@@ -11,7 +11,7 @@ const GamePage = async () => {
     return;
   };
 
-
+  
   let score = 0;
   const nbClicks = await takeScore();
   if(nbClicks!==0) score = nbClicks;
@@ -102,7 +102,10 @@ const GamePage = async () => {
   
 // Partie upgrades Teodor
 const upgradesTable = document.querySelector('.upgradesDiv')
+renderUpgrades()
 
+
+async function renderUpgrades(){
 try{
 
   const username = getAuthenticatedUser().username;
@@ -130,8 +133,9 @@ try{
        onClickEvent(event.target.dataset.id)
     });
   });
-}catch (err){
-  console.error('GamePage::error: ', err); 
+ }catch (err){
+ console.error('GamePage::error: ', err); 
+}
 }
 
 
@@ -163,9 +167,13 @@ try{
 
       menu?.forEach((upgrade) => {
         upgradesLines += `
-        <tr class='upgradeButton' data-id=${upgrade.id}>
-          <td data-id=${upgrade.id}>${upgrade.title}
-          cost: ${upgrade.cost}</td>
+        <tr>
+          <td>
+          <button class='upgradeButton' data-id=${upgrade.id}>
+          ${upgrade.title}
+          cost: ${upgrade.cost}
+          </button>
+          </td>
         </tr>`;
       });
 
@@ -196,6 +204,7 @@ try{
       
     clickValue = await takeCLickValue();
     score = await takeScore();
+    renderUpgrades();
     scoreCompteur.innerText=score;
 
     }
