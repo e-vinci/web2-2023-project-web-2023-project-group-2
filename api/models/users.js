@@ -153,7 +153,7 @@ async function takeClickUser(id) {
 function getAllUsersByScore() {
   const users = parse(jsonDbPath, defaultUsers);
 
-  const usersByScore = users.sort((a, b) => a.nbClick - b.nbClick);
+  const usersByScore = users.sort((a, b) => b.nbClick - a.nbClick);
   return usersByScore;
 }
 
