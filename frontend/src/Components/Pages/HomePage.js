@@ -12,7 +12,7 @@ const HomePage = () => {
   const text = ` 
   <div class="covidContainer"></div>
   <div class="homePageContainer">
-    <h1 class="title fontRubikBubbles " >Covid Clicker</h1>
+    <h1 class="title fontRubikBubbles" >Covid Clicker</h1>
     <div>
       <button class="play"></button> 
     </div>

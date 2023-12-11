@@ -65,7 +65,7 @@ const Register = () => {
           passwordNoMatch.innerText = "les mots de passe ne correspondent pas";
         }
       }else{
-        return Navigate('/home')
+        return Navigate('/')
       }
     }
   };

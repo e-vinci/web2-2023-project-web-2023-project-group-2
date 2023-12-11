@@ -15,7 +15,7 @@ const Login = () => {
 
             <label>password</label><br>
             <input type="password" class="form-control  border border-dark password">
-            <p class = "noLogin"></p>
+            <p class = "noLogin" style="color: red"></p>
 
             <a class="btn btn-sm register">No account?</a><br>
 

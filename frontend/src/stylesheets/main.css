@@ -13,8 +13,23 @@
     max-height: 100%;
     animation: color 12s ease-in-out infinite;
     font-family: 'Rubik Bubbles', 'cursive';
-
+    cursor:none;
+    
   }
+
+  .cursor{
+    content: ''; /* Aucun contenu (peut être une image si nécessaire) */
+  width: 20px; /* Largeur du curseur */
+  height: 20px; /* Hauteur du curseur */
+  border: 2px solid #00ff00; /* Couleur et épaisseur de la bordure */
+  border-radius: 50%; /* Pour créer un cercle */
+  position: fixed; /* Position fixe par rapport à la fenêtre */
+  pointer-events: none; /* Ignore les événements de souris pour le curseur personnalisé */
+  top: 50%; /* Position verticale au milieu de la fenêtre */
+  left: 50%; /* Position horizontale au milieu de la fenêtre */
+  transform: translate(-50%, -50%); /* Centre le curseur */
+  }
+
   @keyframes color{
     0%{
       background-position: 0 0;
@@ -136,10 +151,13 @@
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
+  cursor:none;
+
 }
 
 .navbar a:hover {
   color: black;
+  
 }
 
 .navbar-logo {
