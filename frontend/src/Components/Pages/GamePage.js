@@ -172,20 +172,20 @@ try{
       return upgradesLines;
     }
 
-    async function onClickEvent(upgradeID){
+    async function onClickEvent(idUpgrade){
     const username = getAuthenticatedUser().username;
       
       const options = {
         method: 'PATCH',
         body: JSON.stringify({
           username,
-          upgradeID
+          idUpgrade,
         }),
          headers : {
           'Content-Type': 'application/json',
          },
       };
-      const response = await fetch('/api/clicker/upgradeClicker',options);
+      const response = await fetch('/api/userUpgrades',options);
 
       if(!response.ok){
         console.log(response.status);
