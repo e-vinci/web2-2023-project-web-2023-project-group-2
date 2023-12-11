@@ -32,7 +32,8 @@ router.patch('/', async (req, res) => {
 
   const idUser = readOneUserFromUsername(username);
 
-  const updateUpgrade = await updateCostUpgrade(idUser.id, idUpgradeUpdate);
+  // eslint-disable-next-line max-len
+  const updateUpgrade = await updateCostUpgrade(parseInt(idUser.id, 10), parseInt(idUpgradeUpdate, 10));
 
   return res.json(updateUpgrade);
 });
