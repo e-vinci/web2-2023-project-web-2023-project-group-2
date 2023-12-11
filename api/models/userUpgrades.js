@@ -1,6 +1,6 @@
 const path = require('node:path');
 const { parse, serialize } = require('../utils/json');
-const { upgradeCost } = require('./upgrades');
+const { upgradeCost, readOneUpgrade } = require('./upgrades');
 const { takeClickUser, changeNbCLick, upgradeClickValue } = require('./users');
 
 const jsonDbPath = path.join(__dirname, '/../data/userUpgrades.json');
@@ -74,7 +74,14 @@ async function updateCostUpgrade(id, idU) {
 
     changeNbCLick(id, newClickUser);
     await upgradeClickValue(parseInt(id, 10), parseInt(idU, 10));
-    userUpdate[foundIndexUpgrade].cost *= 2;
+    const upgrade = readOneUpgrade(parseInt(idU, 10));
+    if (upgrade.operation === 'multiply') {
+      userUpdate[foundIndexUpgrade].cost *= 10;
+    } else if (upgrade.operation === 'add') {
+      userUpdate[foundIndexUpgrade].cost *= 1.5;
+    } else {
+      userUpdate[foundIndexUpgrade].cost *= 1.3;
+    }
     serialize(jsonDbPath, upgradeUser);
 
     return newClickUser;
