@@ -131,7 +131,7 @@ try{
   const upgrades = await response.json();
 
   renderUpgradesMenu(upgrades)
-  const upgradeButtons = document.querySelectorAll('.upgradeButton')
+  const upgradeButtons = document.querySelectorAll('.buttonAnnimation')
 
   upgradeButtons.forEach((upgrade) => {
     upgrade.addEventListener('click', (event) => {
@@ -196,7 +196,7 @@ try{
         if(upgrade.operation === 'auto'){
           autoUpgrades += `
           <div>
-            <button class="upgradeButtonL" data-id=${upgrade.id}>
+            <button class="upgradeButtonL buttonAnnimation" data-id=${upgrade.id}>
               ${upgrade.title}
               cost: ${upgrade.cost}
             </button>
@@ -206,7 +206,7 @@ try{
           upgradesLines += `
  
           <div>
-            <button class="upgradeButtonR" data-id=${upgrade.id}>
+            <button class="upgradeButtonR buttonAnnimation" data-id=${upgrade.id}>
               ${upgrade.title}
               cost: ${upgrade.cost}
             </button>
