@@ -103,7 +103,7 @@ const Navbar = () => {
 
   const cursor = document.querySelector('.cursor');
   document.addEventListener('mousemove', e => {
-    cursor.setAttribute("style", `top: ${e.pageY + 20}px; left: ${e.pageX + 18}px;`);
+    cursor.setAttribute("style", `top: ${e.pageY + 18}px; left: ${e.pageX + 18}px;`);
   });
 
 };
