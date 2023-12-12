@@ -9,8 +9,6 @@ import {clearAuthenticatedUser, getAuthenticatedUser } from '../../utils/auths';
 
 const Navbar = () => {
 
-  document.body.innerHTML += '<div class="cursor"></div>';
-
   const anonymousUserNavbar = `
     <div class="navbar">
       <div class="navbar-logo">
@@ -105,7 +103,7 @@ const Navbar = () => {
 
   const cursor = document.querySelector('.cursor');
   document.addEventListener('mousemove', e => {
-    cursor.setAttribute("style", `top: ${e.pageY}px; left: ${e.pageX}px;`);
+    cursor.setAttribute("style", `top: ${e.pageY + 20}px; left: ${e.pageX + 18}px;`);
   });
 
 };
