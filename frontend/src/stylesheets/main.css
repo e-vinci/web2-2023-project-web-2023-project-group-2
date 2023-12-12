@@ -18,16 +18,24 @@
   }
 
   .cursor{
-    content: ''; /* Aucun contenu (peut être une image si nécessaire) */
-  width: 20px; /* Largeur du curseur */
-  height: 20px; /* Hauteur du curseur */
-  border: 2px solid #00ff00; /* Couleur et épaisseur de la bordure */
-  border-radius: 50%; /* Pour créer un cercle */
-  position: fixed; /* Position fixe par rapport à la fenêtre */
-  pointer-events: none; /* Ignore les événements de souris pour le curseur personnalisé */
-  top: 50%; /* Position verticale au milieu de la fenêtre */
-  left: 50%; /* Position horizontale au milieu de la fenêtre */
-  transform: translate(-50%, -50%); /* Centre le curseur */
+    content: '';
+    width: 50px;
+    height: 50px;
+    background-image: url('../img/cursor_simple.svg'); /* Image par défaut */
+    background-size: cover;
+    position: fixed;
+    pointer-events: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .login-icon{
+    cursor: none;
+  }
+
+  #logout{
+    cursor: none;
   }
 
   @keyframes color{
@@ -185,8 +193,8 @@
   
 }
 
-.navbar-logo {
-  cursor: pointer;
+.logoNav {
+  cursor: none;
 }
 
 .navbar-center {
@@ -196,7 +204,7 @@
 }
 
 .navbar-right {
-  cursor: pointer;
+  cursor: none;
 }
 
 .navbar a.large-link {
