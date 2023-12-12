@@ -131,7 +131,7 @@ try{
   const upgrades = await response.json();
 
   renderUpgradesMenu(upgrades)
-  const upgradeButtons = document.querySelectorAll('.upgradeButton')
+  const upgradeButtons = document.querySelectorAll('.upgradeButtonClick')
 
   upgradeButtons.forEach((upgrade) => {
     upgrade.addEventListener('click', (event) => {
@@ -161,8 +161,8 @@ try{
     function renderUpgradesMenu(menu){
     
       const tables = getMenuTableAsString(menu);
-      upgradesTable.innerHTML += tables.upgradesLines;
-      autoUpgradesTable.innerHTML += tables.autoUpgrades;
+      upgradesTable.innerHTML = tables.upgradesLines;
+      autoUpgradesTable.innerHTML = tables.autoUpgrades;
       const annimateButtonsR = document.querySelectorAll('.upgradeButtonR');
       const annimateButtonsL = document.querySelectorAll('.upgradeButtonL');
       anime.set(annimateButtonsR, {
@@ -196,8 +196,8 @@ try{
         if(upgrade.operation === 'auto'){
           autoUpgrades += `
           <div>
-            <button class="upgradeButtonL" data-id=${upgrade.id}>
-              ${upgrade.title}
+            <button class="upgradeButtonL upgradeButtonClick" data-id=${upgrade.id}>
+              ${upgrade.title}<br>
               cost: ${upgrade.cost}
             </button>
           </div>
@@ -206,8 +206,8 @@ try{
           upgradesLines += `
  
           <div>
-            <button class="upgradeButtonR" data-id=${upgrade.id}>
-              ${upgrade.title}
+            <button class="upgradeButtonR upgradeButtonClick" data-id=${upgrade.id}>
+              ${upgrade.title}<br>
               cost: ${upgrade.cost}
             </button>
           </div>
@@ -239,10 +239,10 @@ try{
       };
       const upgradeClick = await response.json();
       console.log(upgradeClick);
-      
+    
     clickValue = await takeCLickValue();
     score = await takeScore();
-    // renderUpgrades();
+    renderUpgrades();
     scoreCompteur.innerText=score;
     }
     
@@ -269,6 +269,8 @@ try{
 
       return click;
     }
+
+   // SCORE 
 
     async function addUserScore (addValue) {
       const username = getAuthenticatedUser().username;
