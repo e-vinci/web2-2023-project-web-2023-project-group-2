@@ -5,20 +5,25 @@ import Navigate from '../Router/Navigate';
 
 
 const GamePage = async () => {
+  // Verification user is connected
   if (!getAuthenticatedUser()) {
     Navigate('/login');
     return;
   }
 
+  // Getting user's score and user's click value
   let score = 0;
   const nbClicks = await takeScore();
   if (nbClicks !== 0) score = nbClicks;
   let clickValue = await takeCLickValue();
-  let proggress = (score * 100) / 8000000000;
+
+  // Transforming his score in % for the progress bar
+  let progress = (score * 100) / 8000000000;
 
   const main = document.querySelector('main');
-  const body = document.querySelector('body');
 
+  // hide scrollbar
+  const body = document.querySelector('body');
   body.style.overflow = 'hidden';
 
   const text = ` 
@@ -32,7 +37,7 @@ const GamePage = async () => {
    
       <button class="covidClick"></button>
       <div class="progress" style="width: 100%; margin-top: 10vh">
-        <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: ${proggress}%" aria-valuenow="${proggress}" aria-valuemin="0" aria-valuemax="100"></div>
+        <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: ${progress}%" aria-valuenow="${progress}" aria-valuemin="0" aria-valuemax="100"></div>
       </div>
     </div>
     <div class="upgradesDiv"></div> 
@@ -47,14 +52,17 @@ const GamePage = async () => {
 
   covidClick.addEventListener('click', clickOnCovid);
   covidClick.addEventListener('click', popValueAnimation);
+  // storing user's score every 10 seconds
+  setInterval(async () => addUserScore(score), 10000);
  
+  // increasing score and progress bar
   covidClick.addEventListener('click', () => {
     score += clickValue;
     scoreCompteur.innerText = score;
-    addUserScore(score);
-    proggress = (score * 100) / 8000000000;
-    progressBar.style.width = `${proggress}%`;
-    progressBar.ariaValueNow = proggress;
+  
+    progress = (score * 100) / 8000000000;
+    progressBar.style.width = `${progress}%`;
+    progressBar.ariaValueNow = progress;
   });
 
   function clickOnCovid() {
@@ -76,6 +84,7 @@ const GamePage = async () => {
     });
   }
 
+  // annimation of the number of the click value above the cursor
   function popValueAnimation(e) {
     const x = e.clientX;
     const y = e.clientY - 28;
@@ -104,9 +113,12 @@ const GamePage = async () => {
   }
 
   // Partie UPGRADES
+  // Getting the table of upgrades
   const upgradesTable = document.querySelector('.upgradesDiv');
   const autoUpgradesTable = document.querySelector('.autoUpgradesDiv');
+  // renderUpgrades does the render of upgradesTable and autoUpgradesTable
   renderUpgrades();
+  // upgradesColorChangeByCost change the color from green to red if you have enough to buy an upgrade
   covidClick.addEventListener('click', upgradesColorChangeByCost);
 
   async function renderUpgrades() {
@@ -128,7 +140,7 @@ const GamePage = async () => {
         throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
 
       const upgrades = await response.json();
-
+      // Calling function that will build the upgrade tables
       renderUpgradesMenu(upgrades);
       upgradesColorChangeByCost()
       
@@ -160,7 +172,7 @@ const GamePage = async () => {
   }
 
   function renderUpgradesMenu(menu) {
-    const tables = getMenuTableAsString(menu);
+    const tables = getAllTableLines(menu);
     upgradesTable.innerHTML = tables.upgradesLines;
     autoUpgradesTable.innerHTML = tables.autoUpgrades;
     const annimateButtonsR = document.querySelectorAll('.upgradeButtonR');
@@ -183,11 +195,6 @@ const GamePage = async () => {
     });
   }
 
-  function getMenuTableAsString(menu) {
-    const menuTable = getAllTableLines(menu);
-    return menuTable;
-  }
-
   function getAllTableLines(menu) {
     let upgradesLines = '';
     let autoUpgrades = '';
@@ -203,9 +210,8 @@ const GamePage = async () => {
           </div>
           `;
       } else {
-        upgradesLines += `
- 
-          <div>
+        upgradesLines += ` 
+           <div>
             <button class="upgradeButtonR buttonAnnimation" data-id=${upgrade.id} data-cost=${upgrade.cost}>
               ${upgrade.title}<br>
               cost: ${upgrade.cost}
@@ -259,7 +265,6 @@ const GamePage = async () => {
   }
 
   async function takeCLickValue() {
-    // eslint-disable-next-line prefer-destructuring
     const username = getAuthenticatedUser().username;
 
     const options = {
