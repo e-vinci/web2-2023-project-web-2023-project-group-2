@@ -161,8 +161,8 @@ try{
     function renderUpgradesMenu(menu){
     
       const tables = getMenuTableAsString(menu);
-      upgradesTable.innerHTML += tables.upgradesLines;
-      autoUpgradesTable.innerHTML += tables.autoUpgrades;
+      upgradesTable.innerHTML = tables.upgradesLines;
+      autoUpgradesTable.innerHTML = tables.autoUpgrades;
       const annimateButtonsR = document.querySelectorAll('.upgradeButtonR');
       const annimateButtonsL = document.querySelectorAll('.upgradeButtonL');
       anime.set(annimateButtonsR, {
@@ -239,10 +239,10 @@ try{
       };
       const upgradeClick = await response.json();
       console.log(upgradeClick);
-      
+    
     clickValue = await takeCLickValue();
     score = await takeScore();
-    // renderUpgrades();
+    renderUpgrades();
     scoreCompteur.innerText=score;
     }
     
@@ -269,6 +269,8 @@ try{
 
       return click;
     }
+
+   // SCORE 
 
     async function addUserScore (addValue) {
       const username = getAuthenticatedUser().username;
