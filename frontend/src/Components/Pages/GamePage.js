@@ -5,7 +5,6 @@ import Navigate from '../Router/Navigate';
 
 
 const GamePage = async () => {
-
   if(!getAuthenticatedUser()) {
     Navigate('/login')
     return;
