@@ -21,17 +21,17 @@ const defaultUpgrades = [
   },
   {
     id: 3,
-    title: 'click: x1,5',
-    operation: 'multiply',
-    cost: 100,
-    upgradeClickerValue: 1.5,
-  },
-  {
-    id: 4,
     title: 'click: +10',
     operation: 'add',
     cost: 200,
     upgradeClickerValue: 10,
+  },
+  {
+    id: 4,
+    title: 'click: x1,5',
+    operation: 'multiply',
+    cost: 100,
+    upgradeClickerValue: 1.5,
   },
   {
     id: 5,

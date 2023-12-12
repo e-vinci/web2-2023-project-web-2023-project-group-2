@@ -11,10 +11,10 @@ const Login = () => {
         <h1 class="fontRubikBubbles card-header text-center border border-dark">Login</h1>
           <div class="card-body">
             <label>user</label>
-            <input type="text" class="form-control border border-dark username">
+            <input type="text" required  class="form-control border border-dark username">
 
             <label>password</label><br>
-            <input type="password" class="form-control  border border-dark password">
+            <input type="password" required  class="form-control  border border-dark password">
             <p class = "noLogin" style="color: red"></p>
 
             <a class="btn btn-sm register">No account?</a><br>

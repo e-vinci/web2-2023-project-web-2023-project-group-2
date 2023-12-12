@@ -10,15 +10,15 @@ const Register = () => {
     <h1 class="fontRubikBubbles card-header text-center border border-dark">Register</h1>
       <div class="card-body">
         <label>user</label>
-        <input type="text" class="form-control border border-dark userName">
+        <input type="text" required class="form-control border border-dark userName">
         <p class="userNameError" style="color: red"></p>
 
         <label>password</label><br>
-        <input type="password" class="form-control  border border-dark password">
+        <input type="password" required class="form-control  border border-dark password">
         <p class="weakPassword" style="color: red"></p>
 
         <label>confirm password</label><br>
-        <input type="password" class="form-control  border border-dark confirmPassword">
+        <input type="password" required class="form-control  border border-dark confirmPassword">
         <p class="passwordNoMatch" style="color: red"></p>
 
         <input type="image" src="${button}" class="confirmButton">
