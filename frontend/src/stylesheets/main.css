@@ -305,6 +305,7 @@
 
 /*LeaderBoard CSS*/
 .table-container {
+  position: relative;
   max-width: 800px; 
   margin: 20px auto;
   padding: 20px;
@@ -315,4 +316,9 @@
   border-collapse: collapse;
   border-radius: 10px; 
   overflow: hidden; 
+}
+
+.covidContaierLeaderboard{
+  display: flex;
+    justify-content: space-between;
 }
