@@ -136,13 +136,13 @@
   align-items: center;
 }
 
-.upgradesDiv{
+.upgradesDiv, .autoUpgradesDiv{
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 1em;
 }
-.upgradeButton{
+.upgradeButtonR, .upgradeButtonL{
   width: 15vw;
   height: 10vh;
 }

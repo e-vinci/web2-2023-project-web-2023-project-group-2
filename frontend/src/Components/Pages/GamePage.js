@@ -26,6 +26,7 @@ const GamePage = async () => {
   
   const text = ` 
   <div class="mainContainer">
+  <div class="autoUpgradesDiv"></div> 
     <div class="clickerContainer">
       
         <div class="score">
@@ -107,6 +108,7 @@ const GamePage = async () => {
   
 // Partie upgrades Teodor
 const upgradesTable = document.querySelector('.upgradesDiv')
+const autoUpgradesTable = document.querySelector('.autoUpgradesDiv')
 renderUpgrades()
 
 
@@ -158,14 +160,25 @@ try{
 
 
     function renderUpgradesMenu(menu){
-      const tableAsString = getMenuTableAsString(menu);
-      upgradesTable.innerHTML += tableAsString;
-      const annimateButtons = document.querySelectorAll('.upgradeButton');
-      anime.set(annimateButtons, {
+    
+      const tables = getMenuTableAsString(menu);
+      upgradesTable.innerHTML += tables.upgradesLines;
+      autoUpgradesTable.innerHTML += tables.autoUpgrades;
+      const annimateButtonsR = document.querySelectorAll('.upgradeButtonR');
+      const annimateButtonsL = document.querySelectorAll('.upgradeButtonL');
+      anime.set(annimateButtonsR, {
         translateX: '500px',
       });
       anime({
-        targets: annimateButtons,
+        targets: annimateButtonsR,
+        translateX: '0px',
+        delay: anime.stagger(100),
+      });
+      anime.set(annimateButtonsL, {
+        translateX: '-500px',
+      });
+      anime({
+        targets: annimateButtonsL,
         translateX: '0px',
         delay: anime.stagger(100),
       });
@@ -178,20 +191,32 @@ try{
 
     function getAllTableLines(menu){
       let upgradesLines= "";
+      let autoUpgrades = "";
 
       menu?.forEach((upgrade) => {
-        upgradesLines += `
- 
+        if(upgrade.operation === 'auto'){
+          autoUpgrades += `
           <div>
-            <button class="upgradeButton" data-id=${upgrade.id}>
+            <button class="upgradeButtonL" data-id=${upgrade.id}>
               ${upgrade.title}
               cost: ${upgrade.cost}
             </button>
           </div>
           `;
-           
+        }else{
+          upgradesLines += `
+ 
+          <div>
+            <button class="upgradeButtonR" data-id=${upgrade.id}>
+              ${upgrade.title}
+              cost: ${upgrade.cost}
+            </button>
+          </div>
+          `;
+        }
+
       });
-      return upgradesLines;
+      return {autoUpgrades, upgradesLines};
     }
 
     async function onClickEvent(idUpgrade){
@@ -220,7 +245,6 @@ try{
     score = await takeScore();
     // renderUpgrades();
     scoreCompteur.innerText=score;
-
     }
     
 
