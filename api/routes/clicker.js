@@ -21,7 +21,7 @@ router.post('/valueClickUser', async (req, res) => {
 
   const clickValue = await takeClickValue(username);
 
-  console.log(`valeur du clicl = ${clickValue}`);
+  console.log(`valeur du click = ${clickValue}`);
   return res.json(clickValue);
 });
 

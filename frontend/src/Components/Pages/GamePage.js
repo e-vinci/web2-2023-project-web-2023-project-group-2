@@ -19,22 +19,27 @@ const GamePage = async () => {
   let proggress = (score*100)/8000000000;
 
   const main = document.querySelector('main');
+  const body = document.querySelector('body');
+ 
+  body.style.overflow = 'hidden';
+  
   
   const text = ` 
-  <div class="container d-flex justify-content-evenly align-items-center flex-column">
-    <div class="alert alert-dark" role="alert ">
-      <div class="score">
-        ${score}
-      </div>  
+  <div class="mainContainer">
+    <div class="clickerContainer">
+      
+        <div class="score">
+          ${score}
+        </div>  
+   
+      <button class="covidClick"></button>
+      <div class="progress" style="width: 100%; margin-top: 10vh">
+        <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: ${proggress}%" aria-valuenow="${proggress}" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
     </div>
-    <div><button class="covidClick"></button></div>
-    <div class="progress" style="width: 50%; margin-top: 10vh">
-      <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: ${proggress}%" aria-valuenow="${proggress}" aria-valuemin="0" aria-valuemax="100"></div>
-    </div>
-  </div>
-  <div class="upgradesDiv"></div>  
+    <div class="upgradesDiv"></div> 
+  </div>  
   `;
-
 
   main.innerHTML = text;
 
@@ -155,41 +160,37 @@ try{
     function renderUpgradesMenu(menu){
       const tableAsString = getMenuTableAsString(menu);
       upgradesTable.innerHTML += tableAsString;
+      const annimateButtons = document.querySelectorAll('.upgradeButton');
+      anime.set(annimateButtons, {
+        translateX: '500px',
+      });
+      anime({
+        targets: annimateButtons,
+        translateX: '0px',
+        delay: anime.stagger(100),
+      });
     }
 
     function getMenuTableAsString(menu){
-      const menuTableLines = getAllTableLines(menu)
-      const menuTable = addLinesToTable(menuTableLines);
+      const menuTable = getAllTableLines(menu)
       return menuTable;
     }
 
-    function addLinesToTable(tableLines){
-      const menuTable = `
-      <div class="position-absolute top-50 end-0 translate-middle">
-      <div class="table-responsive pt-5">
-      <table class="table custom-table">
-        ${tableLines}
-      </table>
-      </div>
-      </div>`;
-      return menuTable;  
-    }
-
     function getAllTableLines(menu){
-      let upgradesLines='';
+      let upgradesLines= "";
 
       menu?.forEach((upgrade) => {
         upgradesLines += `
-        <tr>
-          <td class="animate-upgrade">
-          <button class="upgradeButton" data-id=${upgrade.id}>
-          ${upgrade.title}
-          cost: ${upgrade.cost}
-          </button>
-          </td>
-        </tr>`;
+ 
+          <div>
+            <button class="upgradeButton" data-id=${upgrade.id}>
+              ${upgrade.title}
+              cost: ${upgrade.cost}
+            </button>
+          </div>
+          `;
+           
       });
-
       return upgradesLines;
     }
 
@@ -217,7 +218,7 @@ try{
       
     clickValue = await takeCLickValue();
     score = await takeScore();
-    renderUpgrades();
+    // renderUpgrades();
     scoreCompteur.innerText=score;
 
     }

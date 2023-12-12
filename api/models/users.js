@@ -18,6 +18,7 @@ const defaultUsers = [
     password: bcrypt.hashSync('admin', saltRounds),
     nbClick: 4646,
     valeurDuCLick: 1,
+    valeurAuto: 0,
   },
   {
     id: 2,
@@ -25,6 +26,8 @@ const defaultUsers = [
     password: bcrypt.hashSync('manager', saltRounds),
     nbClick: 0,
     valeurDuCLick: 1,
+    valeurAuto: 0,
+
   },
 ];
 
@@ -89,6 +92,7 @@ async function createOneUser(username, password) {
     password: hashedPassword,
     nbClick: 0,
     valeurDuCLick: 1,
+    valeurAuto: 0,
   };
 
   users.push(createdUser);
@@ -137,6 +141,7 @@ async function takeClickValue(username) {
   if (indexOfUserFound < 0) return undefined;
 
   const click = users[indexOfUserFound].valeurDuCLick;
+  console.log(users);
   if (!click) return undefined;
 
   return click;
@@ -170,8 +175,10 @@ async function upgradeClickValue(id, idU) {
   console.log(upgrade.operation);
   if (upgrade.operation === 'add') {
     users[indexOfUserFound].valeurDuCLick += upgrade.upgradeClickerValue;
-  } else {
+  } else if (upgrade.operation === 'multiply') {
     users[indexOfUserFound].valeurDuCLick *= upgrade.upgradeClickerValue;
+  } else {
+    users[indexOfUserFound].valeurAuto += upgrade.upgradeClickerValue;
   }
   serialize(jsonDbPath, users);
   return true;
