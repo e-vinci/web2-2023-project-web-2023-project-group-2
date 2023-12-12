@@ -1,24 +1,26 @@
 /* eslint-disable consistent-return */
 /* eslint-disable no-unused-vars */
 const getUsers = async () => {
-  try{
+  try {
     const response = await fetch('/api/leaderBoard');
+    console.log('reponse');
+    console.log(response);
     if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
-    const users = await response.json;
+    const users = await response.json();
+
     return users;
-
-
-  }catch (err){
-    console.error('LeaderBoard::error : ', err)
+  } catch (err) {
+    console.error('LeaderBoard::error : ', err);
   }
-}
+};
 
 const Leaderboard = async () => {
-
   const main = document.querySelector('main');
   const users = await getUsers();
+  console.log(users);
 
   const text = `
+  <div class="table-container">
   <table class="table">
    <thead>
      <tr>
@@ -28,11 +30,26 @@ const Leaderboard = async () => {
      </tr>
    </thead>
    <tbody>
-   
+   ${getAllTableLines()}
    </tbody>
   </table>
+  </div>
   `;
-main.innerHTML = text;
-}
+  main.innerHTML = text;
+
+  function getAllTableLines() {
+    let line = '';
+    users.forEach((element) => {
+      line += `
+    <tr>
+      <td>${users.indexOf(element)+1}</td>
+      <td>${element.username}</td>
+      <td>${element.nbClick}</td>
+    </tr>`;
+    });
+
+    return line;
+  }
+};
 
 export default Leaderboard;

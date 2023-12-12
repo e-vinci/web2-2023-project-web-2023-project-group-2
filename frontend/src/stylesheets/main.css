@@ -73,8 +73,9 @@
   .play{
     position: relative;
   }
+
   .covidClick{
-    margin-top: 15vh;
+    margin-top: 20px;
   }
 
   /* Css for font */
@@ -121,13 +122,37 @@
 
 /*CSS game page*/
 .alert-dark{
-  width: 300px;
+  width: 100%;
   height: auto;
   text-align: center;
 }
 
+.mainContainer{
+  position: absolute;
+  display: flex;
+  justify-content: space-around;
+  width: 100vw;
+  height: 85vh;
+}
+
+.clickerContainer{
+  display: flex;
+  flex-direction: column;
+  width: 50vw;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.upgradesDiv{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1em;
+}
 .upgradeButton{
-  width: 300px;
+  width: 15vw;
+  height: 10vh;
 }
 
 /*CSS for the clickvalue animation*/
@@ -233,8 +258,8 @@
   border-radius: 15px;
   border: 4px solid black;
   background-color: #ffc0cb; /* Rose */
-  width: 200px;
-  height: 500px;
+  width: 350px;
+  height: 400px;
   font-size: 35px;
   text-align: center;
 }
@@ -276,4 +301,18 @@
   .navbar a.large-link {
     font-size: 20px;
   }
+}
+
+/*LeaderBoard CSS*/
+.table-container {
+  max-width: 800px; 
+  margin: 20px auto;
+  padding: 20px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 10px; 
+  overflow: hidden; 
 }
