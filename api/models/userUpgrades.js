@@ -76,12 +76,28 @@ async function updateCostUpgrade(id, idU) {
     await upgradeClickValue(parseInt(id, 10), parseInt(idU, 10));
     const upgrade = readOneUpgrade(parseInt(idU, 10));
     if (upgrade.operation === 'multiply') {
-      userUpdate[foundIndexUpgrade].cost *= 10;
+      userUpdate[foundIndexUpgrade].cost = Math.ceil(userUpdate[foundIndexUpgrade].cost * 5);
     } else if (upgrade.operation === 'add') {
-      userUpdate[foundIndexUpgrade].cost *= 1.5;
+      if (upgrade.upgradeClickerValue === 1) {
+        userUpdate[foundIndexUpgrade].cost = Math.ceil(userUpdate[foundIndexUpgrade].cost * 1.1);
+      } else if (upgrade.upgradeClickerValue === 3) {
+        userUpdate[foundIndexUpgrade].cost = Math.ceil(userUpdate[foundIndexUpgrade].cost * 1.2);
+      } else if (upgrade.upgradeClickerValue === 10) {
+        userUpdate[foundIndexUpgrade].cost = Math.ceil(userUpdate[foundIndexUpgrade].cost * 1.4);
+      } else {
+        userUpdate[foundIndexUpgrade].cost = Math.ceil(userUpdate[foundIndexUpgrade].cost * 1.6);
+      }
     } else {
-      userUpdate[foundIndexUpgrade].cost *= 1.3;
+      // eslint-disable-next-line no-lonely-if
+      if (upgrade.upgradeClickerValue === 1) {
+        userUpdate[foundIndexUpgrade].cost = Math.ceil(userUpdate[foundIndexUpgrade].cost * 1.2);
+      } else if (upgrade.upgradeClickerValue === 3) {
+        userUpdate[foundIndexUpgrade].cost = Math.ceil(userUpdate[foundIndexUpgrade].cost * 1.4);
+      } else if (upgrade.upgradeClickerValue === 2) {
+        userUpdate[foundIndexUpgrade].cost = Math.ceil(userUpdate[foundIndexUpgrade].cost * 5);
+      }
     }
+
     serialize(jsonDbPath, upgradeUser);
 
     return newClickUser;

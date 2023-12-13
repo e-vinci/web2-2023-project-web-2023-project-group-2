@@ -37,8 +37,29 @@ const defaultUpgrades = [
     id: 5,
     title: 'autoClick + 1',
     operation: 'auto',
-    cost: 500,
+    cost: 1000,
     upgradeClickerValue: 1,
+  },
+  {
+    id: 6,
+    title: 'autoClick + 3',
+    operation: 'auto',
+    cost: 10000,
+    upgradeClickerValue: 3,
+  },
+  {
+    id: 7,
+    title: 'click: +100',
+    operation: 'add',
+    cost: 5000,
+    upgradeClickerValue: 100,
+  },
+  {
+    id: 8,
+    title: 'autoClick * 2',
+    operation: 'auto',
+    cost: 10000,
+    upgradeClickerValue: 2,
   },
 ];
 
