@@ -37,7 +37,7 @@ const Login = () => {
 
     const form = document.querySelector('form');
     form.addEventListener('submit', login);
-  };
+  };  
 
   async function login (e) {
     e.preventDefault();

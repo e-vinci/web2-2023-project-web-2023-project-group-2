@@ -17,16 +17,25 @@
     
   }
 
-  .cursor{
+  .cursor {
     width: 50px;
     height: 50px;
-    background-image: url('../img/cursor-navigation.svg'); /* Image par défaut */
+    background-image: url('../img/cursor-navigation.svg');
     background-size: cover;
-    position: fixed;
+    position: fixed;  /* Utilisez fixed au lieu de absolute */
     pointer-events: none;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    display: none; /* Ajoutez ceci pour le masquer initialement */
+  }
+
+  .cursor-click {
+    width: 50px;
+    height: 50px;
+    background-image: url('../img/cursor_click.svg');
+    background-size: cover;
+    position: fixed;  /* Utilisez fixed au lieu de absolute */
+    pointer-events: none;
+    display: none; /* Ajoutez ceci pour le masquer initialement */
+    cursor: none;
   }
 
   .login-icon{
@@ -204,10 +213,6 @@
   align-items: center;
 }
 
-.navbar-right {
-  cursor: none;
-}
-
 .navbar a.large-link {
   font-size: 30px;
 }
@@ -283,6 +288,9 @@
   .navbar a.large-link {
     font-size: 30px;
   }
+  .cursor {
+    display: none;
+  }
 }
 
 @media only screen and (max-width: 480px) {
@@ -301,6 +309,9 @@
   }
   .navbar a.large-link {
     font-size: 20px;
+  }
+  .cursor {
+    display: none;
   }
 }
 
