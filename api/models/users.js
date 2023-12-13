@@ -147,6 +147,19 @@ async function takeClickValue(username) {
   return click;
 }
 
+async function takeAutoClickValue(username) {
+  const users = parse(jsonDbPath, defaultUsers);
+  const indexOfUserFound = users.findIndex((user) => user.username === username);
+  if (indexOfUserFound < 0) return undefined;
+
+  const auto = users[indexOfUserFound].valeurAuto;
+  console.log(users);
+  if (auto === 0) return 0;
+  if (!auto) return undefined;
+
+  return auto;
+}
+
 async function takeClickUser(id) {
   const users = parse(jsonDbPath, defaultUsers);
   const indexOfUserFound = users.findIndex((user) => user.id === parseInt(id, 10));
@@ -190,6 +203,7 @@ module.exports = {
   readOneUserFromUsername,
   addPoint,
   takeClickValue,
+  takeAutoClickValue,
   takeClickUser,
   changeNbCLick,
   getAllUsersByScore,
