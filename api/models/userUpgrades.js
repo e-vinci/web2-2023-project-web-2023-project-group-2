@@ -90,9 +90,9 @@ async function updateCostUpgrade(id, idU) {
     } else {
       // eslint-disable-next-line no-lonely-if
       if (upgrade.upgradeClickerValue === 1) {
-        userUpdate[foundIndexUpgrade].cost = Math.ceil(userUpdate[foundIndexUpgrade].cost * 1.2);
+        userUpdate[foundIndexUpgrade].cost = Math.ceil(userUpdate[foundIndexUpgrade].cost * 1.02);
       } else if (upgrade.upgradeClickerValue === 3) {
-        userUpdate[foundIndexUpgrade].cost = Math.ceil(userUpdate[foundIndexUpgrade].cost * 1.4);
+        userUpdate[foundIndexUpgrade].cost = Math.ceil(userUpdate[foundIndexUpgrade].cost * 1.05);
       } else if (upgrade.upgradeClickerValue === 2) {
         userUpdate[foundIndexUpgrade].cost = Math.ceil(userUpdate[foundIndexUpgrade].cost * 5);
       }
