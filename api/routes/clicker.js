@@ -1,5 +1,7 @@
 const express = require('express');
-const { addPoint, takeClickValue, readOneUserFromUsername } = require('../models/users');
+const {
+  addPoint, takeClickValue, readOneUserFromUsername, takeAutoClickValue,
+} = require('../models/users');
 // const { } = require('../models/clicker');
 const router = express.Router();
 
@@ -23,6 +25,17 @@ router.post('/valueClickUser', async (req, res) => {
 
   console.log(`valeur du click = ${clickValue}`);
   return res.json(clickValue);
+});
+
+router.post('/valueAutoClickUser', async (req, res) => {
+  const username = req?.body?.username?.length !== 0 ? req.body.username : undefined;
+
+  if (!username) return res.sendStatus(400);
+
+  const autoValue = await takeAutoClickValue(username);
+
+  console.log(`valeur du auto click = ${autoValue}`);
+  return res.json(autoValue);
 });
 
 router.post('/scoreUser', async (req, res) => {
