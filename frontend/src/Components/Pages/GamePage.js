@@ -16,7 +16,7 @@ const GamePage = async () => {
   const nbClicks = await takeScore();
   if (nbClicks !== 0) score = nbClicks;
   let clickValue = await takeCLickValue();
-
+  let autoValue = await takeAutoClickValue();
   // Transforming his score in % for the progress bar
   let progress = (score * 100) / 8000000000;
 
@@ -49,17 +49,21 @@ const GamePage = async () => {
   const covidClick = document.querySelector('.covidClick');
   const scoreCompteur = document.querySelector('.score');
   const progressBar = document.querySelector('.progress-bar');
+  
 
   covidClick.addEventListener('click', clickOnCovid);
   covidClick.addEventListener('click', popValueAnimation);
-  // storing user's score every 10 seconds
-  setInterval(async () => addUserScore(score), 10000);
- 
+  // autoclick
+  setInterval(() => {
+    score+=autoValue;
+    scoreCompteur.innerText = score;
+  }, 1000);
+
   // increasing score and progress bar
   covidClick.addEventListener('click', () => {
     score += clickValue;
     scoreCompteur.innerText = score;
-  
+    addUserScore(score);
     progress = (score * 100) / 8000000000;
     progressBar.style.width = `${progress}%`;
     progressBar.ariaValueNow = progress;
@@ -116,7 +120,7 @@ const GamePage = async () => {
   // Getting the table of upgrades
   const upgradesTable = document.querySelector('.upgradesDiv');
   const autoUpgradesTable = document.querySelector('.autoUpgradesDiv');
-  // renderUpgrades does the render of upgradesTable and autoUpgradesTable
+  // gets upgrades and render them
   renderUpgrades();
   // upgradesColorChangeByCost change the color from green to red if you have enough to buy an upgrade
   covidClick.addEventListener('click', upgradesColorChangeByCost);
@@ -206,6 +210,9 @@ const GamePage = async () => {
             <button class="upgradeButtonL buttonAnnimation" data-id=${upgrade.id} data-cost=${upgrade.cost}>
               ${upgrade.title}<br>
               cost: ${upgrade.cost}
+              <div class="progress">
+              <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">${autoValue}/s</div>
+              </div>
             </button>
           </div>
           `;
@@ -238,7 +245,7 @@ const GamePage = async () => {
 
   async function onClickEvent(idUpgrade) {
     const username = getAuthenticatedUser().username;
-
+    console.log(idUpgrade);
     const options = {
       method: 'PATCH',
       body: JSON.stringify({
@@ -260,6 +267,7 @@ const GamePage = async () => {
 
     clickValue = await takeCLickValue();
     score = await takeScore();
+    autoValue = await takeAutoClickValue();
     renderUpgrades();
     scoreCompteur.innerText = score;
   }
@@ -277,8 +285,9 @@ const GamePage = async () => {
       },
     };
     const response = await fetch('/api/clicker/valueClickUser', options);
+    
 
-    if (!response.ok) {
+    if (!response.ok ) {
       throw Error`fetch error`;
     }
     const click = await response.json();
@@ -287,12 +296,34 @@ const GamePage = async () => {
     return click;
   }
 
+  async function takeAutoClickValue(){
+    const username = getAuthenticatedUser().username;
+
+    const options = {
+      method: 'POST',
+      body: JSON.stringify({
+        username,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+    const response = await fetch('/api/clicker/valueAutoClickUser', options);
+    
+    if (!response.ok ) {
+      throw Error`fetch error`;
+    }
+    const autoClick = await response.json();
+    console.log(autoClick);
+
+    return autoClick;
+  }
+
   // SCORE
 
   async function addUserScore(addValue) {
     const username = getAuthenticatedUser().username;
     const nvxPoints = addValue;
-
     const options = {
       method: 'POST',
       body: JSON.stringify({
@@ -310,7 +341,6 @@ const GamePage = async () => {
     }
     const scoreUpdate = await response.json();
     console.log(scoreUpdate);
-
     return scoreUpdate;
   }
 
