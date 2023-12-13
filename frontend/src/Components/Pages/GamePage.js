@@ -57,6 +57,7 @@ const GamePage = async () => {
   setInterval(() => {
     score+=autoValue;
     scoreCompteur.innerText = score;
+    popAutoValueAnimation();
   }, 1000);
 
   // increasing score and progress bar
@@ -96,6 +97,33 @@ const GamePage = async () => {
     const clickFeedback = document.createElement('div');
     clickFeedback.classList.add('click-feedback');
     clickFeedback.innerHTML = `+${clickValue}`;
+    clickFeedback.style.left = `${x}px`;
+    clickFeedback.style.top = `${y}px`;
+    clickFeedback.style.userSelect = 'none';
+    document.body.appendChild(clickFeedback);
+
+    anime
+      .timeline({
+        targets: clickFeedback,
+        opacity: 0,
+        duration: 800,
+        translateY: '-100',
+        easing: 'easeOutSine',
+      })
+      .add({
+        complete() {
+          clickFeedback.remove();
+        },
+      });
+  }
+
+  function popAutoValueAnimation() {
+    const x = covidClick.offsetLeft + covidClick.offsetWidth/2;
+    const y = covidClick.offsetTop + covidClick.offsetHeight/8;
+
+    const clickFeedback = document.createElement('div');
+    clickFeedback.classList.add('autoClick-feedback');
+    clickFeedback.innerHTML = `+${autoValue} morts`;
     clickFeedback.style.left = `${x}px`;
     clickFeedback.style.top = `${y}px`;
     clickFeedback.style.userSelect = 'none';

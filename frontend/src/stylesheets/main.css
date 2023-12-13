@@ -165,6 +165,14 @@
   z-index: 999;
 }
 
+.autoClick-feedback{
+  position:absolute;
+  color: rgb(248, 182, 237);
+  font-family: 'Rubik Bubbles', 'cursive';
+  font-size:300%;
+  z-index: 999;
+}
+
 /* navBar */
 
 .logo-img {
