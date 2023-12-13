@@ -95,7 +95,7 @@ async function updateCostUpgrade(id, idU) {
         userUpdate[foundIndexUpgrade].cost = Math.ceil(userUpdate[foundIndexUpgrade].cost * 1.05);
       } else if (upgrade.upgradeClickerValue === 2) {
         userUpdate[foundIndexUpgrade].cost = Math.ceil(userUpdate[foundIndexUpgrade].cost * 5);
-      }else if (upgrade.upgradeClickValue === 100) {
+      } else if (upgrade.upgradeClickValue === 100) {
         userUpdate[foundIndexUpgrade].cost = Math.ceil(userUpdate[foundIndexUpgrade].cost * 1.1);
       }
     }
