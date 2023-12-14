@@ -16,7 +16,7 @@ const defaultUsers = [
     id: 1,
     username: 'admin',
     password: bcrypt.hashSync('admin', saltRounds),
-    nbClick: 4646,
+    nbClick: 4,
     valeurDuCLick: 1,
     valeurAuto: 0,
   },
@@ -191,7 +191,12 @@ async function upgradeClickValue(id, idU) {
   } else if (upgrade.operation === 'multiply') {
     users[indexOfUserFound].valeurDuCLick *= upgrade.upgradeClickerValue;
   } else {
-    users[indexOfUserFound].valeurAuto += upgrade.upgradeClickerValue;
+    // eslint-disable-next-line no-lonely-if
+    if (upgrade.id === 8) {
+      users[indexOfUserFound].valeurAuto *= upgrade.upgradeClickerValue;
+    } else {
+      users[indexOfUserFound].valeurAuto += upgrade.upgradeClickerValue;
+    }
   }
   serialize(jsonDbPath, users);
   return true;

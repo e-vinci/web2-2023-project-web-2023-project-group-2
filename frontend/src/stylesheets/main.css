@@ -342,3 +342,11 @@
   display: flex;
     justify-content: space-between;
 }
+
+.podiumContainer{
+
+  background-image: url(../img/podium.png);
+  background-size: cover;
+  background-position: center;
+
+}

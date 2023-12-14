@@ -1,5 +1,7 @@
 import anime from 'animejs/lib/anime.es';
 import covidRed from '../../img/virus-rouge.png';
+import { getAuthenticatedUser } from '../../utils/auths'
+
 /* eslint-disable consistent-return */
 /* eslint-disable no-unused-vars */
 const getUsers = async () => {
@@ -17,6 +19,8 @@ const getUsers = async () => {
 };
 
 const Leaderboard = async () => {
+  
+  
   const main = document.querySelector('main');
   const body = document.querySelector('body');
  
@@ -25,6 +29,10 @@ const Leaderboard = async () => {
 
   const text = `
   <div class="covidContainerLeaderboard"></div>
+  <div class="userCardContainer"></div>
+  <div class="podiumContainer">
+  
+  </div>
   <div class="table-container">
   <table class="table">
    <thead>
@@ -93,6 +101,42 @@ const Leaderboard = async () => {
     });
 
 
+  }
+
+  const userCard = document.querySelector('.userCardContainer');
+
+  renderUserCard()
+
+  function renderUserCard() {
+    if (!getAuthenticatedUser()) {
+      return
+    }
+    const userScore = getUserScore();
+    const card=`
+    <div class="userCard">${userScore}</div>
+    `
+    userCard.innerHTML=card;
+  }
+
+  async function getUserScore() {
+    const {username} = getAuthenticatedUser();
+    const options = {
+      method: 'POST',
+      body: JSON.stringify({
+        username,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+    const response = await fetch('/api/clicker/scoreUser', options);
+    if (!response.ok) {
+      throw Error`fetch error`;
+    }
+    const scoreUser = await response.json();
+    console.log(scoreUser);
+
+    return scoreUser;
   }
   
 };

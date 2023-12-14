@@ -53,12 +53,35 @@ const GamePage = async () => {
 
   covidClick.addEventListener('click', clickOnCovid);
   covidClick.addEventListener('click', popValueAnimation);
-  // autoclick
-  setInterval(() => {
-    score+=autoValue;
-    scoreCompteur.innerText = score;
-    popAutoValueAnimation();
-  }, 1000);
+
+ // autoclick
+  let intervalID;
+
+  autoClickTimer()
+  function autoClickTimer(){
+      intervalID=setInterval(() => {
+        if(window.location.pathname!=="/game"){
+          clearInterval(intervalID)
+          return;
+        }
+        if(autoValue!==0){
+        score+=autoValue;
+        addUserScore(score)
+        scoreCompteur.innerText = score;
+        popAutoValueAnimation();
+        }
+      }, 1000);
+    }
+  // lorqu'on change de page sur l'écran le autoClicker s'intteromp et redémarre lorsqu'on revient
+  function handleVisibilityChangeOfPageForAutoClicker(){
+    if (document.visibilityState === 'hidden') {
+      clearInterval(intervalID);
+      intervalID = undefined;
+  } else if (!intervalID) {
+          autoClickTimer()
+      }
+  }
+  document.addEventListener('visibilitychange', handleVisibilityChangeOfPageForAutoClicker)
 
   // increasing score and progress bar
   covidClick.addEventListener('click', () => {
@@ -123,7 +146,7 @@ const GamePage = async () => {
 
     const clickFeedback = document.createElement('div');
     clickFeedback.classList.add('autoClick-feedback');
-    clickFeedback.innerHTML = `+${autoValue} morts`;
+    clickFeedback.innerHTML = `+${autoValue}`;
     clickFeedback.style.left = `${x}px`;
     clickFeedback.style.top = `${y}px`;
     clickFeedback.style.userSelect = 'none';
