@@ -1,8 +1,8 @@
 /* eslint-disable prefer-destructuring */
-import anime from 'animejs/lib/anime.es'
-import { getAuthenticatedUser } from '../../utils/auths'
+import anime from 'animejs/lib/anime.es';
+import { getAuthenticatedUser } from '../../utils/auths';
 import Navigate from '../Router/Navigate';
-
+import soundClick from '../../sound/soundClick.mp3';
 
 
 const GamePage = async () => {
@@ -51,7 +51,7 @@ const GamePage = async () => {
   const scoreCompteur = document.querySelector('.score');
   const progressBar = document.querySelector('.progress-bar');
   const cursor = document.querySelector('.cursor');
-  
+
   covidClick.addEventListener('mouseover', () => {
     cursor.classList.remove('cursor');
     cursor.classList.add('cursor-click');
@@ -63,6 +63,13 @@ const GamePage = async () => {
   
   covidClick.addEventListener('click', clickOnCovid);
   covidClick.addEventListener('click', popValueAnimation);
+
+  // soundclick
+  const soundC = new Audio(soundClick);
+  function playSoundClick() {
+    soundC.play();
+  }
+  covidClick.addEventListener('click', playSoundClick);
  // autoclick
   let intervalID;
 
