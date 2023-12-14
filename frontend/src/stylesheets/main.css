@@ -38,6 +38,11 @@
     cursor: none;
   }
 
+  .buttonAnnimation{
+    cursor: none !important;
+  }
+
+
   .login-icon{
     cursor: none;
   }
@@ -111,7 +116,8 @@
   .confirmButton{
     position: relative;
     width: 60px;
-    left: 70%
+    left: 70%;
+    cursor: none !important;
   }
 
   .custom-link {
