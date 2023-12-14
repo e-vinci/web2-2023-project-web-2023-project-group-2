@@ -1,6 +1,7 @@
 /* eslint-disable consistent-return */
 import button from '../../img/arrowButton.png';
 import Navigate from '../Router/Navigate';
+import changeCursor from '../Navbar/Navbar';
 
 const Register = () => {
     const main = document.querySelector('main');
@@ -9,19 +10,19 @@ const Register = () => {
     <form>
     <h1 class="fontRubikBubbles card-header text-center border border-dark">Register</h1>
       <div class="card-body">
-        <label>user</label>
-        <input type="text" required class="form-control border border-dark userName">
+        <label class="buttonAnnimation">user</label>
+        <input type="text" required class="form-control border border-dark userName buttonAnnimation">
         <p class="userNameError" style="color: red"></p>
 
-        <label>password</label><br>
-        <input type="password" required class="form-control  border border-dark password">
+        <label class="buttonAnnimation">password</label><br>
+        <input type="password" required class="form-control  border border-dark password buttonAnnimation">
         <p class="weakPassword" style="color: red"></p>
 
-        <label>confirm password</label><br>
-        <input type="password" required class="form-control  border border-dark confirmPassword">
+        <label class="buttonAnnimation">confirm password</label><br>
+        <input type="password" required class="form-control  border border-dark confirmPassword buttonAnnimation">
         <p class="passwordNoMatch" style="color: red"></p>
 
-        <input type="image" src="${button}" class="confirmButton">
+        <input type="image" src="${button}" class="confirmButton changeCursor">
       </div>
     </form>
   </div>
@@ -31,6 +32,8 @@ const Register = () => {
     const form = document.querySelector('form');
     form.addEventListener('submit', register);
   
+    changeCursor();
+    
     async function register(e){
 
       e.preventDefault();

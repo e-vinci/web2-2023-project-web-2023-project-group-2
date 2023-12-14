@@ -221,6 +221,7 @@ const GamePage = async () => {
             scale: 1.1,
             duration: 300,
           });
+          cursor.classList.replace('cursor', 'cursor-click');
         });
         upgrade.addEventListener('mouseleave', () => {
           anime({
@@ -228,6 +229,7 @@ const GamePage = async () => {
             scale: 1,
             duration: 300,
           });
+          cursor.classList.replace('cursor-click', 'cursor');
         });
       });
     } catch (err) {
