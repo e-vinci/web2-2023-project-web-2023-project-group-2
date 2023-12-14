@@ -74,6 +74,5 @@ const HomePage = () => {
     });
   }
   changeCursorM();
-  
 }
 export default HomePage;

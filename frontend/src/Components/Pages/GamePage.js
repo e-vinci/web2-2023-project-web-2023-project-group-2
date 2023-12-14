@@ -2,7 +2,8 @@
 import anime from 'animejs/lib/anime.es'
 import { getAuthenticatedUser } from '../../utils/auths'
 import Navigate from '../Router/Navigate';
-import changeCursorM from '../Navbar/Navbar';
+
+
 
 const GamePage = async () => {
   // Verification user is connected
@@ -35,7 +36,7 @@ const GamePage = async () => {
           ${score}
         </div>  
    
-      <button class="covidClick changeCursor"></button>
+      <button class="covidClick"></button>
       <div class="progress" style="width: 100%; margin-top: 10vh">
         <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: ${progress}%" aria-valuenow="${progress}" aria-valuemin="0" aria-valuemax="100"></div>
       </div>
@@ -49,11 +50,19 @@ const GamePage = async () => {
   const covidClick = document.querySelector('.covidClick');
   const scoreCompteur = document.querySelector('.score');
   const progressBar = document.querySelector('.progress-bar');
+  const cursor = document.querySelector('.cursor');
   
-
+  covidClick.addEventListener('mouseover', () => {
+    cursor.classList.remove('cursor');
+    cursor.classList.add('cursor-click');
+  });
+  covidClick.addEventListener('mouseout', () => {
+    cursor.classList.remove('cursor-click');
+    cursor.classList.add('cursor');
+  });
+  
   covidClick.addEventListener('click', clickOnCovid);
   covidClick.addEventListener('click', popValueAnimation);
-
  // autoclick
   let intervalID;
 
@@ -416,7 +425,6 @@ const GamePage = async () => {
     return scoreUser;
   }
 
-  changeCursorM();
 };
 
 export default GamePage;

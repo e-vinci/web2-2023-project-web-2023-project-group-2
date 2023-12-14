@@ -8,6 +8,8 @@ import Navigate from '../Router/Navigate';
 import { clearAuthenticatedUser, getAuthenticatedUser } from '../../utils/auths';
 
 const Navbar = () => {
+  const cursor = document.querySelector('.cursor');
+  
 
   const anonymousUserNavbar = `
     <div class="navbar">
@@ -51,6 +53,7 @@ const Navbar = () => {
     const logoutButton = document.querySelector('#logout');
     if (logoutButton) {
       logoutButton.addEventListener('click', () => {
+        cursor.className = 'cursor';
         clearAuthenticatedUser();
         Navbar();
         Navigate('/');
@@ -105,7 +108,6 @@ const Navbar = () => {
     addHoverAnimation(element);
   });
 
-  const cursor = document.querySelector('.cursor');
   if (cursor) {
     document.addEventListener('mousemove', e => {
       cursor.style.display = 'block';
@@ -115,21 +117,26 @@ const Navbar = () => {
   };
 
   const changeCursorM = () => {
+  
+
   const changeCursor = document.querySelectorAll('.changeCursor');
   changeCursor.forEach((cur) => {
     if (cur) {
       cur.addEventListener('mouseover', () => {
         if(cursor){
-        cursor.classList.remove('cursor');
-        cursor.classList.add('cursor-click');
+          cursor.className = 'cursor-click';
         }
       });
       cur.addEventListener('mouseout', () => {
         if(cursor){
-        cursor.classList.remove('cursor-click');
-        cursor.classList.add('cursor');
+        cursor.className = 'cursor';
         }
       });
+      cur.addEventListener('click', () => {
+        if(cursor){
+          cursor.className = 'cursor';
+        }
+      })
     }
   });
 }
