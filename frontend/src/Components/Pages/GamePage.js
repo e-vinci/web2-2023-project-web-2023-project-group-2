@@ -53,12 +53,35 @@ const GamePage = async () => {
 
   covidClick.addEventListener('click', clickOnCovid);
   covidClick.addEventListener('click', popValueAnimation);
-  // autoclick
-  setInterval(() => {
-    score+=autoValue;
-    scoreCompteur.innerText = score;
-    popAutoValueAnimation();
-  }, 1000);
+
+ // autoclick
+  let intervalID;
+
+  autoClickTimer()
+  function autoClickTimer(){
+    if(getAuthenticatedUser()){
+      intervalID=setInterval(() => {
+        if(window.location.pathname!=="/game"){
+          clearInterval(intervalID)
+          return;
+        }
+        score+=autoValue;
+        addUserScore(score)
+        scoreCompteur.innerText = score;
+        popAutoValueAnimation();
+      }, 1000);
+    }
+  }
+  // lorqu'on change de page sur l'écran le autoClicker s'intteromp et redémarre lorsqu'on revient
+  function handleVisibilityChangeOfPageForAutoClicker(){
+    if (document.visibilityState === 'hidden') {
+      clearInterval(intervalID);
+      intervalID = undefined;
+  } else if (!intervalID) {
+          autoClickTimer()
+      }
+  }
+  document.addEventListener('visibilitychange', handleVisibilityChangeOfPageForAutoClicker)
 
   // increasing score and progress bar
   covidClick.addEventListener('click', () => {
