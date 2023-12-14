@@ -73,7 +73,7 @@ const defaultUpgrades = [
     title: 'autoClick + 100',
     operation: 'auto',
     cost: 6000,
-    upgradeClickerValue: 2,
+    upgradeClickerValue: 100,
   },
 ];
 
