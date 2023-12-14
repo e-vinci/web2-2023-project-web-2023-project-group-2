@@ -59,19 +59,19 @@ const GamePage = async () => {
 
   autoClickTimer()
   function autoClickTimer(){
-    if(getAuthenticatedUser()){
       intervalID=setInterval(() => {
         if(window.location.pathname!=="/game"){
           clearInterval(intervalID)
           return;
         }
+        if(autoValue!==0){
         score+=autoValue;
         addUserScore(score)
         scoreCompteur.innerText = score;
         popAutoValueAnimation();
+        }
       }, 1000);
     }
-  }
   // lorqu'on change de page sur l'écran le autoClicker s'intteromp et redémarre lorsqu'on revient
   function handleVisibilityChangeOfPageForAutoClicker(){
     if (document.visibilityState === 'hidden') {
