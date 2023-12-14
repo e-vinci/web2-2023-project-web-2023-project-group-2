@@ -75,6 +75,20 @@ const defaultUpgrades = [
     cost: 6000,
     upgradeClickerValue: 100,
   },
+  {
+    id: 11,
+    title: 'click: +10000',
+    operation: 'add',
+    cost: 6000000,
+    upgradeClickerValue: 10000,
+  },
+  {
+    id: 12,
+    title: 'autoClick + 1000',
+    operation: 'auto',
+    cost: 60000,
+    upgradeClickerValue: 1000,
+  },
 ];
 
 function readAllUpgrades(theOperation) {
