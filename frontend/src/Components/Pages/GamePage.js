@@ -74,13 +74,20 @@ const GamePage = async () => {
           return;
         }
         if(autoValue!==0){
-        score+=autoValue;
-        addUserScore(score)
-        scoreCompteur.innerText = score;
-        popAutoValueAnimation();
+          const newValue = score+autoValue;
+          anime({
+            targets: scoreCompteur,
+            innerText: [score, newValue],
+            round: 1,
+            easing: 'easeInOutExpo',
+          })
+          score=newValue;
+          addUserScore(score)
+          scoreCompteur.innerText = score;
+          popAutoValueAnimation();
         }
       }, 1000);
-    }
+  }
   // lorqu'on change de page sur l'écran le autoClicker s'intteromp et redémarre lorsqu'on revient
   function handleVisibilityChangeOfPageForAutoClicker(){
     if (document.visibilityState === 'hidden') {
@@ -251,6 +258,7 @@ const GamePage = async () => {
       translateX: '0px',
       delay: anime.stagger(100),
     });
+
     anime.set(annimateButtonsL, {
       translateX: '-500px',
     });
@@ -272,9 +280,6 @@ const GamePage = async () => {
             <button class="upgradeButtonL buttonAnnimation" data-id=${upgrade.id} data-cost=${upgrade.cost}>
               ${upgrade.title}<br>
               cost: ${upgrade.cost}
-              <div class="progress">
-              <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">${autoValue}/s</div>
-              </div>
             </button>
           </div>
           `;
