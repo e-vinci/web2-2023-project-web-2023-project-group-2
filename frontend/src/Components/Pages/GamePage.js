@@ -2,7 +2,7 @@
 import anime from 'animejs/lib/anime.es'
 import { getAuthenticatedUser } from '../../utils/auths'
 import Navigate from '../Router/Navigate';
-
+import changeCursorM from '../Navbar/Navbar';
 
 const GamePage = async () => {
   // Verification user is connected
@@ -35,7 +35,7 @@ const GamePage = async () => {
           ${score}
         </div>  
    
-      <button class="covidClick"></button>
+      <button class="covidClick changeCursor"></button>
       <div class="progress" style="width: 100%; margin-top: 10vh">
         <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: ${progress}%" aria-valuenow="${progress}" aria-valuemin="0" aria-valuemax="100"></div>
       </div>
@@ -392,6 +392,8 @@ const GamePage = async () => {
 
     return scoreUser;
   }
+
+  changeCursorM();
 };
 
 export default GamePage;

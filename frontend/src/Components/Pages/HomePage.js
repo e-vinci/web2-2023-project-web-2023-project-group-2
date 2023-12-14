@@ -1,6 +1,7 @@
 import anime from 'animejs/lib/anime.es';
 import covidRed from '../../img/virus-rouge.png';
 import Navigate from '../Router/Navigate';
+import changeCursorM from '../Navbar/Navbar';
 
 const HomePage = () => {
   const main = document.querySelector('main');
@@ -14,7 +15,7 @@ const HomePage = () => {
   <div class="homePageContainer">
     <h1 class="title fontRubikBubbles" >Covid Clicker</h1>
     <div>
-      <button class="play"></button> 
+      <button class="play changeCursor"></button> 
     </div>
   </div>
   `;
@@ -22,6 +23,8 @@ const HomePage = () => {
 
   const covidContainer = document.querySelector('.covidContainer');
   const playButton = document.querySelector('.play');
+  
+
   createCovidIcons();
   playButton.addEventListener('click', gamePage);
   playButton.addEventListener('mouseenter', () => {
@@ -69,8 +72,8 @@ const HomePage = () => {
       scale: anime.random(3, 10),
       opacity: 0
     });
-
-
   }
+  changeCursorM();
+  
 }
 export default HomePage;

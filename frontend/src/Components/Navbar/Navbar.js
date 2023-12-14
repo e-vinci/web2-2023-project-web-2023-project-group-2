@@ -112,24 +112,29 @@ const Navbar = () => {
       cursor.style.left = `${e.pageX}px`;
       cursor.style.top = `${e.pageY}px`;
     });
-  }
+  };
 
+  const changeCursorM = () => {
   const changeCursor = document.querySelectorAll('.changeCursor');
   changeCursor.forEach((cur) => {
     if (cur) {
       cur.addEventListener('mouseover', () => {
-        if (cursor) {
-          cursor.className = 'cursor-click';
+        if(cursor){
+        cursor.classList.remove('cursor');
+        cursor.classList.add('cursor-click');
         }
       });
       cur.addEventListener('mouseout', () => {
-        if (cursor) {
-          cursor.classList.remove('cursor-click');
-          cursor.className = 'cursor';
+        if(cursor){
+        cursor.classList.remove('cursor-click');
+        cursor.classList.add('cursor');
         }
       });
     }
   });
+}
+
+changeCursorM();
 };
 
 export default Navbar;
