@@ -3,7 +3,7 @@ import anime from 'animejs/lib/anime.es';
 import { getAuthenticatedUser } from '../../utils/auths';
 import Navigate from '../Router/Navigate';
 import soundClick from '../../sound/soundClick.mp3';
-
+import soundItemAvailable from '../../sound/itemAvailable.mp3';
 
 const GamePage = async () => {
   // Verification user is connected
@@ -304,18 +304,31 @@ const GamePage = async () => {
     return { autoUpgrades, upgradesLines };
   }
 
+  const soundItemsAiva = new Audio(soundItemAvailable);
+  function playSoundItems() {
+    soundItemsAiva.play();
+  }
+  let soundPlayed = false;
   function upgradesColorChangeByCost(){
     const upgradeButtonsToChangeColor = document.querySelectorAll('.buttonAnnimation');
     upgradeButtonsToChangeColor.forEach((upgrade)=>{
       if(upgrade.dataset.cost>score){
         // eslint-disable-next-line no-param-reassign
         upgrade.style.color="red"
+        
       }else{
         // eslint-disable-next-line no-param-reassign
         upgrade.style.color="green"
+        soundPlayed = true;
+        if(soundPlayed === true){
+          playSoundItems();
+          soundPlayed = false;
+        }
       }
     })
-    }
+  }
+
+  
 
   async function onClickEvent(idUpgrade) {
     const username = getAuthenticatedUser().username;
