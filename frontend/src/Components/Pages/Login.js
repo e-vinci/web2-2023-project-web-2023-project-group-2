@@ -31,8 +31,12 @@ const Login = () => {
     main.innerHTML = text;
 
     const register = document.querySelector('.register');
+    const cursor = document.querySelector('.cursor');
 
-    register.addEventListener('click', registerPage);
+    register.addEventListener('click', () => {
+      cursor.className = 'cursor';
+      registerPage();
+    });
 
     changeCursor();
 

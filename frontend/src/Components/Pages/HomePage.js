@@ -23,10 +23,15 @@ const HomePage = () => {
 
   const covidContainer = document.querySelector('.covidContainer');
   const playButton = document.querySelector('.play');
-  
+  const cursor = document.querySelector('.cursor');
+
 
   createCovidIcons();
-  playButton.addEventListener('click', gamePage);
+  playButton.addEventListener('click', () => {
+    cursor.className = 'cursor';
+    gamePage();
+  });
+
   playButton.addEventListener('mouseenter', () => {
     anime({
       targets: playButton,
