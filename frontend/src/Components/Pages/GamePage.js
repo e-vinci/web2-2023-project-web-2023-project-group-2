@@ -146,7 +146,7 @@ const GamePage = async () => {
 
     const clickFeedback = document.createElement('div');
     clickFeedback.classList.add('autoClick-feedback');
-    clickFeedback.innerHTML = `+${autoValue} morts`;
+    clickFeedback.innerHTML = `+${autoValue}`;
     clickFeedback.style.left = `${x}px`;
     clickFeedback.style.top = `${y}px`;
     clickFeedback.style.userSelect = 'none';
