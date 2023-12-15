@@ -65,11 +65,7 @@ const GamePage = async () => {
   covidClick.addEventListener('click', popValueAnimation);
 
   // soundclick
-  const soundC = new Audio(soundClick);
-  function playSoundClick() {
-    soundC.play();
-  }
-  covidClick.addEventListener('click', playSoundClick);
+
  // autoclick
   let intervalID;
 
@@ -117,6 +113,8 @@ const GamePage = async () => {
   });
 
   function clickOnCovid() {
+    const soundC = new Audio(soundClick);
+      soundC.play();
     anime({
       targets: covidClick,
       scale: 1.2,
@@ -308,22 +306,16 @@ const GamePage = async () => {
   function playSoundItems() {
     soundItemsAiva.play();
   }
-  let soundPlayed = false;
   function upgradesColorChangeByCost(){
     const upgradeButtonsToChangeColor = document.querySelectorAll('.buttonAnnimation');
     upgradeButtonsToChangeColor.forEach((upgrade)=>{
       if(upgrade.dataset.cost>score){
         // eslint-disable-next-line no-param-reassign
         upgrade.style.color="red"
-        
       }else{
         // eslint-disable-next-line no-param-reassign
         upgrade.style.color="green"
-        soundPlayed = true;
-        if(soundPlayed === true){
-          playSoundItems();
-          soundPlayed = false;
-        }
+        playSoundItems();
       }
     })
   }
