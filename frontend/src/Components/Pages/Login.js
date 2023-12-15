@@ -1,3 +1,4 @@
+import anime from 'animejs/lib/anime.es';
 import button from '../../img/arrowButton.png';
 import Navigate from '../Router/Navigate';
 import { setAuthenticatedUser } from '../../utils/auths';
@@ -18,9 +19,9 @@ const Login = () => {
 
             <label class="buttonAnnimation">password</label><br>
             <input type="password" required  class="form-control  border border-dark password buttonAnnimation">
-            <p class = "noLogin errorMessage" <p>
+            <p class = "noLogin errorMessage"><p>
 
-            <a class="btn btn-sm register buttonAnnimation changeCursor">No account?</a><br>
+            <a class="btn btn-sm register buttonAnnimation changeCursor" id="noAccount">No account?</a><br>
 
             <input type="image" src="${button}" class="confirmButton changeCursor">
             
@@ -32,6 +33,22 @@ const Login = () => {
 
     const register = document.querySelector('.register');
     const cursor = document.querySelector('.cursor');
+    const noAccount = document.querySelector('#noAccount');
+
+    noAccount.addEventListener('mouseenter', ()=> {
+      anime({
+        targets: noAccount,
+        color: '#89CFF0',
+        duration: 1
+      })
+    })
+    noAccount.addEventListener('mouseleave', ()=> {
+      anime({
+        targets: noAccount,
+        color: '#212529',
+        duration: 1
+      })
+    })
 
     register.addEventListener('click', () => {
       cursor.className = 'cursor';
