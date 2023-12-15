@@ -30,10 +30,9 @@ const Leaderboard = async () => {
   const text = `
   <div class="covidContainerLeaderboard"></div>
   <div class="userCardContainer"></div>
-  <div class="podiumContainer">
-  
-  </div>
+  <div class="podiumContainer fontRubikBubbles"></div>
   <div class="table-container">
+  
   <table class="table">
    <thead>
      <tr>
@@ -55,12 +54,14 @@ const Leaderboard = async () => {
   function getAllTableLines() {
     let line = '';
     users.forEach((element) => {
-      line += `
-    <tr>
-      <td>${users.indexOf(element)+1}</td>
-      <td>${element.username}</td>
-      <td>${element.nbClick}</td>
-    </tr>`;
+      if(users.indexOf(element)<15){
+       line += `
+        <tr>
+          <td>${users.indexOf(element)+1}</td>
+          <td>${element.username}</td>
+          <td>${element.nbClick}</td>
+        </tr>`;
+      }
     });
 
     return line;
@@ -107,16 +108,40 @@ const Leaderboard = async () => {
 
   renderUserCard()
 
-  function renderUserCard() {
+  async function renderUserCard() {
     if (!getAuthenticatedUser()) {
       return
     }
-    const userScore = getUserScore();
+    const userScore = await getUserScore();
+    console.log('dans render')
+    console.log(userScore)
     const card=`
-    <div class="userCard">${userScore}</div>
+    <div class="userCard fontRubikBubbles">
+    Your personal score is :
+    ${userScore}
+    </div>
     `
     userCard.innerHTML=card;
+
+    userCard.addEventListener('mouseenter',() => {
+      anime({
+        targets: userCard,
+        scale: 1.1,
+        duration: 300,
+      });
+    });
+
+    userCard.addEventListener('mouseleave',() => {
+      anime({
+        targets: userCard,
+        scale: 1.,
+        duration: 300,
+      });
+    })
   }
+
+  
+  
 
   async function getUserScore() {
     const {username} = getAuthenticatedUser();

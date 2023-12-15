@@ -328,7 +328,7 @@
   position: relative;
   max-width: 800px; 
   margin: 20px auto;
-  padding: 20px;
+  padding-top: 128px;
 }
 
 .table {
@@ -340,13 +340,41 @@
 
 .covidContaierLeaderboard{
   display: flex;
-    justify-content: space-between;
+  justify-content: space-between;
 }
 
-.podiumContainer{
-
+.podiumContainer {
+  height: 300px;
+  width: 300px;
+  left: 50%; 
+  transform: translateX(-50%);
+  top: 20px;
+ 
+  position: absolute;
   background-image: url(../img/podium.png);
   background-size: cover;
   background-position: center;
+}
 
+.userCard{
+  width: 150px; 
+  height: 200px;
+  background-color: #c073ff; 
+  color: #000000; 
+  text-align: center; 
+  
+  border-collapse: collapse;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 2px solid #000000;
+  border-radius: 10px;
+
+  position: fixed;
+
+  background-image: url(../img/cup-2015198_1280.png);
+  background-size: cover;
+  background-position: center;
 }
