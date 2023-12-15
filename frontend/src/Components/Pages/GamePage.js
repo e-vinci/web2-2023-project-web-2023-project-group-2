@@ -282,7 +282,7 @@ const GamePage = async () => {
       if (upgrade.operation === 'auto') {
         autoUpgrades += `
           <div>
-            <button class="upgradeButtonL buttonAnnimation" data-id=${upgrade.id} data-cost=${upgrade.cost}>
+            <button class="upgradeButtonL buttonAnnimation" data-id=${upgrade.id} data-cost=${upgrade.cost} data-isPlayed=${upgrade.isPlayed}>
               ${upgrade.title}<br>
               cost: ${upgrade.cost}
             </button>
@@ -291,7 +291,7 @@ const GamePage = async () => {
       } else {
         upgradesLines += ` 
            <div>
-            <button class="upgradeButtonR buttonAnnimation" data-id=${upgrade.id} data-cost=${upgrade.cost}>
+            <button class="upgradeButtonR buttonAnnimation" data-id=${upgrade.id} data-cost=${upgrade.cost} data-isPlayed=${upgrade.isPlayed}>
               ${upgrade.title}<br>
               cost: ${upgrade.cost}
             </button>
@@ -306,16 +306,23 @@ const GamePage = async () => {
   function playSoundItems() {
     soundItemsAiva.play();
   }
+  
   function upgradesColorChangeByCost(){
     const upgradeButtonsToChangeColor = document.querySelectorAll('.buttonAnnimation');
     upgradeButtonsToChangeColor.forEach((upgrade)=>{
       if(upgrade.dataset.cost>score){
         // eslint-disable-next-line no-param-reassign
-        upgrade.style.color="red"
+        upgrade.dataset.isPlayed = "false";
+        // eslint-disable-next-line no-param-reassign
+        upgrade.style.color="red";
       }else{
         // eslint-disable-next-line no-param-reassign
-        upgrade.style.color="green"
+        upgrade.style.color="green";
+        if(upgrade.dataset.isPlayed === "false"){
         playSoundItems();
+        // eslint-disable-next-line no-param-reassign
+        upgrade.dataset.isPlayed = "true";
+        }
       }
     })
   }
