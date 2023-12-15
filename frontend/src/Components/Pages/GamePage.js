@@ -4,6 +4,7 @@ import { getAuthenticatedUser } from '../../utils/auths';
 import Navigate from '../Router/Navigate';
 import soundClick from '../../sound/soundClick.mp3';
 import soundItemAvailable from '../../sound/itemAvailable.mp3';
+import soundBuy from '../../sound/soundBuy.mp3';
 
 const GamePage = async () => {
   // Verification user is connected
@@ -224,9 +225,13 @@ const GamePage = async () => {
       upgradeButtons.forEach((upgrade) => {
         // eslint-disable-next-line no-unused-vars
         upgrade.addEventListener('click', (event) => {
-          if(event.target.dataset.cost<score)
-             onClickEvent(event.target.dataset.id);
+          if(event.target.dataset.cost<score){
+            const soundB = new Audio(soundBuy);
+            soundB.play();
+            onClickEvent(event.target.dataset.id)
+          }
         });
+
         upgrade.addEventListener('mouseenter', () => {
           anime({
             targets: upgrade,

@@ -2,6 +2,7 @@ import anime from 'animejs/lib/anime.es';
 import covidRed from '../../img/virus-rouge.png';
 import Navigate from '../Router/Navigate';
 import changeCursorM from '../Navbar/Navbar';
+import mouseClick from '../../sound/mouseClick.mp3';
 
 const HomePage = () => {
   const main = document.querySelector('main');
@@ -29,6 +30,8 @@ const HomePage = () => {
   createCovidIcons();
   playButton.addEventListener('click', () => {
     cursor.className = 'cursor';
+    const soundM = new Audio(mouseClick);
+    soundM.play();
     gamePage();
   });
 
