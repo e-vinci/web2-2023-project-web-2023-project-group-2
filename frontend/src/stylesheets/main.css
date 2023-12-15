@@ -17,6 +17,18 @@
     
   }
 
+  @keyframes color{
+    0%{
+      background-position: 0 0;
+    }
+    50%{
+      background-position: 0 100%;
+    }
+    100%{
+      background-position: 0 0;
+    }
+  }
+
   .cursor {
     width: 35px;
     height: 35px;
@@ -51,17 +63,7 @@
     cursor: none;
   }
 
-  @keyframes color{
-    0%{
-      background-position: 0 0;
-    }
-    50%{
-      background-position: 0 100%;
-    }
-    100%{
-      background-position: 0 0;
-    }
-  }
+  
 
   .homePageContainer{
     width: 100vw;
@@ -72,6 +74,11 @@
     align-items: center;
   }
   
+  /* Login and register page */
+  .errorMessage{
+    color: red;
+    text-shadow: 1px 1px 1px black;
+  }
   /*Css for covid play button*/
 
   .play, .covidClick{

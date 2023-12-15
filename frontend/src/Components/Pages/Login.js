@@ -18,7 +18,7 @@ const Login = () => {
 
             <label class="buttonAnnimation">password</label><br>
             <input type="password" required  class="form-control  border border-dark password buttonAnnimation">
-            <p class = "noLogin" style="color: red"></p>
+            <p class = "noLogin errorMessage" <p>
 
             <a class="btn btn-sm register buttonAnnimation changeCursor">No account?</a><br>
 

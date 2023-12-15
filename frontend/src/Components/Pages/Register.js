@@ -12,15 +12,15 @@ const Register = () => {
       <div class="card-body">
         <label class="buttonAnnimation">user</label>
         <input type="text" required class="form-control border border-dark userName buttonAnnimation">
-        <p class="userNameError" style="color: red"></p>
+        <p class="userNameError errorMessage"></p>
 
         <label class="buttonAnnimation">password</label><br>
         <input type="password" required class="form-control  border border-dark password buttonAnnimation">
-        <p class="weakPassword" style="color: red"></p>
+        <p class="weakPassword errorMessage" ></p>
 
         <label class="buttonAnnimation">confirm password</label><br>
         <input type="password" required class="form-control  border border-dark confirmPassword buttonAnnimation">
-        <p class="passwordNoMatch" style="color: red"></p>
+        <p class="passwordNoMatch errorMessage" ></p>
 
         <input type="image" src="${button}" class="confirmButton changeCursor">
       </div>
@@ -31,12 +31,16 @@ const Register = () => {
 
     const form = document.querySelector('form');
     form.addEventListener('submit', register);
+    const userPresent = document.querySelector('.userNameError');
+    const weakPassword = document.querySelector('.weakPassword');
+    const passwordNoMatch = document.querySelector('.passwordNoMatch');
   
     changeCursor();
     
     async function register(e){
 
       e.preventDefault();
+      clearErrorMessages();
 
       const username = document.querySelector('.userName').value;
       const password = document.querySelector('.password').value;
@@ -58,18 +62,21 @@ const Register = () => {
       if(!response.ok){
         const messageError = await response.json();
         if (messageError.userPresent){
-          const userPresent = document.querySelector('.userNameError');
           userPresent.innerText = "nom d'utilisateur déjà pris";
         }else if (messageError.weakPassword){
-          const weakPassword = document.querySelector('.weakPassword');
           weakPassword.innerText = "mot de passe trop faible";
         }else if (messageError.passwordNoMatch){
-          const passwordNoMatch = document.querySelector('.passwordNoMatch');
           passwordNoMatch.innerText = "les mots de passe ne correspondent pas";
         }
       }else{
         return Navigate('/')
       }
+    }
+
+    function clearErrorMessages(){
+      userPresent.innerText = '';
+      passwordNoMatch.innerText = '';
+      weakPassword.innerText = '';
     }
   };
   
