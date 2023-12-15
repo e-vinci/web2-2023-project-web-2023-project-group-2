@@ -1,5 +1,6 @@
 import anime from 'animejs/lib/anime.es';
 import covidRed from '../../img/virus-rouge.png';
+import podium from '../../img/podium.png';
 import { getAuthenticatedUser } from '../../utils/auths'
 
 /* eslint-disable consistent-return */
@@ -29,26 +30,31 @@ const Leaderboard = async () => {
 
   const text = `
   <div class="covidContainerLeaderboard"></div>
-  <div class="userCardContainer"></div>
-  <div class="podiumContainer fontRubikBubbles"></div>
-  <div class="table-container">
-    <table class="table-header">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Pseudo</th>
-            <th scope="col">score</th>
-          </tr>
-        </thead>
-    </table>
-    <div class="table-content">
-      <table class="table">
-        <tbody>
-          ${getAllTableLines()}
-        </tbody>
-      </table>
+  <div class="leaderboardPageContainer">
+    <div class="podiumAndTableContainer">
+    <img class="podiumContainer" src="${podium}"></img>
+      <div class="table-container">
+        <table class="table-header">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Pseudo</th>
+                <th scope="col">score</th>
+              </tr>
+            </thead>
+        </table>
+        <div class="table-content">
+          <table class="table">
+            <tbody>
+              ${getAllTableLines()}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
+    <div class="userCardContainer"></div>
   </div>
+ 
   `;
   main.innerHTML = text;
   const covidContainer = document.querySelector('.covidContainerLeaderboard');
@@ -86,7 +92,8 @@ const Leaderboard = async () => {
 
     const positionX = Math.random() * (main.offsetWidth - 15);
     const positionY = Math.random() * (main.offsetHeight - 15);
-    newImg.style.position = 'relative';
+    newImg.style.position = 'absolute';
+    newImg.style.zIndex = -1;
     newImg.style.left = `${positionX}px`;
     newImg.style.top = `${positionY}px`;
 

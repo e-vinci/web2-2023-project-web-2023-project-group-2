@@ -341,24 +341,32 @@
 }
 
 /*LeaderBoard CSS*/
+.podiumAndTableContainer{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  
+}
+.leaderboardPageContainer{
+  height: 95vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
 .table-container {
-  position: relative;
-  max-width: 800px; 
-  margin: 20px auto;
-  padding-top: 128px;
-  max-height: 400px; 
+  max-width: 80vw; 
+  max-height: 50vh; 
   overflow-y: auto; 
 }
 
 .table-header {
-  width: 100%;
+  width: 780px;
   border-collapse: collapse;
   border-radius: 10px;
   overflow: hidden;
-  position: sticky;
-  top: 0;
   background-color: #fff;
-  z-index: 2;
+ 
 }
 
 .table {
@@ -390,18 +398,17 @@
 }
 
 .podiumContainer {
-  height: 300px;
-  width: 300px;
-  left: 50%; 
-  transform: translateX(-50%);
-  top: 20px;
- 
-  position: absolute;
-  background-image: url(../img/podium.png);
-  background-size: cover;
-  background-position: center;
+  height: 150px;
+  width: 270px;
+  align-self: center;
 }
 
+.userCardContainer{
+  width: auto;
+  height: 200px;
+  align-self: center;
+  margin-bottom: 10vh;
+}
 .userCard{
   width: 150px; 
   height: 200px;
@@ -413,12 +420,10 @@
   
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-self: center;
 
   border: 2px solid #000000;
   border-radius: 10px;
-
-  position: fixed;
 
   background-image: url(../img/cup-2015198_1280.png);
   background-size: cover;
