@@ -32,19 +32,22 @@ const Leaderboard = async () => {
   <div class="userCardContainer"></div>
   <div class="podiumContainer fontRubikBubbles"></div>
   <div class="table-container">
-  
-  <table class="table">
-   <thead>
-     <tr>
-       <th scope="col">#</th>
-       <th scope="col">Pseudo</th>
-       <th scope="col">score</th>
-     </tr>
-   </thead>
-   <tbody>
-   ${getAllTableLines()}
-   </tbody>
-  </table>
+    <table class="table-header">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Pseudo</th>
+            <th scope="col">score</th>
+          </tr>
+        </thead>
+    </table>
+    <div class="table-content">
+      <table class="table">
+        <tbody>
+          ${getAllTableLines()}
+        </tbody>
+      </table>
+    </div>
   </div>
   `;
   main.innerHTML = text;
@@ -54,14 +57,14 @@ const Leaderboard = async () => {
   function getAllTableLines() {
     let line = '';
     users.forEach((element) => {
-      if(users.indexOf(element)<15){
+      
        line += `
         <tr>
           <td>${users.indexOf(element)+1}</td>
           <td>${element.username}</td>
           <td>${element.nbClick}</td>
         </tr>`;
-      }
+      
     });
 
     return line;

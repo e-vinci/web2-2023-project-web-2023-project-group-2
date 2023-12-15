@@ -346,14 +346,43 @@
   max-width: 800px; 
   margin: 20px auto;
   padding-top: 128px;
+  max-height: 400px; 
+  overflow-y: auto; 
+}
+
+.table-header {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 10px;
+  overflow: hidden;
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  z-index: 2;
 }
 
 .table {
   width: 100%;
   border-collapse: collapse;
-  border-radius: 10px; 
-  overflow: hidden; 
+  border-radius: 10px;
+  overflow: hidden;
 }
+
+/*Scroll bar leaderboard*/
+.table-container::-webkit-scrollbar {
+  width: 5px; 
+}
+
+.table-container::-webkit-scrollbar-thumb {
+  background-color: #888; 
+  border-radius: 20px; 
+}
+
+
+.table-container::-webkit-scrollbar-track {
+  background-color: #f1f1f1; 
+}
+
 
 .covidContaierLeaderboard{
   display: flex;
