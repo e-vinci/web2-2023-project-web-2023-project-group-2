@@ -1,8 +1,9 @@
 /* eslint-disable prefer-destructuring */
-import anime from 'animejs/lib/anime.es'
-import { getAuthenticatedUser } from '../../utils/auths'
+import anime from 'animejs/lib/anime.es';
+import { getAuthenticatedUser } from '../../utils/auths';
 import Navigate from '../Router/Navigate';
-
+import soundClick from '../../sound/soundClick.mp3';
+import soundItemAvailable from '../../sound/itemAvailable.mp3';
 
 const GamePage = async () => {
   // Verification user is connected
@@ -49,16 +50,57 @@ const GamePage = async () => {
   const covidClick = document.querySelector('.covidClick');
   const scoreCompteur = document.querySelector('.score');
   const progressBar = document.querySelector('.progress-bar');
-  
+  const cursor = document.querySelector('.cursor');
 
+  covidClick.addEventListener('mouseover', () => {
+    cursor.classList.remove('cursor');
+    cursor.classList.add('cursor-click');
+  });
+  covidClick.addEventListener('mouseout', () => {
+    cursor.classList.remove('cursor-click');
+    cursor.classList.add('cursor');
+  });
+  
   covidClick.addEventListener('click', clickOnCovid);
   covidClick.addEventListener('click', popValueAnimation);
-  // autoclick
-  setInterval(() => {
-    score+=autoValue;
-    scoreCompteur.innerText = score;
-    popAutoValueAnimation();
-  }, 1000);
+
+  // soundclick
+
+ // autoclick
+  let intervalID;
+
+  autoClickTimer()
+  function autoClickTimer(){
+      intervalID=setInterval(() => {
+        if(window.location.pathname!=="/game"){
+          clearInterval(intervalID)
+          return;
+        }
+        if(autoValue!==0){
+          const newValue = score+autoValue;
+          anime({
+            targets: scoreCompteur,
+            innerText: [score, newValue],
+            round: 1,
+            easing: 'easeInOutExpo',
+          })
+          score=newValue;
+          addUserScore(score)
+          scoreCompteur.innerText = score;
+          popAutoValueAnimation();
+        }
+      }, 1000);
+  }
+  // lorqu'on change de page sur l'écran le autoClicker s'intteromp et redémarre lorsqu'on revient
+  function handleVisibilityChangeOfPageForAutoClicker(){
+    if (document.visibilityState === 'hidden') {
+      clearInterval(intervalID);
+      intervalID = undefined;
+  } else if (!intervalID) {
+          autoClickTimer()
+      }
+  }
+  document.addEventListener('visibilitychange', handleVisibilityChangeOfPageForAutoClicker)
 
   // increasing score and progress bar
   covidClick.addEventListener('click', () => {
@@ -71,6 +113,8 @@ const GamePage = async () => {
   });
 
   function clickOnCovid() {
+    const soundC = new Audio(soundClick);
+      soundC.play();
     anime({
       targets: covidClick,
       scale: 1.2,
@@ -123,7 +167,7 @@ const GamePage = async () => {
 
     const clickFeedback = document.createElement('div');
     clickFeedback.classList.add('autoClick-feedback');
-    clickFeedback.innerHTML = `+${autoValue} morts`;
+    clickFeedback.innerHTML = `+${autoValue}`;
     clickFeedback.style.left = `${x}px`;
     clickFeedback.style.top = `${y}px`;
     clickFeedback.style.userSelect = 'none';
@@ -189,6 +233,7 @@ const GamePage = async () => {
             scale: 1.1,
             duration: 300,
           });
+          cursor.classList.replace('cursor', 'cursor-click');
         });
         upgrade.addEventListener('mouseleave', () => {
           anime({
@@ -196,6 +241,7 @@ const GamePage = async () => {
             scale: 1,
             duration: 300,
           });
+          cursor.classList.replace('cursor-click', 'cursor');
         });
       });
     } catch (err) {
@@ -217,6 +263,7 @@ const GamePage = async () => {
       translateX: '0px',
       delay: anime.stagger(100),
     });
+
     anime.set(annimateButtonsL, {
       translateX: '-500px',
     });
@@ -238,9 +285,6 @@ const GamePage = async () => {
             <button class="upgradeButtonL buttonAnnimation" data-id=${upgrade.id} data-cost=${upgrade.cost}>
               ${upgrade.title}<br>
               cost: ${upgrade.cost}
-              <div class="progress">
-              <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">${autoValue}/s</div>
-              </div>
             </button>
           </div>
           `;
@@ -258,6 +302,10 @@ const GamePage = async () => {
     return { autoUpgrades, upgradesLines };
   }
 
+  const soundItemsAiva = new Audio(soundItemAvailable);
+  function playSoundItems() {
+    soundItemsAiva.play();
+  }
   function upgradesColorChangeByCost(){
     const upgradeButtonsToChangeColor = document.querySelectorAll('.buttonAnnimation');
     upgradeButtonsToChangeColor.forEach((upgrade)=>{
@@ -267,9 +315,12 @@ const GamePage = async () => {
       }else{
         // eslint-disable-next-line no-param-reassign
         upgrade.style.color="green"
+        playSoundItems();
       }
     })
-    }
+  }
+
+  
 
   async function onClickEvent(idUpgrade) {
     const username = getAuthenticatedUser().username;
@@ -392,6 +443,7 @@ const GamePage = async () => {
 
     return scoreUser;
   }
+
 };
 
 export default GamePage;

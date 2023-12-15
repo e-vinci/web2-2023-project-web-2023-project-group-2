@@ -17,35 +17,6 @@
     
   }
 
-  .cursor {
-    width: 50px;
-    height: 50px;
-    background-image: url('../img/cursor-navigation.svg');
-    background-size: cover;
-    position: fixed;  /* Utilisez fixed au lieu de absolute */
-    pointer-events: none;
-    display: none; /* Ajoutez ceci pour le masquer initialement */
-  }
-
-  .cursor-click {
-    width: 50px;
-    height: 50px;
-    background-image: url('../img/cursor_click.svg');
-    background-size: cover;
-    position: fixed;  /* Utilisez fixed au lieu de absolute */
-    pointer-events: none;
-    display: none; /* Ajoutez ceci pour le masquer initialement */
-    cursor: none;
-  }
-
-  .login-icon{
-    cursor: none;
-  }
-
-  #logout{
-    cursor: none;
-  }
-
   @keyframes color{
     0%{
       background-position: 0 0;
@@ -58,6 +29,42 @@
     }
   }
 
+  .cursor {
+    width: 35px;
+    height: 35px;
+    background-image: url('../img/cursorPointer.png');
+    background-size: cover;
+    position: fixed;  /* Utilisez fixed au lieu de absolute */
+    pointer-events: none;
+    display: none; /* Ajoutez ceci pour le masquer initialement */
+  }
+
+  .cursor-click {
+    width: 40px;
+    height: 40px;
+    background-image: url('../img/cursorClick.png');
+    background-size: cover;
+    position: fixed;  /* Utilisez fixed au lieu de absolute */
+    pointer-events: none;
+    display: none; /* Ajoutez ceci pour le masquer initialement */
+    cursor: none;
+  }
+  
+  .buttonAnnimation{
+    cursor: none !important;
+  }
+
+
+  .login-icon{
+    cursor: none;
+  }
+
+  #logout{
+    cursor: none;
+  }
+
+  
+
   .homePageContainer{
     width: 100vw;
     height: 80vh;
@@ -67,6 +74,11 @@
     align-items: center;
   }
   
+  /* Login and register page */
+  .errorMessage{
+    color: red;
+    text-shadow: 1px 1px 1px black;
+  }
   /*Css for covid play button*/
 
   .play, .covidClick{
@@ -111,7 +123,8 @@
   .confirmButton{
     position: relative;
     width: 60px;
-    left: 70%
+    left: 70%;
+    cursor: none !important;
   }
 
   .custom-link {
@@ -135,6 +148,10 @@
   width: 100%;
   height: auto;
   text-align: center;
+}
+
+.score{
+  font-size: 5vmin
 }
 
 .mainContainer{

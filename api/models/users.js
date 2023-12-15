@@ -116,7 +116,7 @@ function addPoint(username, nvxPoints) {
   const indexOfUserFound = users.findIndex((user) => user.username === username);
   if (indexOfUserFound < 0) return undefined;
 
-  users[indexOfUserFound].nbClick = nvxPoints;
+  users[indexOfUserFound].nbClick = Math.ceil(nvxPoints);
 
   serialize(jsonDbPath, users);
 
@@ -189,7 +189,8 @@ async function upgradeClickValue(id, idU) {
   if (upgrade.operation === 'add') {
     users[indexOfUserFound].valeurDuCLick += upgrade.upgradeClickerValue;
   } else if (upgrade.operation === 'multiply') {
-    users[indexOfUserFound].valeurDuCLick *= upgrade.upgradeClickerValue;
+    // eslint-disable-next-line max-len
+    users[indexOfUserFound].valeurDuCLick = Math.ceil(users[indexOfUserFound].valeurDuCLick * upgrade.upgradeClickerValue);
   } else {
     // eslint-disable-next-line no-lonely-if
     if (upgrade.id === 8) {

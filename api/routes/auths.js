@@ -1,3 +1,5 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
+const validator = require('validator');
 const express = require('express');
 const { register, login } = require('../models/users');
 
@@ -18,11 +20,14 @@ router.post('/register', async (req, res) => {
     userPresent: false,
   };
 
-  if (!password.match(/[0-9]/g)
-  || !password.match(/[A-Z]/g)
-  || !password.match(/[a-z]/g)
-  || !password.match(/[^a-zA-Z\d]/g)
-  || (password.length < 8)) {
+  const validLength = validator.isLength(password, { min: 8 });
+
+  const hasUpercase = validator.isUppercase(password);
+
+  const hasLowercase = validator.isLowercase(password);
+
+  console.log(validLength, hasUpercase, hasLowercase);
+  if (!validLength || hasUpercase || hasLowercase || !password.match(/[0-9]/g) || !password.match(/[^a-zA-Z\d]/g)) {
     messageErreur.weakPassword = true;
     return res.status(401).json(messageErreur);
   }
