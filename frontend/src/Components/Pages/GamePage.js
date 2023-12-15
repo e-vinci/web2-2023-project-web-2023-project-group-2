@@ -88,6 +88,7 @@ const GamePage = async () => {
           addUserScore(score)
           scoreCompteur.innerText = score;
           popAutoValueAnimation();
+          upgradesColorChangeByCost();
         }
       }, 1000);
   }
