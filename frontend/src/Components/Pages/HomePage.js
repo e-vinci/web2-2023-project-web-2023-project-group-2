@@ -9,7 +9,7 @@ const HomePage = () => {
   const body = document.querySelector('body');
  
   body.style.overflow = 'hidden';
-
+  body.className = 'pageTooShort';
  
   const text = ` 
   <div class="covidContainer"></div>

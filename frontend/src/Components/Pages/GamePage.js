@@ -28,6 +28,7 @@ const GamePage = async () => {
   // hide scrollbar
   const body = document.querySelector('body');
   body.style.overflow = 'hidden';
+  body.className = 'pageTooShort';
 
   const text = ` 
   <div class="mainContainer">
@@ -54,6 +55,7 @@ const GamePage = async () => {
   const scoreCompteur = document.querySelector('.score');
   const progressBar = document.querySelector('.progress-bar');
   const cursor = document.querySelector('.cursor');
+  
 
   covidClick.addEventListener('mouseover', () => {
     cursor.classList.remove('cursor');

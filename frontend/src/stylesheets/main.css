@@ -1,7 +1,21 @@
-  /* gradient background annimation */
+html {
+  height: fit-content;
+}
+
+ /* gradient background annimation */
 
   body{
     height: auto;
+    background: linear-gradient(#e34e24, #e3ae24);
+    background-size: 100% 400%;
+    background-repeat: no-repeat;
+    animation: color 12s ease-in-out infinite;
+    font-family: 'Rubik Bubbles', 'cursive';
+    cursor:none !important;
+    
+  }
+  body.pageTooShort{
+    height: 100vh;
     background: linear-gradient(#e34e24, #e3ae24);
     background-size: 100% 400%;
     background-repeat: no-repeat;

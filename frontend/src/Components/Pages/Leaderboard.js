@@ -27,7 +27,7 @@ const Leaderboard = async () => {
  
   body.style.overflow = 'hidden';
   const users = await getUsers();
-
+  body.classList.remove('pageTooShort');
   const text = `
   <div class="covidContainerLeaderboard"></div>
   <div class="leaderboardPageContainer">
