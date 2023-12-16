@@ -21,6 +21,10 @@ const Register = () => {
         <label class="buttonAnnimation">confirm password</label><br>
         <input type="password" required class="form-control  border border-dark confirmPassword buttonAnnimation">
         <p class="passwordNoMatch errorMessage" ></p>
+        <div>
+        <input type="checkbox" name="check" value="confirmPolicy"/><br>
+        <label for="confirmPolicy">I aggree to your <a href="/privayPolicy" data-uri="/privayPolicy" class="link-underline-primary">privacy policy</a></label>
+        </div>
 
         <input type="image" src="${button}" class="confirmButton changeCursor">
       </div>
@@ -46,6 +50,7 @@ const Register = () => {
       const password = document.querySelector('.password').value;
       const confirmPassword = document.querySelector('.confirmPassword').value;
 
+      
       const options = {
         method: 'POST',
         body: JSON.stringify({
