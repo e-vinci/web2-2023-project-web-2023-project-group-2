@@ -31,6 +31,7 @@ const HomePage = () => {
   playButton.addEventListener('click', () => {
     cursor.className = 'cursor';
     const soundM = new Audio(mouseClick);
+    soundM.volume = 0.1;
     soundM.play();
     gamePage();
   });

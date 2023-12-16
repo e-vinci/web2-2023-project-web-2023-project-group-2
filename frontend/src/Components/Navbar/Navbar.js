@@ -6,6 +6,8 @@ import iconeLogoutRed from '../../img/iconLogoutRed.png';
 import iconeLoginBlue from '../../img/iconeLoginBlue.png';
 import Navigate from '../Router/Navigate';
 import { clearAuthenticatedUser, getAuthenticatedUser } from '../../utils/auths';
+import mouseClick from '../../sound/mouseClick.mp3';
+import soundHover from '../../sound/soundHover.mp3';
 
 const Navbar = () => {
   const cursor = document.querySelector('.cursor');
@@ -124,6 +126,8 @@ const Navbar = () => {
     if (cur) {
       cur.addEventListener('mouseover', () => {
         if(cursor){
+          const soundH = new Audio(soundHover);
+          soundH.play();
           cursor.className = 'cursor-click';
         }
       });
@@ -134,6 +138,9 @@ const Navbar = () => {
       });
       cur.addEventListener('click', () => {
         if(cursor){
+          const soundM = new Audio(mouseClick);
+          soundM.volume = 0.1;
+          soundM.play();
           cursor.className = 'cursor';
         }
       })

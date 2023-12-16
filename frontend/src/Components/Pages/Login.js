@@ -6,6 +6,7 @@ import { setAuthenticatedUser } from '../../utils/auths';
 import Navbar from '../Navbar/Navbar';
 // eslint-disable-next-line import/no-duplicates
 import changeCursor from '../Navbar/Navbar';
+import mouseClick from '../../sound/mouseClick.mp3';
 
 const Login = () => {
     const main = document.querySelector('main');
@@ -51,6 +52,9 @@ const Login = () => {
     })
 
     register.addEventListener('click', () => {
+      const soundM = new Audio(mouseClick);
+      soundM.volume = 0.1;
+      soundM.play();
       cursor.className = 'cursor';
       registerPage();
     });
