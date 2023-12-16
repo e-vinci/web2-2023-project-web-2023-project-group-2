@@ -4,6 +4,14 @@ html {
 
  /* gradient background annimation */
 
+ /***************************************************************************************
+*    Title: Background gradiant
+*    Author: Tahmid Ahmed
+*    Date: 07/05/2021
+*    Code version: /
+*    Availability: https://www.youtube.com/watch?v=LqRfQVcn3FY
+*
+***************************************************************************************/
   body{
     height: auto;
     background: linear-gradient(#e34e24, #e3ae24);

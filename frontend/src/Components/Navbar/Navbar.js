@@ -109,6 +109,16 @@ const Navbar = () => {
     addHoverAnimation(element);
   });
 
+
+  /** *************************************************************************************
+*    Title: position cursor
+*    Author: DesignCourse
+*    Date: 23/01/2019
+*    Code version: /
+*    Availability: https://www.youtube.com/watch?v=rfpRZ2t_BrQ&t=255s
+*
+************************************************************************************** */
+
   if (cursor) {
     document.addEventListener('mousemove', e => {
       cursor.style.display = 'block';
