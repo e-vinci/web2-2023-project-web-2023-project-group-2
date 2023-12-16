@@ -3,7 +3,7 @@
 ### Read all upgrades
 GET http://localhost:3000/upgrades
 
-### Read all upgrades with File variable
+### Read all upgrades
 @baseUrl = http://localhost:3000
 GET {{baseUrl}}/upgrades
 
