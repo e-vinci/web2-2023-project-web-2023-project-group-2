@@ -7,13 +7,16 @@ import soundItemAvailable from '../../sound/itemAvailable.mp3';
 import soundBuy from '../../sound/soundBuy.mp3';
 import covidCurrency from '../../img/virus-rouge.png'
 
+let intervalID; // the autoclicker interval
+
 const GamePage = async () => {
   // Verification user is connected
   if (!getAuthenticatedUser()) {
     Navigate('/login');
     return;
   }
-
+  
+  clearInterval(intervalID)
   // Getting user's score and user's click value
   let score = 0;
   const nbClicks = await takeScore();
@@ -72,7 +75,7 @@ const GamePage = async () => {
   // soundclick
 
  // autoclick
-  let intervalID;
+
 
   autoClickTimer();
   function autoClickTimer(){
