@@ -6,7 +6,7 @@ import changeCursor from '../Navbar/Navbar';
 const Register = () => {
     const main = document.querySelector('main');
     const text = `
-  <div class="position-absolute top-50 start-50 translate-middle card bg-transparent border border-dark" style="width: 18rem">
+  <div class="position-absolute top-50 start-50 translate-middle card bg-transparent border border-dark" style="width: 20rem">
     <form>
     <h1 class="fontRubikBubbles card-header text-center border border-dark">Register</h1>
       <div class="card-body">
@@ -22,7 +22,7 @@ const Register = () => {
         <input type="password" required class="form-control  border border-dark confirmPassword buttonAnnimation">
         <p class="passwordNoMatch errorMessage" ></p>
         <div>
-        <input type="checkbox" name="check" class="changeCursor buttonAnnimation" value="confirmPolicy"required /><br>
+        <input type="checkbox" name="check" class="changeCursor buttonAnnimation" value="confirmPolicy"required />
         <label for="confirmPolicy" class="buttonAnnimation">I aggree to your <a href="/privayPolicy" data-uri="/privayPolicy" class="link-underline-primary changeCursor buttonAnnimation">privacy policy</a></label>
         </div>
 
