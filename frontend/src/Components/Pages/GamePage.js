@@ -70,11 +70,11 @@ const GamePage = async () => {
  // autoclick
   let intervalID;
 
-  autoClickTimer()
+  autoClickTimer();
   function autoClickTimer(){
       intervalID=setInterval(() => {
         if(window.location.pathname!=="/game"){
-          clearInterval(intervalID)
+          clearInterval(intervalID);
           return;
         }
         if(autoValue!==0){

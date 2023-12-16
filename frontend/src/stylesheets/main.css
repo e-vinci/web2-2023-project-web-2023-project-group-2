@@ -1,16 +1,10 @@
-  html, body{
-    height: 100vh;
-    margin: 0;
-    padding: 0;
-  }
-  
   /* gradient background annimation */
 
   body{
-    height: 100vh;
+    height: auto;
     background: linear-gradient(#e34e24, #e3ae24);
-    background-size: 300% 300%;
-    max-height: 100%;
+    background-size: 100% 400%;
+    background-repeat: no-repeat;
     animation: color 12s ease-in-out infinite;
     font-family: 'Rubik Bubbles', 'cursive';
     cursor:none !important;
@@ -407,7 +401,7 @@
   width: auto;
   height: 200px;
   align-self: center;
-  margin-bottom: 10vh;
+  margin-bottom: 40vmin;
 }
 .userCard{
   width: 150px; 
