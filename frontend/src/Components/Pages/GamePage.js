@@ -104,8 +104,7 @@ const GamePage = async () => {
   function handleVisibilityChangeOfPageForAutoClicker(){
     if (document.visibilityState === 'hidden') {
       clearInterval(intervalID);
-      intervalID = undefined;
-  } else if (!intervalID) {
+  } else {
           autoClickTimer()
       }
   }
