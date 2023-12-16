@@ -35,6 +35,8 @@ const Login = () => {
     const register = document.querySelector('.register');
     const cursor = document.querySelector('.cursor');
     const noAccount = document.querySelector('#noAccount');
+    const body = document.querySelector('body');
+    body.className = 'pageTooShort';
 
     noAccount.addEventListener('mouseenter', ()=> {
       anime({

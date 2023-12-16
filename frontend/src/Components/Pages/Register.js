@@ -38,7 +38,9 @@ const Register = () => {
     const userPresent = document.querySelector('.userNameError');
     const weakPassword = document.querySelector('.weakPassword');
     const passwordNoMatch = document.querySelector('.passwordNoMatch');
-  
+    const body = document.querySelector('body');
+    body.className = 'pageTooShort';
+    
     changeCursor();
     
     async function register(e){

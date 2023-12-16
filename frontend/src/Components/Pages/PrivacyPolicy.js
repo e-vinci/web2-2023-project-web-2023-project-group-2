@@ -2,6 +2,9 @@
 
 const PrivacyPolicy = ()=> {
     const main = document.querySelector('main');
+    // eslint-disable-next-line no-unused-vars
+    const body = document.querySelector('body');
+    body.classList.remove('pageTooShort');
     const text = `
     <br>
     <h1>Privacy Policy</h1>
