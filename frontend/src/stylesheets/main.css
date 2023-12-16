@@ -176,6 +176,13 @@
   height: 10vh;
 }
 
+.covidCurrencyScore{
+  margin-top: -27px;
+}
+.covidCurrencyUpgrades{
+  margin-top: -2px;
+  margin-left: 5px;
+}
 /*CSS for the clickvalue animation*/
 .click-feedback{
   position: fixed;
