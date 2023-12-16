@@ -7,7 +7,6 @@ import iconeLoginBlue from '../../img/iconeLoginBlue.png';
 import Navigate from '../Router/Navigate';
 import { clearAuthenticatedUser, getAuthenticatedUser } from '../../utils/auths';
 import mouseClick from '../../sound/mouseClick.mp3';
-import soundHover from '../../sound/soundHover.mp3';
 
 const Navbar = () => {
   const cursor = document.querySelector('.cursor');
@@ -113,8 +112,8 @@ const Navbar = () => {
   if (cursor) {
     document.addEventListener('mousemove', e => {
       cursor.style.display = 'block';
-      cursor.style.left = `${e.pageX}px`;
-      cursor.style.top = `${e.pageY}px`;
+      cursor.style.left = `${e.pageX - 10}px`;
+      cursor.style.top = `${e.pageY}px`; 
     });
   };
 
@@ -126,8 +125,6 @@ const Navbar = () => {
     if (cur) {
       cur.addEventListener('mouseover', () => {
         if(cursor){
-          const soundH = new Audio(soundHover);
-          soundH.play();
           cursor.className = 'cursor-click';
         }
       });

@@ -5,6 +5,7 @@ import Navigate from '../Router/Navigate';
 import soundClick from '../../sound/soundClick.mp3';
 import soundItemAvailable from '../../sound/itemAvailable.mp3';
 import soundBuy from '../../sound/soundBuy.mp3';
+import covidCurrency from '../../img/virus-rouge.png'
 
 const GamePage = async () => {
   // Verification user is connected
@@ -34,8 +35,9 @@ const GamePage = async () => {
   <div class="autoUpgradesDiv"></div> 
     <div class="clickerContainer">
       
-        <div class="score">
-          ${score}
+        <div >
+          <span class="score">${score}</span>
+          <img src="${covidCurrency}" width="50" height="50" class="covidCurrencyScore">
         </div>  
    
       <button class="covidClick"></button>
@@ -292,7 +294,7 @@ const GamePage = async () => {
           <div>
             <button class="upgradeButtonL buttonAnnimation" data-id=${upgrade.id} data-cost=${upgrade.cost} data-isPlayed=${upgrade.isPlayed}>
               ${upgrade.title}<br>
-              cost: ${upgrade.cost}
+              ${upgrade.cost} <img src="${covidCurrency}" width="20" height="20" class="covidCurrencyUpgrades">
             </button>
           </div>
           `;
@@ -301,7 +303,7 @@ const GamePage = async () => {
            <div>
             <button class="upgradeButtonR buttonAnnimation" data-id=${upgrade.id} data-cost=${upgrade.cost} data-isPlayed=${upgrade.isPlayed}>
               ${upgrade.title}<br>
-              cost: ${upgrade.cost}
+              ${upgrade.cost}<img src="${covidCurrency}" width="20" height="20" class="covidCurrencyUpgrades">
             </button>
           </div>
           `;
