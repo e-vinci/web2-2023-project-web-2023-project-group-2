@@ -6,7 +6,7 @@ import { killAllIntervals } from './GamePage';
 
 /* eslint-disable consistent-return */
 /* eslint-disable no-unused-vars */
-killAllIntervals();
+
 const getUsers = async () => {
   try {
     const response = await fetch('/api/leaderBoard');
@@ -22,7 +22,7 @@ const getUsers = async () => {
 };
 
 const Leaderboard = async () => {
-  
+  killAllIntervals();
   
   const main = document.querySelector('main');
   const body = document.querySelector('body');

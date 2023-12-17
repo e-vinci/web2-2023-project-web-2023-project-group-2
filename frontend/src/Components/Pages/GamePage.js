@@ -382,6 +382,7 @@ autoClickTimer();
 
     clickValue = await takeCLickValue();
     score = await takeScore();
+    addUserScore(score)
     autoValue = await takeAutoClickValue();
     renderUpgrades();
     scoreCompteur.innerText = score;
