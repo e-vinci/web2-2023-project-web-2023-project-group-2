@@ -116,10 +116,12 @@ autoClickTimer();
   // lorqu'on change de page sur l'écran le autoClicker s'intteromp et redémarre lorsqu'on revient
   function handleVisibilityChangeOfPageForAutoClicker(){
     if (document.visibilityState === 'hidden') {
-      clearInterval(autoClickintervalID);
+      killAllIntervals()
+      saveIntervalID = undefined;
       autoClickintervalID = undefined;
-  } else {
+  } else if (!autoClickintervalID){
           autoClickTimer()
+          startSaveInterval()
       }
   }
   document.addEventListener('visibilitychange', handleVisibilityChangeOfPageForAutoClicker)
