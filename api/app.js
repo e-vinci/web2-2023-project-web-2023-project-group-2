@@ -7,7 +7,6 @@ const corsOptions = {
   origin: 'http://localhost:8080',
 };
 
-const usersRouter = require('./routes/users');
 const upgradeRouter = require('./routes/upgrades');
 const authsRouter = require('./routes/auths');
 const clickerRouter = require('./routes/clicker');
@@ -23,7 +22,6 @@ app.use(cookieParser());
 
 app.use(cors(corsOptions));
 
-app.use('/users', usersRouter);
 app.use('/upgrades', upgradeRouter);
 app.use('/auths', authsRouter);
 app.use('/upgrades', cors(corsOptions), upgradeRouter);
