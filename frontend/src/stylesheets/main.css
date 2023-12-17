@@ -30,7 +30,6 @@ html {
     animation: color 12s ease-in-out infinite;
     font-family: 'Rubik Bubbles', 'cursive';
     cursor:none !important;
-    
   }
 
   @keyframes color{
