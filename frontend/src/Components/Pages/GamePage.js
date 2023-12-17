@@ -118,7 +118,7 @@ autoClickTimer();
     if (document.visibilityState === 'hidden') {
       clearInterval(autoClickintervalID);
       autoClickintervalID = undefined;
-  } else if (!autoClickintervalID) {
+  } else {
           autoClickTimer()
       }
   }
