@@ -97,6 +97,7 @@ autoClickTimer();
           return;
         }
         if(autoValue!==0){
+          updateProgressBar();
           const newValue = score+autoValue;
           anime({
             targets: scoreCompteur,
@@ -127,11 +128,13 @@ autoClickTimer();
   covidClick.addEventListener('click', () => {
     score += clickValue;
     scoreCompteur.innerText = score;
+    updateProgressBar();
+  });
+  function updateProgressBar(){
     progress = (score * 100) / 8000000000;
     progressBar.style.width = `${progress}%`;
     progressBar.ariaValueNow = progress;
-  });
-
+  }
   function clickOnCovid() {
     const soundC = new Audio(soundClick);
       soundC.play();
@@ -432,6 +435,7 @@ autoClickTimer();
   // SCORE
 
   async function addUserScore(addValue) {
+    if(score===0)return false;
     const username = getAuthenticatedUser().username;
     const nvxPoints = addValue;
     const options = {
