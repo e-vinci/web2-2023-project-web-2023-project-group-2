@@ -359,6 +359,7 @@ autoClickTimer();
   
 
   async function onClickEvent(idUpgrade) {
+    await addUserScore(score);
     const username = getAuthenticatedUser().username;
     console.log(idUpgrade);
     const options = {
