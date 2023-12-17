@@ -7,8 +7,13 @@ import soundItemAvailable from '../../sound/itemAvailable.mp3';
 import soundBuy from '../../sound/soundBuy.mp3';
 import covidCurrency from '../../img/virus-rouge.png'
 
-let intervalID; // the autoclicker interval
+let autoClickintervalID; 
+let saveIntervalID;
 
+function killAllIntervals(){
+  clearInterval(autoClickintervalID);
+  clearInterval(saveIntervalID);
+}
 const GamePage = async () => {
   // Verification user is connected
   if (!getAuthenticatedUser()) {
@@ -16,7 +21,7 @@ const GamePage = async () => {
     return;
   }
   
-  clearInterval(intervalID)
+  killAllIntervals();
   // Getting user's score and user's click value
   let score = 0;
   const nbClicks = await takeScore();
@@ -25,6 +30,7 @@ const GamePage = async () => {
   let autoValue = await takeAutoClickValue();
   // Transforming his score in % for the progress bar
   let progress = (score * 100) / 8000000000;
+  
 
   const main = document.querySelector('main');
 
@@ -75,13 +81,19 @@ const GamePage = async () => {
   // soundclick
 
  // autoclick
+startSaveInterval();
 
+function startSaveInterval(){
+  saveIntervalID= setInterval(async ()=>{
+    addUserScore(score);
+  }, 3000);
+}
 
-  autoClickTimer();
+autoClickTimer();
   function autoClickTimer(){
-      intervalID=setInterval(() => {
+    autoClickintervalID=setInterval(() => {
         if(window.location.pathname!=="/game"){
-          clearInterval(intervalID);
+          clearInterval(autoClickintervalID);
           return;
         }
         if(autoValue!==0){
@@ -93,19 +105,19 @@ const GamePage = async () => {
             easing: 'easeInOutExpo',
           })
           score=newValue;
-          addUserScore(score)
           scoreCompteur.innerText = score;
           popAutoValueAnimation();
           upgradesColorChangeByCost();
         }
       }, 1000);
   }
+
   // lorqu'on change de page sur l'écran le autoClicker s'intteromp et redémarre lorsqu'on revient
   function handleVisibilityChangeOfPageForAutoClicker(){
     if (document.visibilityState === 'hidden') {
-      clearInterval(intervalID);
-      intervalID = undefined;
-  } else if (!intervalID) {
+      clearInterval(autoClickintervalID);
+      autoClickintervalID = undefined;
+  } else if (!autoClickintervalID) {
           autoClickTimer()
       }
   }
@@ -115,7 +127,6 @@ const GamePage = async () => {
   covidClick.addEventListener('click', () => {
     score += clickValue;
     scoreCompteur.innerText = score;
-    addUserScore(score);
     progress = (score * 100) / 8000000000;
     progressBar.style.width = `${progress}%`;
     progressBar.ariaValueNow = progress;
@@ -463,7 +474,9 @@ const GamePage = async () => {
 
     return scoreUser;
   }
-
+  
 };
 
 export default GamePage;
+
+export {killAllIntervals};

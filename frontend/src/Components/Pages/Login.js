@@ -7,8 +7,10 @@ import Navbar from '../Navbar/Navbar';
 // eslint-disable-next-line import/no-duplicates
 import changeCursor from '../Navbar/Navbar';
 import mouseClick from '../../sound/mouseClick.mp3';
+import { killAllIntervals } from './GamePage';
 
 const Login = () => {
+  killAllIntervals();
     const main = document.querySelector('main');
     const text = `
       <div class="position-absolute top-50 start-50 translate-middle card bg-transparent border border-dark" style="width: 18rem">

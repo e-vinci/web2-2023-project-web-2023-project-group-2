@@ -2,8 +2,10 @@
 import button from '../../img/arrowButton.png';
 import Navigate from '../Router/Navigate';
 import changeCursor from '../Navbar/Navbar';
+import { killAllIntervals } from './GamePage';
 
 const Register = () => {
+  killAllIntervals();
     const main = document.querySelector('main');
     const text = `
   <div class="position-absolute top-50 start-50 translate-middle card bg-transparent border border-dark" style="width: 20rem">

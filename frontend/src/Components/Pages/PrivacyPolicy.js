@@ -1,7 +1,9 @@
 import changeCursor from '../Navbar/Navbar';
+import { killAllIntervals } from './GamePage';
 
 
 const PrivacyPolicy = ()=> {
+    killAllIntervals();
     const main = document.querySelector('main');
     
     const text = `

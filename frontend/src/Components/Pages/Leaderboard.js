@@ -2,9 +2,11 @@ import anime from 'animejs/lib/anime.es';
 import covidRed from '../../img/virus-rouge.png';
 import podium from '../../img/podium.png';
 import { getAuthenticatedUser } from '../../utils/auths'
+import { killAllIntervals } from './GamePage';
 
 /* eslint-disable consistent-return */
 /* eslint-disable no-unused-vars */
+killAllIntervals();
 const getUsers = async () => {
   try {
     const response = await fetch('/api/leaderBoard');

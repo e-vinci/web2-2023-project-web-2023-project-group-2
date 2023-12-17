@@ -3,8 +3,10 @@ import covidRed from '../../img/virus-rouge.png';
 import Navigate from '../Router/Navigate';
 import changeCursorM from '../Navbar/Navbar';
 import mouseClick from '../../sound/mouseClick.mp3';
+import { killAllIntervals } from './GamePage';
 
 const HomePage = () => {
+  killAllIntervals();
   const main = document.querySelector('main');
   const body = document.querySelector('body');
  
