@@ -3,6 +3,7 @@ import button from '../../img/arrowButton.png';
 import Navigate from '../Router/Navigate';
 import changeCursor from '../Navbar/Navbar';
 import { killAllIntervals } from './GamePage';
+import { setAuthenticatedUser } from '../../utils/auths';
 
 const Register = () => {
   killAllIntervals();
@@ -78,6 +79,8 @@ const Register = () => {
           passwordNoMatch.innerText = "les mots de passe ne correspondent pas";
         }
       }else{
+        const authenticatedUser = await response.json();
+        setAuthenticatedUser(authenticatedUser);
         return Navigate('/')
       }
     }
