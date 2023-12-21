@@ -1,0 +1,35 @@
+@baseUrl = http://localhost:3000
+
+###Register score for admin
+POST {{baseUrl}}/clicker/registerScore
+Content-Type: application/json
+
+{
+    "username":"admin",
+    "nvxPoints": 125
+}
+
+###Register score for manager
+POST {{baseUrl}}/clicker/registerScore
+Content-Type: application/json
+
+{
+    "username":"manager",
+    "nvxPoints": 323
+}
+
+####Upgrade clicker
+PATCH {{baseUrl}}/clicker/upgradeClicker
+Content-Type: application/json
+
+{
+    "username": "admin",
+    "upgradeID": 2
+}
+####Get score
+post {{baseUrl}}/clicker/scoreUser
+Content-Type: application/json
+
+{
+    "username": "admin"
+}

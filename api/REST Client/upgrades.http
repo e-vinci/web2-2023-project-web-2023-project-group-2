@@ -1,0 +1,72 @@
+######### NORMAL OPERATION  ###########
+
+### Read all upgrades
+GET http://localhost:3000/upgrades
+
+### Read all upgrades
+@baseUrl = http://localhost:3000
+GET {{baseUrl}}/upgrades
+
+### Read all upgrades sorted by operation (ascending)
+GET {{baseUrl}}/upgrades/?operation=add
+
+### Read upgrade identified by 2
+GET {{baseUrl}}/upgrades/2
+
+### Create an upgrade by using the admin account
+#### First login as the admin
+##### Define a request variable nammed admin
+# @name admin
+POST {{baseUrl}}/auths/login
+Content-Type: application/json
+
+{
+    "username":"admin",
+    "password":"admin"
+}
+
+
+### Create an upgrade by using the manager account
+#### First login as the admin
+##### Define a request variable nammed admin
+# @name admin
+POST {{baseUrl}}/auths/login
+Content-Type: application/json
+
+{
+    "username":"manager",
+    "password":"Manager.2003"
+}
+
+#### Create a upgrade with the admin token
+POST {{baseUrl}}/upgrades
+Content-Type: application/json
+Authorization: {{admin.response.body.token}}
+
+{
+    "title":"click: x10",
+    "operation":"multiply",
+    "cost": 2000,
+    "upgradeClickerValue": 10
+}
+
+### Delete upgrade identified by 2 with the admin token
+DELETE {{baseUrl}}/upgrades/6
+Authorization: {{admin.response.body.token}}
+
+### Update the upgrade identified by 6 with the admin token
+PATCH {{baseUrl}}/upgrades/6
+Content-Type: application/json
+Authorization: {{admin.response.body.token}}
+
+{
+    "title":"test"
+}
+
+### Read all upgrades from user by username
+POST {{baseUrl}}/upgrades/readAll
+Content-Type: application/json
+
+{
+    "username":"admin"
+}

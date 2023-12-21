@@ -1,0 +1,23 @@
+@baseUrl = http://localhost:3000
+
+###Read all user_upgrades from user
+GET {{baseUrl}}/userUpgrades/1
+
+
+### Add one upgrade for user
+# @name admin
+POST {{baseUrl}}/userUpgrades/2
+Content-Type: application/json
+
+{
+    "idUpgrade":4
+}
+
+### Buy upgrade for user 1
+PATCH {{baseUrl}}/userUpgrades
+Content-Type: application/json
+
+{
+    "idUpgrade":5,
+    "username":"admin"
+}
